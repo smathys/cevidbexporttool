@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<html class="lt-ie9" lang="en" ng-controller="AppCtrl as appCtrl">
+<![endif]-->
+<!--[if gt IE 9]>
+<html lang="en" ng-controller="AppCtrl as appCtrl">
+<!--<![endif]-->
+
+<html lang="en" ng-controller="AppCtrl as appCtrl">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{{appCtrl.pageTitle}}</title>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+        <!--[if lt IE 9]>
+        <script src="js/vendor/html5shiv/html5shiv.js"></script>
+        <script src="js/vendor/respond/respond.js"></script>
+        <![endif]-->
+
+        <!-- oblique-ui -->
+        <link rel="shortcut icon" href="images/favicon.ico" />
+
+
+        <!-- build:css styles/vendor.css -->
+        <link rel="stylesheet" href="styles/vendor.css">
+        <!-- endbuild -->
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <!-- build:js js/vendor.js -->
+        <script src="js/vendor/lodash.js"></script>
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/vendor/angular-animate.js"></script>
+        <script src="js/vendor/angular-sanitize.js"></script>
+        <script src="js/vendor/angular-ui-router.js"></script>
+        <script src="js/vendor/ui-utils.js"></script>
+        <script src="js/vendor/ui-bootstrap-tpls.min.js"></script>
+        <script src="js/vendor/angular-translate.js"></script>
+        <script src="js/vendor/angular-translate-storage-cookie.js"></script>
+        <script src="js/vendor/angular-translate-storage-local.js"></script>
+        <script src="js/vendor/angular-translate-loader-static-files.js"></script>
+        <script src="js/vendor/angular-upload.js"></script>
+        <script src="js/vendor/dialogs.js"></script>
+        <script src="js/vendor/moment.js"></script>
+        <script src="js/vendor/tooltip.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js js/config.js -->
+        <script src="js/config.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js js/app.js -->
+        <script src="js/app/appModule.js"></script>
+        <script src="js/app/appCtrl.js"></script>
+
+        <script src="js/app/common/commonModule.js"></script>
+        <script src="js/app/common/infrastructure/logDecorator.js"></script>
+        <script src="js/app/common/infrastructure/httpInterceptor.js"></script>
+        <script src="js/app/common/infrastructure/httpDecorator.js"></script>
+        <script src="js/app/common/infrastructure/exceptionHandlerDecorator.js"></script>
+
+        <script src="js/app/common/filters/i18nDate.js"></script>
+        <script src="js/app/common/filters/i18nNumber.js"></script>
+
+        <script src="js/app/common/directives/utilityDirectives.js"></script>
+        <script src="js/app/common/directives/formValidationDirectives.js"></script>
+        <script src="js/app/common/directives/inputDirectives.js"></script>
+        <script src="js/app/common/directives/inputFormatDirectives.js"></script>
+        <script src="js/app/common/directives/tableDirectives.js"></script>
+        <script src="js/app/common/directives/wizardDirectives.js"></script>
+        <script src="js/app/common/directives/uploadDirectives.js"></script>
+        <script src="js/app/common/directives/dialogDirectives.js"></script>
+        <script src="js/app/common/directives/htmpPopoverDirectives.js"></script>
+        <script src="js/app/common/directives/uiDirectives.js"></script>
+        <script src="js/app/common/directives/ieFixDirectives.js"></script>
+
+        <script src="js/app/common/notification/notificationService.js"></script>
+        <script src="js/app/common/notification/notificationDirective.js"></script>
+
+        <script src="js/app/common/services/dateUtilsService.js"></script>
+        <script src="js/app/common/services/formUtilsService.js"></script>
+        <script src="js/app/common/services/utilsService.js"></script>
+        <script src="js/app/common/services/loadingService.js"></script>
+        <script src="js/app/common/services/ibanService.js"></script>
+        <script src="js/app/common/services/resolveService.js"></script>
+        <script src="js/app/common/services/fileService.js"></script>
+        <script src="js/app/common/services/authService.js"></script>
+        <script src="js/app/common/services/userService.js"></script>
+        <script src="js/app/common/services/i18nService.js"></script>
+
+        <script src="js/app/common/library/momentService.js"></script>
+        <script src="js/app/common/library/lodashService.js"></script>
+
+        <script src="js/templates-app.js"></script>
+        <!-- endbuild -->
+
+    </head>
+
+
+    <body class="has-transitions has-tooltips">
+
+
+        <script>
+            angular.element(document).ready(function() {
+                angular.bootstrap(document, ['angular-seed']);
+            });
+        </script>
+
+    </body>
+</html>
+
+
