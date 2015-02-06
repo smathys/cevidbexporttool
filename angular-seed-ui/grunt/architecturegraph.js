@@ -15,7 +15,7 @@ module.exports.tasks = {
     angular_architecture_graph: {
         diagram: {
             files: {
-                'architecture': [ '<%= build.prod.dir %>/js/app*.js' ]
+                'architecture': [ '<%= build.dir.prod %>/js/app*.js' ]
             }
         }
     }

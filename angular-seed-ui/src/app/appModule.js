@@ -47,7 +47,7 @@
 
     function httpProviderConfig($httpProvider, CONFIG) {
         if (CONFIG.dev && CONFIG.dev.sendCredentials) {
-            $httpProvider.defaults.withCredentials = CONFIG.dev.sendCredentials;
+            $httpProvider.defaults.withCredentials =CONFIG.dev.sendCredentials;
         }
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         $httpProvider.interceptors.push('HttpInterceptor');

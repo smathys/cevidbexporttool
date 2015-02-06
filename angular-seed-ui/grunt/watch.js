@@ -9,43 +9,52 @@ module.exports.tasks = {
     watch: {
         config: {
             options: { livereload: true },
-            files: ['<%= build.dev.src.app.config.dev %>'],
-            tasks: ['jshint', 'copy:app_src']
+            files: ['<%= src.config.dev %>'],
+            tasks: ['jshint', 'copy:app_config']
         },
-        less: {
+        'less:app': {
             options: { livereload: true },
-            files: ['<%= build.dev.src.app.styles.all %>'],
+            files: ['<%= src.styles.main %>'],
             tasks: ['less:app', 'autoprefixer']
+        },
+        'less:vendor': {
+            options: { livereload: true },
+            files: ['<%= src.styles.vendor %>'],
+            tasks: ['less:vendor']
         },
         'copy:vendor': {
             options: { livereload: true },
             files: [
-                '<%= build.dev.src.vendor.workaround.obliqueuiFonts.full %>',
-                '<%= build.dev.src.vendor.js %>',
-                '<%= build.dev.src.vendor.images %>'
+                '<%= vendor.js %>'
             ],
             tasks: ['copy:vendor']
         },
-        'copy:app_src': {
+        'copy:app_index': {
             options: { livereload: true },
-            files: [
-                '<%= build.dev.src.app.js.full %>',
-                '<%= build.dev.src.app.i18n.full %>',
-                '<%= build.dev.src.app.index %>'
-            ],
-            tasks: ['jshint', 'copy:app_src']
+            files: ['<%= src.index %>'],
+            tasks: ['jshint', 'copy:app_index']
+        },
+        'copy:app_js': {
+            options: { livereload: true },
+            files: ['<%= src.js.full %>'],
+            tasks: ['jshint', 'copy:app_js']
+        },
+        'copy:app_i18n': {
+            options: { livereload: true },
+            files: ['<%= src.i18n.full %>'],
+            tasks: ['jshint', 'copy:app_i18n']
         },
         'copy:app_assets': {
             options: { livereload: true },
             files: [
-                '<%= build.dev.src.app.images.full %>',
-                '<%= build.dev.src.app.fonts.full %>'
+                '<%= src.images.full %>',
+                '<%= src.fonts.full %>'
             ],
             tasks: ['copy:app_assets']
         },
         html2js: {
             options: { livereload: true },
-            files: ['<%= build.dev.src.app.templates.src %>'],
+            files: ['<%= src.templates.src %>'],
             tasks: ['html2js']
         }
     }

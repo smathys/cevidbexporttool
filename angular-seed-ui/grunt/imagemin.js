@@ -10,9 +10,9 @@ module.exports.tasks = {
         dynamic: {
             files: [{
                 expand: true,
-                cwd: '<%= build.prod.dir %>',
-                src: ['images/**/*.{png,jpg,gif}'],
-                dest: '<%= build.prod.dir %>'
+                cwd: '<%= build.dir.prod %>',
+                src: ['<%= build.imagesFiltered %>'],
+                dest: '<%= build.dir.prod %>'
             }]
         }
     }

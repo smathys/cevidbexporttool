@@ -10,9 +10,9 @@ module.exports.tasks = {
         build: {
             files: [
                 {
-                    src:    'js/app/**/*.js',
-                    dest:   '<%= build.dev.dir %>',
-                    cwd:    '<%= build.dev.dir %>',
+                    src:    '<%= build.js.files %>',
+                    dest:   '<%= build.dir.dev %>',
+                    cwd:    '<%= build.dir.dev %>',
                     expand: true
                 }
             ]

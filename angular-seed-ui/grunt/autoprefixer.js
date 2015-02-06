@@ -11,8 +11,8 @@ module.exports.tasks = {
             browsers: ['> 1%', 'last 2 versions', 'ie >= 9']
         },
         app: {
-            src: '<%= build.dev.dir %>/styles/main.css',
-            dest: '<%= build.dev.dir %>/styles/main.css'
+            src: '<%= build.dir.dev %><%= build.styles.main %>',
+            dest: '<%= build.dir.dev %><%= build.styles.main %>'
         }
     }
 };

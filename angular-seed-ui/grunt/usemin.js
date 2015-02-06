@@ -8,10 +8,10 @@
  */
 module.exports.tasks = {
     useminPrepare: {
-        html: '<%= build.dev.dir %>/index.html',
+        html: '<%= build.dir.dev %><%= build.index %>',
         options: {
-            dest: '<%= build.prod.dir %>',
-            staging: '<%= build.dev.dir %>/usemin',
+            dest: '<%= build.dir.prod %>',
+            staging: '<%= build.dir.dev %><%= config.usemin %>',
             flow: {
                 steps: {
                     js: ['concat', 'uglifyjs'],
@@ -33,9 +33,9 @@ module.exports.tasks = {
     },
 
     usemin: {
-        html: '<%= build.prod.dir %>/index.html',
+        html: '<%= build.dir.prod %><%= build.index %>',
         options: {
-            assetsDirs: ['<%= build.prod.dir %>']
+            assetsDirs: ['<%= build.dir.prod %>']
         }
     },
 
@@ -46,10 +46,10 @@ module.exports.tasks = {
             length: 8
         },
         js: {
-            src: '<%= build.prod.dir %>/js/*.*'
+            src: '<%= build.dir.prod %><%= build.js.filerev %>'
         },
         styles: {
-            src: '<%= build.prod.dir %>/styles/*.*'
+            src: '<%= build.dir.prod %><%= build.styles.filerev %>'
         }
     }
 };

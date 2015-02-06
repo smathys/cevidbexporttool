@@ -10,7 +10,7 @@
 module.exports.tasks = {
     jsbeautifier: {
         config: {
-            src : ['<%= build.prod.dir %>/js/config*.js'],
+            src : ['<%= build.dir.prod %><%= build.config %>'],
             options: {
                 js: {
                     braceStyle: "collapse",

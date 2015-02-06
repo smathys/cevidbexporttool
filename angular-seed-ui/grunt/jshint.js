@@ -7,7 +7,7 @@
  */
 module.exports.tasks = {
     jshint: {
-        all: ['Gruntfile.js', 'src/**/*.js', 'grunt/**/*.js'],
+        all: ['<%= config.gruntfile %>', '<%= config.src %>', '<%= src.js.full %>'],
         options: {
             sub:true
         }

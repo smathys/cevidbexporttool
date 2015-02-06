@@ -12,12 +12,12 @@ module.exports.tasks = {
         },
         app: {
             files: {
-                '<%= build.dev.dir %>/styles/main.css': '<%= build.dev.src.app.styles.main %>'
+                '<%= build.dir.dev %><%= build.styles.main %>': '<%=src.styles.main %>'
             }
         },
         vendor: {
             files: {
-                '<%= build.dev.dir %>/styles/vendor.css': '<%= build.dev.src.app.styles.vendor %>'
+                '<%= build.dir.dev %><%= build.styles.vendor %>': '<%= src.styles.vendor %>'
             }
         }
     }

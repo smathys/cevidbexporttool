@@ -2,21 +2,20 @@ module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-    var buildConfig = {
-        pkg: grunt.file.readJSON("package.json")
-    };
-    buildConfig = grunt.util._.extend(buildConfig, require('./grunt/variables.js'));
-    var taskConfig = require('load-grunt-configs')(grunt, buildConfig);
+    var buildConfig = grunt.util._.extend({ pkg: grunt.file.readJSON("package.json") }, require('./grunt/variables.js')),
+        taskConfig = require('load-grunt-configs')(grunt, buildConfig);
 
-
-    grunt.initConfig(grunt.util._.extend(taskConfig, buildConfig));
+    grunt.initConfig(grunt.util._.extend(buildConfig, taskConfig));
 
     grunt.registerTask('default', [ 'serve' ]);
     grunt.registerTask('dev', [
         'clean',
         'jshint',
         'copy:vendor',
-        'copy:app_src',
+        'copy:app_index',
+        'copy:app_js',
+        'copy:app_i18n',
+        'copy:app_config',
         'copy:app_assets',
         'less:vendor',
         'less:app',
@@ -39,7 +38,7 @@ module.exports = function (grunt) {
     grunt.registerTask('prod', [
         'dev',
         'copy:prod',
-        // 'imagemin',          disabled until GLIBC_2.14 is available in CI environment
+        'imagemin',
         'useminPrepare',
         'concat:generated',
         'cssmin:generated',

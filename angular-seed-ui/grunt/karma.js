@@ -9,12 +9,13 @@ module.exports.tasks = {
     karma: {
         options: {
             files: [
-                '<%= build.dev.src.vendor.js %>',
-                '<%= build.dev.src.app.test.vendor %>',
-                '<%= build.dev.src.app.test.configAndTempaltes %>',
-                '<%= build.dev.src.app.test.modules %>',
-                '<%= build.dev.src.app.test.src %>',
-                '<%= build.dev.src.app.test.spec %>'
+                '<%= vendor.js %>',
+                '<%= test.vendor %>',
+                '<%= test.config %>',
+                '<%= test.templates %>',
+                '<%= test.modules %>',
+                '<%= test.src %>',
+                '<%= test.spec %>'
             ],
             frameworks: ['jasmine'],
             reporters: ['spec'],

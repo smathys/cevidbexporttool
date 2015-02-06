@@ -10,7 +10,7 @@ module.exports.tasks = {
         dev: {
             options: {
                 port: 9000,
-                base: '<%= build.dev.dir %>/',
+                base: '<%= build.dir.dev %>/',
                 hostname: 'localhost',
                 index: 'index.html'
             }
@@ -18,7 +18,7 @@ module.exports.tasks = {
         prod: {
             options: {
                 port: 9000,
-                base: '<%= build.prod.dir %>/',
+                base: '<%= build.dir.prod %>/',
                 hostname: 'localhost',
                 index: 'index.html'
             }

@@ -9,10 +9,10 @@ module.exports.tasks = {
     html2js: {
         app: {
             options: {
-                base: '<%= build.dev.src.app.templates.base %>'
+                base: '<%= src.templates.base %>'
             },
-            src: [ '<%= build.dev.src.app.templates.src %>' ],
-            dest: '<%= build.dev.dir %>/js/templates-app.js'
+            src: [ '<%= src.templates.src %>' ],
+            dest: '<%= build.dir.dev %><%= build.templates %>'
         }
     }
 };

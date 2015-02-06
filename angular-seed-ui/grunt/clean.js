@@ -8,8 +8,8 @@
 module.exports.tasks = {
     clean: {
         src: [
-            '<%= build.dev.dir %>',
-            '<%= build.prod.dir %>'
+            '<%= build.dir.dev %>',
+            '<%= build.dir.prod %>'
         ]
     }
 };
