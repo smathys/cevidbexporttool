@@ -19,6 +19,7 @@
     "grunt-autoprefixer": "^1.0.1",
     "grunt-bump": "0.0.6",
     "grunt-cli": "^0.1.13",
+    "grunt-connect-proxy": "^0.1.11",
     "grunt-contrib-clean": "^0.4.1",
     "grunt-contrib-concat": "^0.3.0",
     "grunt-contrib-connect": "^0.7.1",
@@ -38,7 +39,9 @@
     "grunt-karma": "^0.8.3",
     "grunt-neuter": "^0.6.0",
     "grunt-ng-annotate": "^0.4.0",
+    "grunt-replace": "^0.8.0",
     "grunt-usemin": "3.0.0",
+    "grunt-wiredep": "2.0.0",
     "karma": "^0.12.9",
     "karma-chrome-launcher": "^0.1.7",
     "karma-growl-reporter": "^0.1.1",
@@ -49,7 +52,9 @@
     "load-grunt-config": "^0.13.0",
     "load-grunt-configs": "~0.4.0",
     "load-grunt-tasks": "~0.6.0",
-    "phantomjs": "^1.9.7-15"
+    "lodash": "^3.1.0",
+    "phantomjs": "^1.9.7-15",
+    "wiredep": "^2.2.2"
   },
   "scripts": {
     "postinstall": "bower install"

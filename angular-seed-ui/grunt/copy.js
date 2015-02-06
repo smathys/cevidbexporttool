@@ -6,12 +6,8 @@
  * Copy files and folders
  */
 module.exports.tasks = {
+
     copy: {
-        vendor: {
-            files: [
-                {src: ['<%= vendor.js %>'], dest: '<%= build.dir.dev %><%= build.vendor %>', expand: true, flatten: true }
-            ]
-        },
         app_assets: {
             files: [
                 {cwd: '<%= src.images.cwd %>', src: ['<%= src.images.src %>'], dest: '<%= build.dir.dev %><%= build.images %>', expand: true },

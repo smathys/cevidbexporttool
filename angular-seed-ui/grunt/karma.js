@@ -9,8 +9,8 @@ module.exports.tasks = {
     karma: {
         options: {
             files: [
-                '<%= vendor.js %>',
                 '<%= test.vendor %>',
+                '<%= test.mocks %>',
                 '<%= test.config %>',
                 '<%= test.templates %>',
                 '<%= test.modules %>',

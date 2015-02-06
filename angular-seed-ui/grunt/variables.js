@@ -18,7 +18,8 @@ module.exports = {
         js: {
             dir: '/js/',
             files: 'js/app/**/*.js',
-            filerev: 'js/*.*'
+            filerev: 'js/*.*',
+            ordered: ['!src/app/**/*spec.js', 'src/app/**/*Module.js', 'src/app/**/*.js']
         },
         index: 'index.html',
         config: 'config.js',
@@ -73,32 +74,9 @@ module.exports = {
         }
     },
 
-    vendor: {
-        js: [
-            'vendor/jquery/dist/jquery.js',
-            'vendor/lodash/lodash.min.js',
-            'vendor/moment/moment.js',
-            'vendor/bootstrap/js/tooltip.js',
-            'vendor/html5shiv/dist/html5shiv.js',
-            'vendor/respond/src/respond.js',
-
-            'vendor/angular/angular.js',
-            'vendor/angular-upload/angular-upload.js',
-            'vendor/angular-sanitize/angular-sanitize.js',
-            'vendor/angular-animate/angular-animate.js',
-            'vendor/angular-ui-utils/ui-utils.js',
-            'vendor/angular-ui-router/release/angular-ui-router.js',
-            'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-            'vendor/angular-translate/angular-translate.js',
-            'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-            'vendor/angular-translate-storage-local/angular-translate-storage-local.js',
-            'vendor/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
-            'vendor/angular-dialog-service/dist/dialogs.min.js'
-        ]
-    },
-
     test: {
-        vendor:     'vendor/angular-mocks/angular-mocks.js',
+        vendor:     [require('wiredep')().js],
+        mocks:      'vendor/**/angular-mocks.js',
         config:     'build_dev/config.js',
         templates:  'build_dev/js/templates-app.js',
         modules:    'build_dev/js/app/**/*Module.js',

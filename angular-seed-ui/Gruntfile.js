@@ -4,15 +4,17 @@ module.exports = function (grunt) {
 
     var buildConfig = grunt.util._.extend({ pkg: grunt.file.readJSON("package.json") }, require('./grunt/variables.js')),
         taskConfig = require('load-grunt-configs')(grunt, buildConfig);
-
     grunt.initConfig(grunt.util._.extend(buildConfig, taskConfig));
 
-    grunt.registerTask('default', [ 'serve' ]);
-    grunt.registerTask('dev', [
+    grunt.registerTask('default', [ 'dev' ]);
+    grunt.registerTask('index', [
+        'copy:app_index',
+        'replace',
+        'wiredep'
+    ]);
+    grunt.registerTask('dev_build', [
         'clean',
         'jshint',
-        'copy:vendor',
-        'copy:app_index',
         'copy:app_js',
         'copy:app_i18n',
         'copy:app_config',
@@ -22,21 +24,24 @@ module.exports = function (grunt) {
         'autoprefixer',
         'html2js',
         'ngAnnotate',
+        'index',
         'karma:continuous'
     ]);
 
-    grunt.registerTask('serve', [
-        'dev',
+    grunt.registerTask('dev', [
+        'dev_build',
+        'configureProxies:dev',
+        'connect:dev_vendor',
         'connect:dev',
         'watch'
     ]);
-    grunt.registerTask('serveprod', [
-        'prod',
+    grunt.registerTask('prod', [
+        'prod_build',
         'connect:prod:keepalive'
     ]);
 
-    grunt.registerTask('prod', [
-        'dev',
+    grunt.registerTask('prod_build', [
+        'dev_build',
         'copy:prod',
         'imagemin',
         'useminPrepare',
@@ -49,7 +54,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('architecture', [
-        'prod',
+        'prod_build',
         'angular_architecture_graph'
     ]);
 

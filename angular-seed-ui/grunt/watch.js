@@ -22,22 +22,15 @@ module.exports.tasks = {
             files: ['<%= src.styles.vendor %>'],
             tasks: ['less:vendor']
         },
-        'copy:vendor': {
-            options: { livereload: true },
-            files: [
-                '<%= vendor.js %>'
-            ],
-            tasks: ['copy:vendor']
-        },
         'copy:app_index': {
             options: { livereload: true },
             files: ['<%= src.index %>'],
-            tasks: ['jshint', 'copy:app_index']
+            tasks: ['jshint', 'index']
         },
         'copy:app_js': {
             options: { livereload: true },
             files: ['<%= src.js.full %>'],
-            tasks: ['jshint', 'copy:app_js']
+            tasks: ['jshint', 'copy:app_js', 'index']
         },
         'copy:app_i18n': {
             options: { livereload: true },
