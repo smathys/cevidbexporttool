@@ -23,7 +23,12 @@ var CONFIG = {
     },
 
     timeout: {
-        notification: 2000,
+        notification: {
+            info: 5000,
+            success: 1500,
+            warning: 6000,
+            error: -1
+        },
         request: 60000
     },
 

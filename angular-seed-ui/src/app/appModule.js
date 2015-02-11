@@ -3,20 +3,24 @@
     "use strict";
 
     angular.module('angular-seed', [
+
         'templates-app',
 
-        'angular-seed.common',
-
-        'angular-seed.module',
-
         'ngAnimate',
+        'ngCookies',
+
         'ui.router',
         'ui.bootstrap',
         'ui.utils',
 
-        'lr.upload',
+        'angular-growl',
         'pascalprecht.translate',
-        'dialogs.main'
+        'dialogs.main',
+        'lr.upload',
+
+        'angular-seed.common',
+        'angular-seed.module'
+
     ])
 
     .constant('CONFIG', CONFIG)
@@ -24,12 +28,10 @@
     .config(uiRouterConfig)
     .config(logConfig)
     .config(httpProviderConfig)
-    .config(loadingServiceConfig)
-    .config(notificationServiceConfig)
     .config(angularTranslateConfig)
+    .config(growlConfig)
 
     .run(init);
-
 
     function uiRouterConfig($stateProvider, $urlRouterProvider) {
 
@@ -51,14 +53,6 @@
         $httpProvider.interceptors.push('HttpInterceptor');
     }
 
-    function loadingServiceConfig(LoadingServiceProvider) {
-        LoadingServiceProvider.setTimeout(CONFIG.timeout.request);
-    }
-
-    function notificationServiceConfig(NotificationServiceProvider) {
-        NotificationServiceProvider.setTimeout(CONFIG.timeout.notification);
-    }
-
     function angularTranslateConfig($translateProvider) {
         $translateProvider.useStaticFilesLoader({
             prefix: 'i18n/locale-',
@@ -67,8 +61,23 @@
         $translateProvider.preferredLanguage('de');
     }
 
+    function growlConfig(growlProvider) {
+        growlProvider.globalTimeToLive({
+            info: CONFIG.timeout.notification.info,
+            success: CONFIG.timeout.notification.success,
+            warning: CONFIG.timeout.notification.warning,
+            error: CONFIG.timeout.notification.error
+        });
+        growlProvider.globalPosition('top-center');
+        growlProvider.onlyUniqueMessages(false);
+        growlProvider.globalReversedOrder(true);
+        growlProvider.globalDisableCountDown(true);
+        growlProvider.globalDisableIcons(true);
+    }
 
-    function init($rootScope, $httpDecorator, $log, $state) {
+    function init(
+        $rootScope, $httpDecorator, $log, $state,
+        SecurityService) {
 
         var LOG = $log.getInstance('AppModule');
 
@@ -93,7 +102,7 @@
 //                ctrl.pageTitle = translations[stateNameKey] + ' - ' + translations[appNameKey];
 //            });
 //
-//            AuthService.authenticate(toState);
+            SecurityService.authenticate(toState);
         });
 
         $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){

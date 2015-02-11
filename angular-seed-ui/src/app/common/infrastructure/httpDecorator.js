@@ -8,7 +8,7 @@
      */
 
     angular.module('angular-seed.common')
-        .factory('$httpDecorator', function($http, $q, NotificationService, upload) {
+        .factory('$httpDecorator', function($http, $q, upload) {
 
             return {
                 decorate: function() {
@@ -52,7 +52,7 @@
                             });
                         }
                         if (showGenericUploadError) {
-                            NotificationService.addError('error.other.upload');
+//                            NotificationService.addError('error.other.upload');
                         }
                         return $q.reject(response);
                     }

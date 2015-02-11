@@ -10,10 +10,13 @@
      */
 
     angular.module('angular-seed.common')
+
         .factory('_', function () {
-
             return window._;
+        })
 
+        .factory('moment', function () {
+            return window.moment;
         });
 
 }());

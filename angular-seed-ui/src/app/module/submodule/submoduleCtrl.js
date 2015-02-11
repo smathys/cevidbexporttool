@@ -4,9 +4,7 @@
 
     angular.module('angular-seed.module.submodule')
         .controller('SubmoduleCtrl', function (
-            $log, $state,
-            NotificationService
-            ) {
+            $log, $state) {
 
             var LOG = $log.getInstance('SubmoduleCtrl');
 

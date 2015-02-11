@@ -65,8 +65,8 @@ module.exports = {
         },
         styles: {
             main: 'src/styles/main.less',
-            vendor: 'src/styles/vendor.less',
-            all: 'src/styles/**/*.less'
+            app: ['src/styles/**/*.less', '!src/styles/vendor.less'],
+            vendor: 'src/styles/vendor.less'
         },
         templates: {
             base: 'src/app',

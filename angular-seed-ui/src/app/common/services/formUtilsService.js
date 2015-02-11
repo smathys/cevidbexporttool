@@ -3,7 +3,7 @@
     "use strict";
 
     angular.module('angular-seed.common')
-        .factory('FormService', function (NotificationService) {
+        .factory('FormService', function () {
 
             return {
                 isSubmitable: isSubmitable,
@@ -30,7 +30,7 @@
                         return true;
                     }
 
-                    NotificationService.addWarning('notification.common.form.invalid');
+//                    NotificationService.addWarning('notification.common.form.invalid');
                     form.triggerShowValidation = !form.triggerShowValidation;
                     return false;
                 }

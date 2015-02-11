@@ -5,7 +5,6 @@
     angular.module('angular-seed.common')
         .factory('HttpInterceptor', function(
             $q, $log, $injector,
-            NotificationService, LoadingService,
             CONFIG) {
 
             var LOG = $log.getInstance('HttpInterceptor');
@@ -19,7 +18,6 @@
 
             function handleRequest(config) {
                 if (isApiCall(config.url)) {
-                    LoadingService.start();
                 }
                 return config;
             }
@@ -30,7 +28,6 @@
 
             function handleResponse(response) {
                 if (isApiCall(response.config.url)) {
-                    LoadingService.stop();
                 }
                 // Unwrap api responses
                 if (response.data && isApiCall(response.config.url)) {
@@ -42,7 +39,6 @@
 
             function handleResponseError(rejection) {
                 if (isApiCall(rejection.config.url)) {
-                    LoadingService.stop();
                 }
 
                 if (isUnauthorized(rejection)) {
@@ -67,19 +63,19 @@
 
             function handleRecognizedErrors(rejection) {
                 var error = rejection.data;
-                NotificationService.addError(
-                    {
-                        key:        'error.specific.' + getSimpleExceptionClass(error.exceptionClass),
-                        params:     error.params,
-                        isArray:    true
-                    }
-                );
+//                NotificationService.addError(
+//                    {
+//                        key:        'error.specific.' + getSimpleExceptionClass(error.exceptionClass),
+//                        params:     error.params,
+//                        isArray:    true
+//                    }
+//                );
                 handleOptimisticLockingException(error);
             }
 
             function handleGenericErrors(rejection) {
                 if(!isLogCall(rejection.config.url)) {
-                    NotificationService.addError('error.generic');
+//                    NotificationService.addError('error.generic');
                 }
             }
 
