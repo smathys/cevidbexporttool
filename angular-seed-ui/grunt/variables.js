@@ -32,7 +32,7 @@ module.exports = {
         styles: {
             main: 'styles/main.css',
             vendor: 'styles/vendor.css',
-            filerev: '/styles/*.*'
+            filerev: 'styles/*.*'
         },
         templates: '/js/templates-app.js'
     },

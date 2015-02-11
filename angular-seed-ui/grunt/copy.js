@@ -32,7 +32,7 @@ module.exports.tasks = {
         },
         prod: {
             files: [
-                {src: ['<%= src.index %>'], dest: '<%= build.dir.prod %>', expand: true, flatten: true},
+                {src: ['<%= build.dir.dev %><%= build.index %>'], dest: '<%= build.dir.prod %>', expand: true, flatten: true},
                 {cwd: '<%= build.dir.dev %>', src: ['<%= build.assets %>'], dest: '<%= build.dir.prod %>', expand: true },
                 {src: ['<%= src.config.prod %>'], dest: '<%= build.dir.dev %>', expand: true, flatten: true, rename: function(dest, src) {
                     return dest + src.replace(/prod\.js/, "js");

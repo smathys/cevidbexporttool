@@ -26,7 +26,7 @@ module.exports.tasks = {
             options: {
                 patterns: [
                     {
-                        match: /@@angular/,
+                        match: /<!-- angular:src:js -->/,
                         replacement: getFilePaths()
                     }
                 ]
