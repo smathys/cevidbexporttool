@@ -5,32 +5,22 @@ var CONFIG = {
      * Prod and dev properties (may have different value in prod)
      *
      */
-    url: {
-        api: 'http://localhost:8090/context/api'
-    },
+    APP_NAME: 'angular-seed',
+    APP_LANGUAGE: 'en',
 
-    log: {
-        level: 'debug'
-    },
+    APP_URL_API: 'http://localhost:8090/context/api',
 
-    paging: {
-        pageSize: 10
-    },
+    APP_LOG_LEVEL: 'debug',
 
-    typeahead: {
-        delay: 300,
-        limit: 10
-    },
+    APP_UI_PAGING_PAGESIZE: 10,
+    APP_UI_TYPEAHEAD_LIMIT: 10,
+    APP_UI_TYPEAHEAD_DELAY: 300,
 
-    timeout: {
-        notification: {
-            info: 5000,
-            success: 1500,
-            warning: 6000,
-            error: -1
-        },
-        request: 60000
-    },
+    APP_TIMEOUT_NOTIFICATION_INFO: 5000,
+    APP_TIMEOUT_NOTIFICATION_SUCCESS: 1500,
+    APP_TIMEOUT_NOTIFICATION_WARNING: 6000,
+    APP_TIMEOUT_NOTIFICATION_ERROR: -1,
+    APP_TIMEOUT_REQUEST: 60000,
 
     /**
      *
@@ -38,9 +28,7 @@ var CONFIG = {
      * Dev only properties
      *
      */
-    dev: {
-        sendCredentials: true
-    },
+    DEV_SENDCREDENTIALS: true,
 
     /**
      *
@@ -48,7 +36,6 @@ var CONFIG = {
      * Business properties
      *
      */
-    contact: {
-        phone: "+41 58 464 54 01"
-    }
+    BUSINESS_TEST: 'test'
+
 };

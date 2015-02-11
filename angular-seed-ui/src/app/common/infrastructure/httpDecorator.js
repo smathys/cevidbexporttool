@@ -25,14 +25,14 @@
             function useApiUrl(httpFunction) {
                 return function () {
                     var args = [].slice.call(arguments);
-                    args[0] = CONFIG.url.api + args[0];
+                    args[0] = CONFIG.APP_URL_API + args[0];
                     return httpFunction.apply(null, args);
                 };
             }
 
             function apiUpload(url, file) {
                 var options = {
-                    url: CONFIG.url.api + url,
+                    url: CONFIG.APP_URL_API + url,
                     method: 'POST',
                     forceIFrameUpload: false,
                     data: {}

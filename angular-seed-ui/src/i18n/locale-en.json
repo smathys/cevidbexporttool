@@ -1,10 +1,7 @@
 {
-   "error": {
+    "APP_NAME": "Angular seed",
 
-   },
-
-   "common": {
-       "application_name": "angular-seed"
-   }
-
+    "MENU_HOME": "Home",
+    "MENU_ABOUT": "About",
+    "MENU_CONTACT": "Contact"
 }

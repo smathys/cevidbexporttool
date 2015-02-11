@@ -126,7 +126,7 @@
             }
 
             function isApiCall(url) {
-                return url.indexOf(CONFIG.url.api) > -1;
+                return url.indexOf(CONFIG.APP_URL_API) > -1;
             }
 
             function isLogCall(url) {

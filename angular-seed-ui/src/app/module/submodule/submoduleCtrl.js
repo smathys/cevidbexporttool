@@ -18,7 +18,7 @@
                 },
                 page: {
                     current: 0,
-                    size: CONFIG.paging.pageSize
+                    size: CONFIG.APP_UI_PAGING_PAGESIZE
                 }
             };
 

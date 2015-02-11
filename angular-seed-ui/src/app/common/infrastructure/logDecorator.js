@@ -25,7 +25,7 @@
                 };
 
                 function enhanceLogging(level, context) {
-                    if (LOG_LEVEL_PRIORITY[CONFIG.log.level] > LOG_LEVEL_PRIORITY[level]) {
+                    if (LOG_LEVEL_PRIORITY[CONFIG.APP_LOG_LEVEL] > LOG_LEVEL_PRIORITY[level]) {
                         return function() {};
                     }
                     return function() {
