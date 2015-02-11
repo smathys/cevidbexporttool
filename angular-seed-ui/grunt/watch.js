@@ -14,7 +14,7 @@ module.exports.tasks = {
         },
         'less:app': {
             options: { livereload: true },
-            files: ['<%= src.styles.main %>'],
+            files: ['<%= src.styles.all %>'],
             tasks: ['less:app', 'autoprefixer']
         },
         'less:vendor': {

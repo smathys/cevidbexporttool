@@ -6,12 +6,19 @@ module.exports = function (grunt) {
         taskConfig = require('load-grunt-configs')(grunt, buildConfig);
     grunt.initConfig(grunt.util._.extend(buildConfig, taskConfig));
 
+    /**
+     *  Main tasks
+     */
     grunt.registerTask('default', [ 'dev' ]);
-    grunt.registerTask('index', [
-        'copy:app_index',
-        'replace',
-        'wiredep'
+
+    grunt.registerTask('dev', [
+        'dev_build',
+        'configureProxies:dev',
+        'connect:dev_vendor',
+        'connect:dev',
+        'watch'
     ]);
+
     grunt.registerTask('dev_build', [
         'clean',
         'jshint',
@@ -28,13 +35,6 @@ module.exports = function (grunt) {
         'karma:continuous'
     ]);
 
-    grunt.registerTask('dev', [
-        'dev_build',
-        'configureProxies:dev',
-        'connect:dev_vendor',
-        'connect:dev',
-        'watch'
-    ]);
     grunt.registerTask('prod', [
         'prod_build',
         'connect:prod:keepalive'
@@ -53,9 +53,23 @@ module.exports = function (grunt) {
         'jsbeautifier:config'
     ]);
 
+    /**
+     *  Util tasks
+     */
     grunt.registerTask('architecture', [
         'prod_build',
         'angular_architecture_graph'
     ]);
+
+    /**
+     *  Partial helper tasks
+     */
+    grunt.registerTask('index', [
+        'copy:app_index',
+        'replace',
+        'wiredep'
+    ]);
+
+
 
 };

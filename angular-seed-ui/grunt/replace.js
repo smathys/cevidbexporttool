@@ -11,12 +11,13 @@ var grunt = require('grunt'),
 
 
 function getFilePaths() {
-    var orderedSrc = ['!src/app/**/*spec.js', 'src/app/**/*Module.js', 'src/app/**/*.js'],
+    var orderedSrc = ['src/app/**/*Module.js', 'src/app/**/*.js', '!src/app/**/*spec.js'],
         result = '';
     grunt.file.expand(orderedSrc).forEach(function(path, index) {
         result += index !== 0 ? '\n\t\t' : '';
         result += '<script src="' + path.replace('src', 'js') + '"></script>';
     });
+    result += '\n\t\t<script src="<%= build.templates %>"></script>';
     return result;
 }
 
