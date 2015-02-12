@@ -2,7 +2,8 @@
 (function () {
     "use strict";
 
-    angular.module('angular-seed.common', [])
+    angular
+        .module('angular-seed.common', [])
         .constant('CONFIG', CONFIG);
 
 }());

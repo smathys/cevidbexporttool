@@ -19,17 +19,21 @@
         'lr.upload',
 
         'angular-seed.common',
-        'angular-seed.module'
+        'angular-seed.home',
+        'angular-seed.pizza',
+        'angular-seed.pizza.offer'
 
     ])
 
-    .constant('CONFIG', angular.extend(CONFIG, {
-        CONST: {
-            STATE_CHANGE_START: '$stateChangeStart',
-            STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
-            STATE_CHANGE_ERROR: '$stateChangeError'
-        }
-    }))
+    .constant('CONFIG', CONFIG)
+
+    .constant('EVENT', {
+        STATE_CHANGE_START: '$stateChangeStart',
+        STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
+        STATE_CHANGE_ERROR: '$stateChangeError',
+
+        TRANSLATE_CHANGE_SUCCESS: '$translateChangeSuccess'
+    })
 
     .config(uiRouterConfig)
     .config(logConfig)
@@ -41,7 +45,7 @@
 
     function uiRouterConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise(function ($injector, $location) {
-            $urlRouterProvider.otherwise('/path');
+            $urlRouterProvider.otherwise('/');
         });
     }
 
@@ -63,7 +67,13 @@
                 prefix: 'i18n/locale-',
                 suffix: '.json'
             })
-            .preferredLanguage(CONFIG.APP_LANGUAGE)
+            .registerAvailableLanguageKeys(['en', 'de'], {
+                'en_US': 'en',
+                'en_UK': 'en',
+                'de_DE': 'de',
+                'de_CH': 'de'
+            })
+            .determinePreferredLanguage()
             .useCookieStorage();
     }
 
@@ -82,38 +92,40 @@
     }
 
     function init(
-        $rootScope, $httpDecorator, $log,
+        $rootScope, $httpDecorator, $log, $timeout,
         $state, $translate,
         SecurityService,
-        CONFIG) {
+        CONFIG, EVENT) {
 
-        var LOG = $log.getInstance('AppModule');
+        var LOG = $log.get('AppModule');
 
         $httpDecorator.decorate();
 
         $rootScope.$state = $state;
         $rootScope.config = CONFIG;
-
         $rootScope.language = {
-            selected: $translate.use() || CONFIG.APP_LANGUAGE,
             change: function () {
                 $translate.use($rootScope.language.selected);
             }
         };
 
-        $rootScope.$on(CONFIG.CONST.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on(EVENT.TRANSLATE_CHANGE_SUCCESS, function () {
+            $rootScope.language.selected = $translate.use();
+        });
+
+        $rootScope.$on(EVENT.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
             if (toState.resolve) {
                 $rootScope.spinner = true;
             }
         });
 
-        $rootScope.$on(CONFIG.CONST.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on(EVENT.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
             $rootScope.spinner = false;
             // resolve page title
             SecurityService.authenticate(toState);
         });
 
-        $rootScope.$on(CONFIG.CONST.STATE_CHANGE_ERROR, function(event, toState, toParams, fromState, fromParams, error){
+        $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function(event, toState, toParams, fromState, fromParams, error){
             $rootScope.spinner = false;
             if (error && error.status === 401) {
                 return;

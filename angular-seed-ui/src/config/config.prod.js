@@ -8,11 +8,11 @@ var CONFIG = {
      *
      */
     APP_NAME: 'angular-seed',
-    APP_LANGUAGE: 'en',
 
     APP_URL_API: 'http://localhost:8090/context/api',
 
-    APP_LOG_LEVEL: 'debug',
+    APP_LOG_LEVEL: 'warn',
+    APP_LOG_LEVEL_BACKEND: 'error',
 
     APP_UI_PAGING_PAGESIZE: 10,
     APP_UI_TYPEAHEAD_LIMIT: 10,

@@ -1,7 +1,5 @@
 {
-    "APP_NAME": "Angular seed",
+    "APP_NAME": "Pizzarium",
 
-    "MENU_HOME": "Dheim",
-    "MENU_ABOUT": "Ueber",
-    "MENU_CONTACT": "Kontakt"
+    "MENU_OFFER": "Offerte"
 }

@@ -9,13 +9,7 @@
     // @ngInject
     function SecurityService($log, $state, growl) {
 
-
-        growl.error('Message', 'Title');
-        growl.info("This adds a warn message");
-        growl.success("This adds a warn message");
-        growl.error("This adds a warn message", {title: 'ALERT WE GOT ERROR'});
-
-        var LOG = $log.getInstance('SecurityService'),
+        var LOG = $log.get('SecurityService'),
             currentUserModel = {};
 
         return {

@@ -7,7 +7,7 @@
             $q, $log, $injector,
             CONFIG) {
 
-            var LOG = $log.getInstance('HttpInterceptor');
+            var LOG = $log.get('HttpInterceptor');
 
             return {
                 'request': handleRequest,
