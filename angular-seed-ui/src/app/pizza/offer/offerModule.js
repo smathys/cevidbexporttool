@@ -18,7 +18,9 @@
                 controllerAs: 'offerCtrl',
                 templateUrl: 'pizza/offer/offer.tpl.html',
                 resolve: {
-
+                    test: function(PromiseService) {
+                        return PromiseService.createAndResolve('test', 5000);
+                    }
                 }
             });
     }

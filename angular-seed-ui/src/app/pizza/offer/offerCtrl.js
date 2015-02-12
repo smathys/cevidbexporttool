@@ -9,11 +9,11 @@
     // @ngInject
     function OfferCtrl(
         $log,
-        Pizza) {
+        Pizza,
+        test) {
 
-        var LOG = $log.get('OfferCtrl');
-
-        var ctrl = this;
+        var LOG = $log.get('OfferCtrl'),
+            ctrl = this;
 
         ctrl.pizza = Pizza.model;
     }

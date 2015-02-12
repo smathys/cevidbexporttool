@@ -52,7 +52,7 @@
             }
 
             function logToBackend() {
-                // rest
+                // TODO rest
             }
         });
 

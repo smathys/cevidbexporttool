@@ -1,4 +1,6 @@
 {
+    "ERROR_TIMEOUT": "Response from server is taking more than usual, please try again later",
+
     "APP_NAME": "Pizzarium",
 
     "MENU_OFFER": "Offer",

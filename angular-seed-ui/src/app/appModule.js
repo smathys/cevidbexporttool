@@ -94,7 +94,7 @@
     function init(
         $rootScope, $log,
         $state, $translate,
-        SecurityService,
+        SecurityService, LoadingService,
         CONFIG, EVENT) {
 
         var LOG = $log.get('AppModule');
@@ -113,27 +113,36 @@
 
         $rootScope.$on(EVENT.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
             if (toState.resolve) {
-                $rootScope.spinner = true;
+                LoadingService.start(formatStateChange(fromState, toState));
             }
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
-            $rootScope.spinner = false;
+            LoadingService.stop();
             // resolve page title
             SecurityService.authenticate(toState);
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function(event, toState, toParams, fromState, fromParams, error){
-            $rootScope.spinner = false;
+            LoadingService.stop();
             if (error && error.status === 401) {
                 return;
             } else {
-                LOG.error(stateNameOrUndefined(fromState) + ' -> ' + stateNameOrUndefined(toState) + ' | error: ' + JSON.stringify(error));
+                LOG.error(formatStateChangeError(fromState, toState, error));
             }
+
+        });
+
+        function formatStateChange(fromState, toState) {
+            return 'State change from "' + stateNameOrUndefined(fromState) + '" -> "' + stateNameOrUndefined(toState) + '"';
             function stateNameOrUndefined(state) {
                 return state.name ? state.name : 'undefined';
             }
-        });
+        }
+
+        function formatStateChangeError(fromState, toState, error) {
+            return formatStateChange(fromState, toState) + ' | error: ' + JSON.stringify(error);
+        }
 
     }
 

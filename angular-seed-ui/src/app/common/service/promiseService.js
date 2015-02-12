@@ -7,22 +7,26 @@
         .factory('PromiseService', PromiseService);
 
     // @ngInject
-    function PromiseService($q) {
+    function PromiseService($q, $timeout) {
 
         return {
             createAndResolve: createAndResolve,
             createAndReject: createAndReject
         };
 
-        function createAndResolve(optionalResponse) {
+        function createAndResolve(optionalResponse, timeout) {
             var deferred = $q.defer();
-            deferred.resolve(optionalResponse);
+            $timeout(function() {
+                deferred.resolve(optionalResponse);
+            }, timeout || 0);
             return deferred.promise;
         }
 
-        function createAndReject(optionalRejection) {
+        function createAndReject(optionalRejection, timeout) {
             var deferred = $q.defer();
-            deferred.reject(optionalRejection);
+            $timeout(function() {
+                deferred.reject(optionalRejection);
+            }, timeout || 0);
             return deferred.promise;
         }
 
