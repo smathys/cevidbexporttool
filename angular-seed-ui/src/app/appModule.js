@@ -92,14 +92,12 @@
     }
 
     function init(
-        $rootScope, $httpDecorator, $log, $timeout,
+        $rootScope, $log,
         $state, $translate,
         SecurityService,
         CONFIG, EVENT) {
 
         var LOG = $log.get('AppModule');
-
-        $httpDecorator.decorate();
 
         $rootScope.$state = $state;
         $rootScope.config = CONFIG;

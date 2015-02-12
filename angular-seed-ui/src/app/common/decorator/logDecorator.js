@@ -37,7 +37,7 @@
                 if (LOG_LEVEL_PRIORITY[level] >= LOG_LEVEL_PRIORITY[CONFIG.APP_LOG_LEVEL]) {
                     return function() {
                         var args = [].slice.call(arguments),
-                            header = $injector.get('moment')().format('YYYY-MM-DD HH:mm:ss:SSS') + ' ' + level.toUpperCase() + ' [ ' + context + ' ]';
+                            header = $injector.get('moment')().format('YYYY-MM-DD HH:mm:ss:SSS') + ' ' + level.toUpperCase() + '\t[ ' + context + ' ]';
 
                         args.unshift(header);
                         $delegate[level].apply(this, args);

@@ -8,7 +8,7 @@
 
     // @ngInject
     function OfferCtrl(
-        $log, $state,
+        $log,
         Pizza) {
 
         var LOG = $log.get('OfferCtrl');

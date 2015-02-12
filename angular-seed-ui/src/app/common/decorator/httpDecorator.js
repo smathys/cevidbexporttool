@@ -2,25 +2,26 @@
 (function () {
     "use strict";
 
-    /*
-        Reworked from standard decorator which uses $delegate to service which is called during application
-        initialization in appModule.js (run method) to prevent circular dependency (3rd party upload service)
-     */
+    angular
+        .module('angular-seed.common')
+        .config(httpDecorator);
 
-    angular.module('angular-seed.common')
-        .factory('$httpDecorator', function($http, $q, upload) {
+    // @ngInject
+    function httpDecorator(
+        CONFIG,
+        $provide) {
 
-            return {
-                decorate: function() {
-                    $http.apiHead = useApiUrl($http.head);
-                    $http.apiGet = useApiUrl($http.get);
-                    $http.apiPost = useApiUrl($http.post);
-                    $http.apiPut = useApiUrl($http.put);
-                    $http.apiDelete = useApiUrl($http['delete']);
-                    $http.apiPatch = useApiUrl($http.patch);
-                    $http.apiUpload = apiUpload;
-                }
-            };
+        $provide.decorator("$http", function ($delegate, $injector) {
+
+            $delegate.apiHead = useApiUrl($delegate.head);
+            $delegate.apiGet = useApiUrl($delegate.get);
+            $delegate.apiPost = useApiUrl($delegate.post);
+            $delegate.apiPut = useApiUrl($delegate.put);
+            $delegate.apiDelete = useApiUrl($delegate['delete']);
+            $delegate.apiPatch = useApiUrl($delegate.patch);
+            $delegate.apiUpload = createApiUpload();
+
+            return $delegate;
 
             function useApiUrl(httpFunction) {
                 return function () {
@@ -30,35 +31,32 @@
                 };
             }
 
-            function apiUpload(url, file) {
-                var options = {
-                    url: CONFIG.APP_URL_API + url,
-                    method: 'POST',
-                    forceIFrameUpload: false,
-                    data: {}
-                };
-                options.data['file'] = file;
-                return upload(options).then(
-                    function (response) {
-                    },
-                    function (response) {
-                        var showGenericUploadError = false;
-                        if (response && response.data && response.data.error && response.data.error.errors) {
-                            response.data.error.errors.forEach(function(error) {
-                               if (!showGenericUploadError && error.messageSeverity === 'error') {
-                                   showGenericUploadError = true;
-                                   return;
-                               }
-                            });
-                        }
-                        if (showGenericUploadError) {
-//                            NotificationService.addError('error.other.upload');
-                        }
-                        return $q.reject(response);
+            function createApiUpload() {
+                return function (url, file) {
+
+                    var $q = $injector.get('$q'),
+                        upload = $injector.get('upload'),
+                        options = {
+                            url: CONFIG.APP_URL_API + url,
+                            method: 'POST',
+                            forceIFrameUpload: false,
+                            data: {
+                                file: file
+                            }
+                        };
+                    return upload(options).then(success, error);
+
+                    function success(response) { return response; }
+
+                    function error(rejection) {
+                        // TODO handle upload error
+                        return $q.reject(rejection);
                     }
-                );
+                };
             }
 
         });
 
-}());
+    }
+
+})();

@@ -21,11 +21,12 @@
 
         function initCurrentUser() {
             // rest logic
+            LOG.debug('current user initialized');
         }
 
         function authenticate() {
             // auth logic
-            $log.debug('authenticate called');
+            LOG.debug('authenticated');
         }
     }
 
