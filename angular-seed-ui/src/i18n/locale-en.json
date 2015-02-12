@@ -5,6 +5,11 @@
 
     "MENU_OFFER": "Offer",
 
+    "DIALOGS_YES": "Yes",
+    "DIALOGS_NO": "No",
+    "DIALOGS_HEADER": "Confirm this action",
+    "DIALOGS_MESSAGE": "Do you really want to perform this action?",
+
     "HOME_HEADING": "Welcome to Pizzarium",
     "HOME_DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu nisi a dolor tincidunt lobortis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent feugiat ipsum neque, vel semper ipsum blandit id. Etiam at dolor vitae eros euismod egestas ut vel est.",
 

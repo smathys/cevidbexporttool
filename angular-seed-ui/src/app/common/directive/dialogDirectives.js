@@ -14,32 +14,31 @@
                 confirmAction: '&',
                 confirmCancel: '&'
             },
-            link: link
+            controller: ConfirmActionCtrl,
+            controllerAs: 'ctrl',
+            bindToController: true
         };
 
-        function link(scope, element, attrs) {
-            var headerKey = attrs.confirmHeader ? attrs.confirmHeader : 'dialog.action.header',
-                messageKey = attrs.confirmMessage ? attrs.confirmMessage : 'dialog.action.message';
+        function ConfirmActionCtrl($element, $attrs) {
+            var ctrl = this;
 
-            $translate([headerKey, messageKey]).then(function(translations) {
-                element.bind('click', function(event) {
-                    dialogs.confirm(translations[headerKey], translations[messageKey],
-                        {
-                            size:'sm',
-                            backdrop: 'static'
+            var header = $translate.instant($attrs.confirmHeader ? $attrs.confirmHeader : 'DIALOGS_HEADER'),
+                message = $translate.instant($attrs.confirmMessage ? $attrs.confirmMessage : 'DIALOGS_MESSAGE');
+
+            $element.bind('click', function(event) {
+                dialogs.confirm(header, message,{ size:'sm', backdrop: 'static' }
+                ).result.then(function(){
+                        if (ctrl.confirmAction && angular.isFunction(ctrl.confirmAction)) {
+                            ctrl.confirmAction();
                         }
-                    ).result.then(function(){
-                            if (scope.confirmAction && angular.isFunction(scope.confirmAction)) {
-                                scope.confirmAction();
-                            }
-                        }, function(){
-                            if (scope.confirmCancel && angular.isFunction(scope.confirmCancel)) {
-                                scope.confirmCancel();
-                            }
-                        });
-                });
+                    }, function(){
+                        if (ctrl.confirmCancel && angular.isFunction(ctrl.confirmCancel)) {
+                            ctrl.confirmCancel();
+                        }
+                    });
             });
         }
+
     }
 
 }());
