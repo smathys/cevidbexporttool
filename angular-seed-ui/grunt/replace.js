@@ -29,6 +29,10 @@ module.exports.tasks = {
                     {
                         match: /<!-- angular:src:js -->/,
                         replacement: getFilePaths()
+                    },
+                    {
+                        match: /<!-- app:version -->/,
+                        replacement: '<%= pkg.version %>'
                     }
                 ]
             },
