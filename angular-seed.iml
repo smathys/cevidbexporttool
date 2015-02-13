@@ -5,6 +5,7 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/angular-seed-ui/build_dev" />
+      <excludeFolder url="file://$MODULE_DIR$/angular-seed-ui/build_prod" />
       <excludeFolder url="file://$MODULE_DIR$/angular-seed-ui/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
