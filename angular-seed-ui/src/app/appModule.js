@@ -13,8 +13,9 @@
         'ui.bootstrap',
         'ui.utils',
 
-        'angular-growl',
         'pascalprecht.translate',
+        'tmh.dynamicLocale',
+        'angular-growl',
         'dialogs.main',
         'lr.upload',
 
@@ -39,6 +40,7 @@
     .config(logConfig)
     .config(httpProviderConfig)
     .config(angularTranslateConfig)
+    .config(dynamicLocaleProviderConfig)
     .config(growlConfig)
 
     .run(init);
@@ -64,17 +66,21 @@
     function angularTranslateConfig($translateProvider) {
         $translateProvider
             .useStaticFilesLoader({
-                prefix: 'i18n/locale-',
+                prefix: 'i18n/locale_',
                 suffix: '.json'
             })
-            .registerAvailableLanguageKeys(['en', 'de'], {
-                'en_US': 'en',
-                'en_UK': 'en',
-                'de_DE': 'de',
-                'de_CH': 'de'
+            .registerAvailableLanguageKeys(['en-us', 'de-ch'], {
+                'en_US': 'en-us',
+                'en_UK': 'en-us',
+                'de_DE': 'de-ch',
+                'de_CH': 'de-ch'
             })
             .determinePreferredLanguage()
             .useCookieStorage();
+    }
+
+    function dynamicLocaleProviderConfig(tmhDynamicLocaleProvider) {
+        tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale_{{locale}}.js');
     }
 
     function growlConfig(growlProvider) {
@@ -92,8 +98,9 @@
     }
 
     function init(
-        $rootScope, $log,
+        $rootScope, $log, $timeout,
         $state, $translate,
+        tmhDynamicLocale,
         SecurityService, LoadingService,
         CONFIG, EVENT) {
 
@@ -104,11 +111,14 @@
         $rootScope.language = {
             change: function () {
                 $translate.use($rootScope.language.selected);
+                console.log($rootScope.language.selected);
+                tmhDynamicLocale.set($rootScope.language.selected);
             }
         };
 
         $rootScope.$on(EVENT.TRANSLATE_CHANGE_SUCCESS, function () {
             $rootScope.language.selected = $translate.use();
+            tmhDynamicLocale.set($rootScope.language.selected);
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
@@ -121,6 +131,9 @@
             LoadingService.stop();
             // resolve page title
             SecurityService.authenticate(toState);
+
+            // Init bootstrap-material-design effects
+            $timeout(function() { $.material.init(); });
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function(event, toState, toParams, fromState, fromParams, error){

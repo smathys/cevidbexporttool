@@ -9,13 +9,25 @@
     // @ngInject
     function OfferCtrl(
         $log,
-        Pizza,
-        test) {
+        Pizza) {
 
         var LOG = $log.get('OfferCtrl'),
             ctrl = this;
 
-        ctrl.pizza = Pizza.model;
+        LOG.debug('Entered');
+
+        ctrl.pizzas = Pizza.model;
+
+        ctrl.action = action;
+        ctrl.cancel = cancel;
+
+        function action() {
+            LOG.info('action');
+        }
+
+        function cancel() {
+            LOG.error('cancel');
+        }
     }
 
 }());

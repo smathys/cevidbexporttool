@@ -15,11 +15,11 @@
             .state('pizza.offer', {
                 url: '/offer',
                 controller: 'OfferCtrl',
-                controllerAs: 'offerCtrl',
+                controllerAs: 'ctrl',
                 templateUrl: 'pizza/offer/offer.tpl.html',
                 resolve: {
-                    test: function(PromiseService) {
-                        return PromiseService.createAndResolve('test', 5000);
+                    initPizza: function(Pizza) {
+                        return Pizza.init();
                     }
                 }
             });

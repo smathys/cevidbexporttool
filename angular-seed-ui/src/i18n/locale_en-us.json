@@ -1,0 +1,37 @@
+{
+    "ERROR_TIMEOUT": "Response from server is taking more than usual, please try again later",
+
+    "APP_NAME": "Pizzarium",
+
+    "MENU_OFFER": "Offer",
+
+    "MENU_LANGUAGE_SELECT": "Language",
+
+    "COMMON_ACTIONS": "Actions",
+    "COMMON_CURRENCY_SYMBOL": "CHF",
+
+    "DIALOGS_YES": "Yes",
+    "DIALOGS_NO": "No",
+    "DIALOGS_HEADER": "Confirm this action",
+    "DIALOGS_MESSAGE": "Do you really want to perform this action?",
+
+    "HOME_HEADING": "Welcome to Pizzarium",
+    "HOME_DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu nisi a dolor tincidunt lobortis.",
+
+    "PIZZA_OFFER_HEADING": "The most tasty Pizza in the Universe",
+    "PIZZA_OFFER_NAME": "Name",
+    "PIZZA_OFFER_TOPPINGS": "Toppings",
+    "PIZZA_OFFER_WEIGHT": "Weight (grams)",
+    "PIZZA_OFFER_PRICE": "Price",
+
+    "TOPPING_CHEESE": "Cheese",
+    "TOPPING_OREGANO": "Oregano",
+    "TOPPING_SALAMI": "Salami",
+    "TOPPING_HAM": "Ham",
+    "TOPPING_TUNA": "Tuna",
+    "TOPPING_CHILLY": "Chilly",
+    "TOPPING_BACON": "Bacon",
+    "TOPPING_OLIVES": "Olives",
+    "TOPPING_EGGS": "Eggs"
+
+}

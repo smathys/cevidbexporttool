@@ -7,12 +7,18 @@
         .factory('Pizza', Pizza);
 
     // @ngInject
-    function Pizza() {
+    function Pizza(
+        $log,
+        PizzaRestResource) {
 
-        var pizzaModel = [];
+        var LOG = $log.get('Pizza'),
+            models = {
+                main: []
+            };
 
         return {
-            model: pizzaModel,
+            model: models.main,
+            models: models,
 
             init: init,
             create: create,
@@ -20,26 +26,22 @@
             remove: remove
         };
 
-        function init() {
-            // rest
-            pizzaModel.push(
-                { name: 'Salami',    weight: 350, price: 15,    ingredient: ['salami', 'cheese']},
-                { name: 'Proschuto', weight: 370, price: 16,    ingredient: ['ham', 'cheese', 'oregano']},
-                { name: 'Tunani',    weight: 320, price: 17.50, ingredient: ['tuna', 'cheese', 'olives']},
-                { name: 'Diabloni',  weight: 450, price: 18.50, ingredient: ['salami', 'chilly', 'cheese']},
-                { name: 'Sedlackis', weight: 500, price: 22,    ingredient: ['salami', 'bacon', 'cheese', 'eggs']}
-            );
+        function init(modelId) {
+            return PizzaRestResource.findAll().then(function (response) {
+                angular.copy(response,  models[modelId ? modelId : 'main']);
+                LOG.debug('Model initialized', models);
+            });
         }
 
-        function create() {
+        function create(pizza, modelId) {
 
         }
 
-        function update() {
+        function update(pizza, modelId) {
 
         }
 
-        function remove() {
+        function remove(pizza, modelId) {
 
         }
 
