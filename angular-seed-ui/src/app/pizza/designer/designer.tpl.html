@@ -1,8 +1,13 @@
 <h1>
-    <span translate="OFFER_HEADING"></span>
+    <a ui-sref="pizza.designer.add" class="btn btn-material-purple pull-right">
+        <i class="fa fa-plus fa-lg fa-margin-right"></i> <span translate="PIZZA_ADD"></span>
+    </a>
+    <span translate="DESIGNER_HEADING"></span>
 </h1>
 <br />
+
 <div class="row">
+
     <div class="col-xs-12">
         <table st-table="ctrl.pizza" class="table table-striped table-vertical-align-middle">
             <thead>
@@ -25,13 +30,16 @@
                 <td class="text-right">{{pizza.weight | number}}</td>
                 <td class="text-right">{{pizza.price | number:2}} <span translate="COMMON_CURRENCY_SYMBOL"></span></td>
                 <td class="text-right">
-                    <button class="btn btn-material-deep-purple">
-                        <i class="fa fa-shopping-cart"></i>
+                    <button class="btn btn-material-grey">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger" confirm-action="ctrl.remove(pizza)">
+                        <i class="fa fa-times"></i>
                     </button>
                 </td>
             </tr>
             </tbody>
         </table>
-
     </div>
+
 </div>

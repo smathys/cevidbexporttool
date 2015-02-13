@@ -4,8 +4,12 @@
     "APP_NAME": "Pizzarium",
 
     "MENU_OFFER": "Offer",
-
+    "MENU_DESIGNER": "Designer",
+    "MENU_CONTACT": "Contact",
     "MENU_LANGUAGE_SELECT": "Language",
+
+    "ACTION_SAVE": "Save",
+    "ACTION_CANCEL": "Cancel",
 
     "COMMON_ACTIONS": "Actions",
     "COMMON_CURRENCY_SYMBOL": "CHF",
@@ -16,16 +20,24 @@
     "DIALOGS_MESSAGE": "Do you really want to perform this action?",
 
     "HOME_HEADING": "Welcome to Pizzarium",
-    "HOME_DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu nisi a dolor tincidunt lobortis.",
-    "HOME_LINK_OFFER": "Choose masterpiece",
+    "HOME_DESCRIPTION": "We at Pizzarium love to do the most tasty Pizzas in the Universe. You don't believe? Then Try it for yourself!",
+    "HOME_LINK_OFFER": "Taste the masterpiece",
     "HOME_LINK_DESIGN": "Design your own",
     "HOME_LINK_CONTACT": "Contact us",
 
-    "PIZZA_OFFER_HEADING": "The most tasty Pizza in the Universe",
-    "PIZZA_OFFER_NAME": "Name",
-    "PIZZA_OFFER_TOPPINGS": "Toppings",
-    "PIZZA_OFFER_WEIGHT": "Weight (grams)",
-    "PIZZA_OFFER_PRICE": "Price",
+    "OFFER_HEADING": "Taste the most tasty Pizza in the Universe",
+
+    "DESIGNER_HEADING": "Create the ultimate Pizza!",
+    "DESIGNER_CREATE_INFO": "Sky is the Limit!",
+    "DESIGNER_CREATE_INFO_DESCRIPTION": "Create the most exotic Pizza ever, add stardust and your smile as the secret toppings!",
+
+    "CONTACT_HEADING": "Get in touch with the real Pizza!",
+
+    "PIZZA_ADD": "Be creative",
+    "PIZZA_NAME": "Name",
+    "PIZZA_TOPPINGS": "Toppings",
+    "PIZZA_WEIGHT": "Weight (grams)",
+    "PIZZA_PRICE": "Price",
 
     "TOPPING_CHEESE": "Cheese",
     "TOPPING_OREGANO": "Oregano",

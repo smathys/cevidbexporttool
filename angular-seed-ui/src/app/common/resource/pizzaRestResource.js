@@ -30,7 +30,7 @@
 
         function findAll() {
             // rest
-            return PromiseService.createAndResolve(mock, 300);
+            return PromiseService.createAndResolve(mock, 150);
         }
 
         function create(pizza) {
@@ -41,7 +41,7 @@
 
             mock.push(++lastId);
             LOG.debug('Pizza with id: ' + lastId + ' created');
-            return PromiseService.createAndResolve(undefined, 300);
+            return PromiseService.createAndResolve(undefined, 150);
         }
 
         function update(pizza) {
@@ -50,7 +50,7 @@
             });
             angular.copy(pizza, pizzaToUpdate);
             LOG.debug('Pizza with id: ' + pizzaToUpdate.id + ' updated');
-            return PromiseService.createAndResolve(undefined, 300);
+            return PromiseService.createAndResolve(undefined, 150);
         }
 
         function remove(id) {
@@ -58,7 +58,7 @@
                 return p.id === id;
             });
             LOG.debug('Pizza with id: ' + id + ' deleted');
-            return PromiseService.createAndResolve(undefined, 300);
+            return PromiseService.createAndResolve(undefined, 150);
         }
 
     }

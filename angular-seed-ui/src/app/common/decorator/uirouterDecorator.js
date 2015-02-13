@@ -13,6 +13,7 @@
         $provide.decorator('$state', function ($delegate) {
             $delegate._go = $delegate.go;
             $delegate.go = go;
+            return $delegate;
 
             function go(to, params, options) {
                 options = options || {};
@@ -21,9 +22,8 @@
                     options.reload = true;
                 }
                 $delegate._go(to, params, options);
-            };
+            }
 
-            return $delegate;
         });
 
     }

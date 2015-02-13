@@ -21,8 +21,10 @@
 
         'angular-seed.common',
         'angular-seed.home',
+        'angular-seed.contact',
         'angular-seed.pizza',
-        'angular-seed.pizza.offer'
+        'angular-seed.pizza.offer',
+        'angular-seed.pizza.designer'
 
     ])
 
