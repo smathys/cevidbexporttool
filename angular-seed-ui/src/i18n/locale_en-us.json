@@ -17,6 +17,9 @@
 
     "HOME_HEADING": "Welcome to Pizzarium",
     "HOME_DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu nisi a dolor tincidunt lobortis.",
+    "HOME_LINK_OFFER": "Choose masterpiece",
+    "HOME_LINK_DESIGN": "Design your own",
+    "HOME_LINK_CONTACT": "Contact us",
 
     "PIZZA_OFFER_HEADING": "The most tasty Pizza in the Universe",
     "PIZZA_OFFER_NAME": "Name",
