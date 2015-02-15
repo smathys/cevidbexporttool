@@ -23,6 +23,7 @@
 
         return {
             findAll: findAll,
+            findById: findById,
             create: create,
             update: update,
             remove: remove
@@ -33,13 +34,21 @@
             return PromiseService.createAndResolve(mock, 150);
         }
 
+        function findById(id) {
+            // rest
+            var result = _.find(mock, function(pizza) {
+                return pizza.id == id;
+            });
+            return PromiseService.createAndResolve(result, 150);
+        }
+
         function create(pizza) {
             var lastId = _.reduce(mock, function(result, pizza) {
                 result = result < pizza.id ? pizza.id : result;
                 return result;
             }, 0);
 
-            mock.push(++lastId);
+            mock.push({ id: ++lastId, name: pizza.name, weight: pizza.weight, price: pizza.price, toppings: pizza.toppings});
             LOG.debug('Pizza with id: ' + lastId + ' created');
             return PromiseService.createAndResolve(undefined, 150);
         }

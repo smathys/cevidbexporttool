@@ -30,9 +30,9 @@
                 <td class="text-right">{{pizza.weight | number}}</td>
                 <td class="text-right">{{pizza.price | number:2}} <span translate="COMMON_CURRENCY_SYMBOL"></span></td>
                 <td class="text-right">
-                    <button class="btn btn-material-grey">
+                    <a ui-sref="pizza.designer.edit({pizzaId: pizza.id})" class="btn btn-material-grey">
                         <i class="fa fa-pencil"></i>
-                    </button>
+                    </a>
                     <button class="btn btn-danger" confirm-action="ctrl.remove(pizza)">
                         <i class="fa fa-times"></i>
                     </button>

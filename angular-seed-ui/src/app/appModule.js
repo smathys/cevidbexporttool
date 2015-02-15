@@ -6,8 +6,9 @@
 
         'templates-app',
 
-        'ngAnimate',
+        'ngMessages',
         'ngCookies',
+        'ngAnimate',
 
         'ui.router',
         'ui.bootstrap',
@@ -31,10 +32,13 @@
     .constant('CONFIG', CONFIG)
 
     .constant('EVENT', {
+        // ui-router
         STATE_CHANGE_START: '$stateChangeStart',
         STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
         STATE_CHANGE_ERROR: '$stateChangeError',
+        VIEW_CONTENT_LOADED: '$viewContentLoaded',
 
+        // angular-translate
         TRANSLATE_CHANGE_SUCCESS: '$translateChangeSuccess'
     })
 
@@ -111,7 +115,6 @@
         $rootScope.language = {
             change: function () {
                 $translate.use($rootScope.language.selected);
-                console.log($rootScope.language.selected);
                 tmhDynamicLocale.set($rootScope.language.selected);
             }
         };
@@ -131,7 +134,9 @@
             LoadingService.stop();
             // resolve page title
             SecurityService.authenticate(toState);
+        });
 
+        $rootScope.$on(EVENT.VIEW_CONTENT_LOADED, function (event) {
             // Init bootstrap-material-design effects
             $timeout(function() { $.material.init(); });
         });

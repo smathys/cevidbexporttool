@@ -11,17 +11,15 @@
     function DesignerModalCtrl(
         $log,
         $modalInstance,
-        pizza) {
+        Pizza) {
 
         var LOG = $log.get('DesignerModalCtrl'),
             ctrl = this;
 
         LOG.debug('Entered');
-        LOG.debug('pizza: ', ctrl.pizza);
 
-        ctrl.pizza = pizza || {};
+        ctrl.pizza = Pizza.item || {};
         ctrl.modalClose = modalClose;
-
 
         function modalClose() {
             $modalInstance.close();

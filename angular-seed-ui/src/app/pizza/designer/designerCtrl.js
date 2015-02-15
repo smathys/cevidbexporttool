@@ -16,7 +16,7 @@
 
         LOG.debug('Entered');
 
-        ctrl.pizzas = Pizza.model;
+        ctrl.pizzas = Pizza.collection;
 
         ctrl.remove = remove;
 

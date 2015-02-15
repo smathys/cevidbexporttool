@@ -18,8 +18,8 @@
                 controllerAs: 'ctrl',
                 templateUrl: 'pizza/designer/designer.tpl.html',
                 resolve: {
-                    initPizza: function(Pizza) {
-                        return Pizza.init();
+                    initPizzaCollection: function(Pizza) {
+                        return Pizza.initCollection();
                     }
                 }
             })
@@ -30,20 +30,27 @@
         function createModalStateConfig(url) {
             return {
                 url: url,
-                onEnter: /* @ngInject */ function($stateParams, $state, $modal, Pizza) {
+                onEnter: /* @ngInject */ function($stateParams, $state, $modal, $timeout, Pizza) {
                     var modalInstance = $modal.open({
                         backdrop: 'static',
                         size: 'lg',
-                        controller: 'DesignerModalCtrl as ctrl',
+                        controller: 'DesignerModalCtrl',
+                        controllerAs: 'ctrl',
                         templateUrl: 'pizza/designer/designer-modal.tpl.html',
                         resolve: {
-                            pizza: function() {
-                                return Pizza.findOne($stateParams.pizzaId);
+                            initPizzaItem: function() {
+                                return Pizza.initItem($stateParams.pizzaId);
                             }.bind($stateParams)
                         }
-                    }).result.then(function() {
-                            $state.go('pizza.designer');
-                        });
+                    });
+
+                    modalInstance.opened.then(function() {
+                        $timeout(function() { $.material.init(); });
+                    });
+
+                    modalInstance.result.then(function() {
+                        $state.go('pizza.designer');
+                    });
 
                 }
             };

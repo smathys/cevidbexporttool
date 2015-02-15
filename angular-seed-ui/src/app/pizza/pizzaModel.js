@@ -14,58 +14,53 @@
 
         var LOG = $log.get('Pizza'),
             models = {
-                main: []
+                main: {
+                    collection: [],
+                    item: {}
+                }
             };
 
         return {
-            model: models.main,
+            collection: models.main.collection,
+            item: models.main.item,
             models: models,
 
-            findOne: findOne,
-            init: init,
+            initCollection: initCollection,
+            initItem: initItem,
             create: create,
             update: update,
             remove: remove
         };
 
-        function init(modelId) {
+        function initCollection(modelId) {
             return PizzaRestResource.findAll().then(function (response) {
-                angular.copy(response,  getModel(modelId));
-                LOG.debug('Model initialized: "', modelId ? modelId : 'main', '"', models);
+                angular.copy(response,  getModel(modelId).collection);
+                LOG.debug('Collection "' + (modelId || 'main') + '" initialized', getModel(modelId).collection);
             });
         }
 
-        function findOne(pizzaId, modelId) {
-
-            LOG.debug('Find one', pizzaId);
-            return init(modelId).then(function() {
-                return _.find(getModel(modelId), function(pizza) {
-                    return pizza.id === pizzaId;
-                });
+        function initItem(pizzaId, modelId) {
+            return PizzaRestResource.findById(pizzaId).then(function (response) {
+                angular.copy(response,  getModel(modelId).item);
+                LOG.debug('Item "' + (modelId || 'main') + '" initialized', getModel(modelId).item);
             });
         }
 
         function create(pizza, modelId) {
-            return PizzaRestResource.create(pizza).then(function (pizzaId) {
-                init(modelId);
-            });
+            return PizzaRestResource.create(pizza);
         }
 
         function update(pizza, modelId) {
-            return PizzaRestResource.update(pizza).then(function () {
-                init(modelId);
-            });
+            return PizzaRestResource.update(pizza);
         }
 
         function remove(pizza, modelId) {
-            return PizzaRestResource.remove(pizza.id).then(function () {
-                init(modelId);
-            });
+            return PizzaRestResource.remove(pizza.id);
         }
 
         function getModel(modelId) {
             modelId = modelId ? modelId : 'main';
-            models[modelId] = models[modelId] ? models[modelId] : [];
+            models[modelId] = models[modelId] ? models[modelId] : { collection: [], item: {}};
             return models[modelId];
         }
 

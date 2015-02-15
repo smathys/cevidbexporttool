@@ -18,8 +18,8 @@
                 controllerAs: 'ctrl',
                 templateUrl: 'pizza/offer/offer.tpl.html',
                 resolve: {
-                    initPizza: function(Pizza) {
-                        return Pizza.init();
+                    initPizzaCollection: function(Pizza) {
+                        return Pizza.initCollection();
                     }
                 }
             });

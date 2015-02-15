@@ -26,7 +26,6 @@
 
         function authenticate() {
             // auth logic
-            LOG.debug('authenticated');
         }
     }
 

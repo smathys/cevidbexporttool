@@ -4,7 +4,7 @@
 
     angular.module('angular-seed.common')
 
-        .directive('validation', function ($translate, $timeout) {
+        .directive('validation1', function ($translate, $timeout) {
             return {
                 restrict: 'A',
                 require:  '^form',
