@@ -6,7 +6,11 @@
     "MENU_OFFER": "Offer",
     "MENU_DESIGNER": "Designer",
     "MENU_CONTACT": "Contact",
+    "MENU_GREETING": "Welcome",
     "MENU_LANGUAGE_SELECT": "Language",
+    "MENU_LANGUAGE_EN": "English",
+    "MENU_LANGUAGE_DE": "German",
+    "MENU_LOGOUT": "Logout",
 
     "ACTION_SAVE": "Save",
     "ACTION_CANCEL": "Cancel",

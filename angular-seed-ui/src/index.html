@@ -44,7 +44,7 @@
 
         <div growl></div>
 
-        <nav class="navbar navbar-fixed-top navbar-material-deep-orange-A700">
+        <nav class="navbar navbar-fixed-top navbar-material-deep-orange-A400">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -55,7 +55,11 @@
                     </button>
                     <a class="navbar-brand" ui-sref="home" translate="APP_NAME"></a>
                 </div>
+
+
+
                 <div id="navbar" class="collapse navbar-collapse">
+
                     <ul class="nav navbar-nav">
                         <li ui-sref-active="active">
                             <a ui-sref="pizza.offer" translate="MENU_OFFER"></a>
@@ -67,37 +71,44 @@
                             <a ui-sref="contact" translate="MENU_CONTACT"></a>
                         </li>
                     </ul>
+
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>Welcome Katto!</a></li>
-                        <li>
-                            <img class="dropdown-toggle shadow-z-1 user-image" src="images/cat.jpg"  data-toggle="dropdown" />
-                        </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-cog fa-lg"></i>
+                            <a href="#" class="navbar-image dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img class=" shadow-z-2" src="images/cat.jpg" />
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <div style="margin:10px 20px 0 20px;">
+                                <li class="dropdown-static"><p><span translate="MENU_GREETING"></span> Katto!</p></li>
+                                <li role="presentation" class="divider"></li>
+                                <li class="dropdown-static">
+                                    <div>
                                         <form role="language">
                                             <div class="form-group">
                                                 <label class="control-label" translate="MENU_LANGUAGE_SELECT"></label>
                                                 <select class="form-control" ng-model="language.selected" ng-change="language.change()">
-                                                    <option value="de-ch">DE</option>
-                                                    <option value="en-us">EN</option>
+                                                    <option value="de-ch" translate="MENU_LANGUAGE_DE"></option>
+                                                    <option value="en-us" translate="MENU_LANGUAGE_EN"></option>
                                                 </select>
                                             </div>
                                         </form>
                                     </div>
                                 </li>
+                                <li role="presentation" class="divider"></li>
+                                <li>
+                                    <a href="#" role="button">
+                                        <i class="fa fa-power-off fa-lg"></i>
+                                        <span translate="MENU_LOGOUT"></span>
+                                    </a>
+                                </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#" role="button"><i class="fa fa-power-off fa-lg"></i></a>
                         </li>
                     </ul>
 
+
                 </div>
+
+
+
 
             </div>
         </nav>
@@ -117,6 +128,10 @@
         <script>
             angular.element(document).ready(function() {
                 angular.bootstrap(document, ['angular-seed']);
+
+                $('.dropdown-menu input, .dropdown-menu select, .dropdown-menu label').click(function(e) {
+                    e.stopPropagation();
+                });
             });
         </script>
 

@@ -48,9 +48,7 @@
     .run(init);
 
     function uiRouterConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise(function ($injector, $location) {
-            $urlRouterProvider.otherwise('/');
-        });
+        $urlRouterProvider.otherwise('/home');
     }
 
     function logConfig($logProvider) {
