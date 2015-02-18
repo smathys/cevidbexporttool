@@ -9,7 +9,8 @@ module.exports.tasks = {
     jshint: {
         all: ['<%= config.gruntfile %>', '<%= config.src %>', '<%= src.js.full %>'],
         options: {
-            sub:true
+            sub: true,
+            esnext: true
         }
     }
 };

@@ -32,6 +32,7 @@ module.exports = function (grunt) {
         'html2js',
         'ngAnnotate',
         'index',
+        'babel',
         'karma:continuous'
     ]);
 

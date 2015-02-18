@@ -30,7 +30,7 @@ module.exports.tasks = {
         'copy:app_js': {
             options: { livereload: true },
             files: ['<%= src.js.full %>'],
-            tasks: ['jshint', 'copy:app_js', 'index']
+            tasks: ['jshint', 'copy:app_js', 'babel', 'index']
         },
         'copy:app_i18n': {
             options: { livereload: true },
