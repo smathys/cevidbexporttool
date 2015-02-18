@@ -9,9 +9,9 @@ module.exports.tasks = {
     babel: {
         dev: {
             expand: true,
-            src: ["build_dev/js/app/**/*.js"],
-            dest: "",
-            ext: ".js"
+            src: ['<%= build.dir.dev %><%= build.js.files %>'],
+            dest: '',
+            ext: '.js'
         },
         options: {
             sourceMap: false
