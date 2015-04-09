@@ -1,0 +1,168 @@
+{
+	"people": [{
+		"id": "164",
+		"type": "people",
+		"href": "https://db.cevi.ch/groups/68/people/164.json",
+		"first_name": "Susanne",
+		"last_name": "Mathys",
+		"nickname": "Panda",
+		"company_name": "Cevi Embrach-Oberembrach",
+		"company": false,
+		"email": "susi.mathys@gmail.com",
+		"address": "Kirchenackerweg 34",
+		"zip_code": 8050,
+		"town": "Zürich",
+		"country": "",
+		"picture": "https://db.cevi.ch/uploads/person/picture/164/kiss-pandas.png",
+		"links": {
+			"phone_numbers": ["236"],
+			"creator": "141",
+			"updater": "164",
+			"primary_group": "68",
+			"roles": ["298",
+			"31998",
+			"32299",
+			"14751",
+			"32298"]
+		},
+		"birthday": "1986-02-12",
+		"gender": "w",
+		"additional_information": "",
+		"title": "",
+		"profession": "",
+		"j_s_number": 362841,
+		"joined": null,
+		"ahv_number": "",
+		"ahv_number_old": "",
+		"salutation_parents": "",
+		"name_parents": "",
+		"member_card_number": null,
+		"nationality": "",
+		"salutation": "informal",
+		"correspondence_language": "",
+		"canton": "zh",
+		"confession": "",
+		"created_at": "2014-08-26T15:41:46.000+02:00",
+		"updated_at": "2015-03-12T12:43:56.000+01:00"
+	}],
+	"linked": {
+		"phone_numbers": [{
+			"id": "236",
+			"number": "079 204 50 25",
+			"label": "Mobil",
+			"public": true
+		}],
+		"groups": [{
+			"id": "68",
+			"name": "ABT F",
+			"group_type": "Gremium"
+		},
+		{
+			"id": "187",
+			"name": "Embrach-Oberembrach",
+			"group_type": "Ortsgruppe"
+		},
+		{
+			"id": "188",
+			"name": "JS Embrach-Oberembrach",
+			"group_type": "Jungschar"
+		},
+		{
+			"id": "306",
+			"name": "Fröschli Embrach-Oberembrach",
+			"group_type": "Fröschli"
+		},
+		{
+			"id": "540",
+			"name": "F-JS Embrach-Oberembrach",
+			"group_type": "Stufe"
+		},
+		{
+			"id": "2",
+			"name": "RV ZH-SH-GL",
+			"group_type": "Mitgliederorganisation"
+		}],
+		"roles": [{
+			"id": "298",
+			"role_type": "Mitglied",
+			"label": null,
+			"created_at": "2014-08-26T15:41:46.000+02:00",
+			"updated_at": "2014-08-26T15:41:46.000+02:00",
+			"deleted_at": null,
+			"links": {
+				"group": "68",
+				"layer_group": "2"
+			}
+		},
+		{
+			"id": "31998",
+			"role_type": "Administrator/-in Cevi DB",
+			"label": "",
+			"created_at": "2014-11-18T11:28:47.000+01:00",
+			"updated_at": "2014-11-18T11:28:47.000+01:00",
+			"deleted_at": null,
+			"links": {
+				"group": "187",
+				"layer_group": "187"
+			}
+		},
+		{
+			"id": "32299",
+			"role_type": "Adressverwalter/-in",
+			"label": "",
+			"created_at": "2014-11-20T07:30:48.000+01:00",
+			"updated_at": "2014-11-20T07:30:48.000+01:00",
+			"deleted_at": null,
+			"links": {
+				"group": "188",
+				"layer_group": "188"
+			}
+		},
+		{
+			"id": "14751",
+			"role_type": "Fröschlihauptleiter/-in",
+			"label": "",
+			"created_at": "2014-09-30T09:32:36.000+02:00",
+			"updated_at": "2014-09-30T09:32:36.000+02:00",
+			"deleted_at": null,
+			"links": {
+				"group": "306",
+				"layer_group": "188"
+			}
+		},
+		{
+			"id": "32298",
+			"role_type": "Stufenleiter/-in",
+			"label": "",
+			"created_at": "2014-11-20T07:28:21.000+01:00",
+			"updated_at": "2014-11-20T07:28:21.000+01:00",
+			"deleted_at": null,
+			"links": {
+				"group": "540",
+				"layer_group": "188"
+			}
+		}]
+	},
+	"links": {
+		"people.creator": {
+			"href": "https://db.cevi.ch/people/{people.creator}.json",
+			"type": "people"
+		},
+		"people.updater": {
+			"href": "https://db.cevi.ch/people/{people.updater}.json",
+			"type": "people"
+		},
+		"people.primary_group": {
+			"href": "https://db.cevi.ch/groups/{people.primary_group}.json",
+			"type": "groups"
+		},
+		"roles.group": {
+			"href": "https://db.cevi.ch/groups/{roles.group}.json",
+			"type": "groups"
+		},
+		"roles.layer_group": {
+			"href": "https://db.cevi.ch/groups/{roles.layer_group}.json",
+			"type": "groups"
+		}
+	}
+}
