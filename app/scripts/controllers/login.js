@@ -8,7 +8,22 @@
  * Controller of the ceviDbExportToolApp
  */
 angular.module('ceviDbExportToolApp')
-  .controller('LoginCtrl', function ($scope) {
-    /*TODO: call loginService with username and password*/
+  .controller('LoginCtrl', function ($scope, $location, CeviDBService) {
+
+    $scope.username = "";
+    $scope.password = "";
+    $scope.errorMsg = "";
+    $scope.isErrorOccured = false;
+
+    $scope.login = function login(){
+      CeviDBService.loginUser($scope.username, $scope.password).then( function(res) {
+        $location.path('/address-list');
+      }, function(error) {
+        console.log('An error occurred!', error);
+        $scope.isErrorOccured = true;
+        $scope.errorMsg = "An error occurred! (" + error+ ")";
+        $('#error').addClass('bg-danger');
+      });
+    }
 
   });

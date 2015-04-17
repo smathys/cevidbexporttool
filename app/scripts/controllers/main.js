@@ -8,10 +8,6 @@
  * Controller of the ceviDbExportToolApp
  */
 angular.module('ceviDbExportToolApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, CeviDBService) {
+    $scope.groups = CeviDBService.searchGroups;
   });
