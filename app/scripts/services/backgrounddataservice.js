@@ -120,7 +120,7 @@ angular.module('ceviDbExportToolApp')
     /* randomize array element order in-place.
      using Fisher-Yates shuffle algoithm
      */
-   function shuffle() {
+    function shuffle() {
       for (var i = _ceviWords.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var temp = _ceviWords[i];

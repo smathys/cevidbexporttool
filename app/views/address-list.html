@@ -1,10 +1,21 @@
-<div class="jumbotron">
-  <div id="groups">
-  </div>
-  <div id="details">
-
-  </div>
-  <div id="adress-list">
-
-  </div>
+<div class="jumbotron" xmlns="http://www.w3.org/1999/html">
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <!-- <i class="glyphicon glyphicon-search"></i> -->
+      <input type="text" class="form-control" ng-model="searchText">
+    </div>
+    <table>
+      <thead>
+      <td><input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"></td>
+      <td><span>Gruppen</span></td>
+      </thead>
+      <tbody>
+      <tr ng-repeat="group in groups | filter: searchText">
+        <td><input type="checkbox" ng-model="group.Selected"/></td>
+        <td><span>{{group.name }}</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+  <div id="adress-list"></div>
 </div>
