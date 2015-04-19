@@ -15,21 +15,17 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="ceviDbExportToolApp">
+  <body ng-app="ceviDbExportToolApp" ng-controller="BackgroundCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
     <div class="container">
+
       <div class="header">
-        <!-- <ul class="nav nav-pills pull-right">
-         <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        -->
-        <h3><span style="text-transform: uppercase;"> cevi.db</span> Export-Tool</h3>
+                 <span ng-repeat="item in words" id="{{item}}">
+      {{ item }}     </span>
       </div>
 
       <div ng-view=""></div>
@@ -60,6 +56,8 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/services/cevidbservice.js"></script>
+        <script src="scripts/services/backgrounddataservice.js"></script>
+        <script src="scripts/controllers/background.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -10,4 +10,5 @@
 angular.module('ceviDbExportToolApp')
   .controller('MainCtrl', function ($scope, CeviDBService) {
     $scope.groups = CeviDBService.searchGroups;
+
   });

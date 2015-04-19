@@ -16,7 +16,15 @@ body {
 .header {
   border-bottom: 1px solid #e5e5e5;
   background-color: #99bf62;
+  text-transform: uppercase;
+  font-weight: bold;
+  word-spacing: 10px;
+  color: grey;
+  letter-spacing: 3px;
+  font-size: medium;
+
 }
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -37,15 +45,21 @@ body {
 .container-narrow > hr {
   margin: 30px 0;
 }
-.btn-primary{
+
+.btn-primary {
   background-color: #99bf62;
   border-color: #84a35b;
   color: black;
   font-weight: bold;
 }
-.btn-primary:hover,.btn-primary:focus,.btn-primary:active {
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background-color: #bae877;
   border-color: #99bf62;
+  color: black;
+}
+
+#Cevi, #DB, #Export, #Tool {
   color: black;
 }
 
@@ -58,10 +72,12 @@ body {
     padding-left: 0;
     padding-right: 0;
   }
+
   /* Space out the masthead */
   .header {
     margin-bottom: 30px;
   }
+
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
