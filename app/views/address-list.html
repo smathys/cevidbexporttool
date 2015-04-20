@@ -4,15 +4,17 @@
       <!-- <i class="glyphicon glyphicon-search"></i> -->
       <input type="text" class="form-control" ng-model="searchText">
     </div>
-    <table>
+    <div class="row">
+    <table class="col-sm-4">
       <thead>
-      <td><input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"></td>
-      <td><span>Gruppen</span></td>
+      <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
+      <td class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectedAll"></label></td>
+      <td class="col-sm-3">Gruppen</td>
       </thead>
       <tbody>
       <tr ng-repeat="group in groups | filter: searchText">
-        <td><input type="checkbox" ng-model="group.Selected"/></td>
-        <td><span>{{group.name }}</span></td>
+        <td class="col-sm-1"><input type="checkbox" ng-model="group.selected"/></td>
+        <td class="col-sm-3"><span ng-bind="group.name"/></td>
       </tr>
       </tbody>
     </table>

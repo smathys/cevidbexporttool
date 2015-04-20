@@ -10,8 +10,8 @@
 angular.module('ceviDbExportToolApp')
   .controller('MainCtrl', function ($scope, CeviDBService) {
 
+
     CeviDBService.searchAllMyGroups().then(function (res) {
-      console.log('success');
       $scope.groups = res;
     }, function (error) {
       console.log('An error occurred!', error);
@@ -22,13 +22,8 @@ angular.module('ceviDbExportToolApp')
     });
 
     $scope.checkAll = function () {
-      if ($scope.selectedAll) {
-        $scope.selectedAll = true;
-      } else {
-        $scope.selectedAll = false;
-      }
       angular.forEach($scope.groups, function (group) {
-        group.Selected = $scope.selectedAll;
+        group.selected = $scope.selectedAll;
       });
 
     };
