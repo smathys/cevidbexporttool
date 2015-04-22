@@ -17,6 +17,7 @@ angular.module('ceviDbExportToolApp')
 
     $scope.login = function login(){
       CeviDBService.loginUser($scope.username, $scope.password).then( function(res) {
+
         $location.path('/address-list');
       }, function (error) {
         console.log('An error occurred!', error);

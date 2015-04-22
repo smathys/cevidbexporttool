@@ -9,7 +9,8 @@
  */
 angular.module('ceviDbExportToolApp')
   .factory('CeviDBService', function ($http, $q) {
-    // AngularJS will instantiate a singleton by calling "new" on this function
+    var CEVI_DB_SERVICE_LOGIN_URL = "https://db.cevi.ch/users/sign_in.json";
+    var CEVI_DB_SERVICE_DELETE_TOKERN_URL = "https://db.cevi.ch/users/token.json";
 
     var _groups = [
       {"id": "187", "group_type": "Ortsgruppe", "name": "Embrach-Oberembrach", "short_name": "EMB"},
@@ -19,22 +20,63 @@ angular.module('ceviDbExportToolApp')
       {"id": "103", "group_type": "Ortsgruppe", "name": "Bülach", "short_name": "BUL"}
     ];
 
-    function searchAllMyGroups() {
-      //use $q.when to simulate Promise based API
-      return $q.when(_groups);
+    var _isTestUser = false;
+    var _user =
+      {
+        "username": "",
+          "pw": "",
+          "userToken": ""};
+    function searchAllMyGroups(
+
+    ) {
+      //if( _isTestUser ){
+        //use $q.when to simulate Promise based API
+        return $q.when(_groups);
+      //} else {
+      //  $q.reject("no groups available");
+      //}
     }
 
     function loginUser(username, pw) {
+      _user.username = username;
+      _user.pw = pw;
       if (username === "test") {
+        _isTestUser = true;
         return $q.when("login successfull");
       } else {
-        return $q.reject("loginError");
+          return $http.post(CEVI_DB_SERVICE_LOGIN_URL + "?person[email]=" + _user.username + "&person[password]="+ _user.pw ).then(function (response) {
+          //return $http.post(CEVI_DB_SERVICE_LOGIN_URL, {params: {person[email]:  username }, {person[password]: pw}} ).then(function (response) {
+          if (response.data.Error) {
+            return $q.reject({text: response.data.Error});
+          } else {
+            _user.userToken = response.data.people[0].authentication_token;
+
+            return response.data;
+          }
+        }, handleHttpError);
       }
 
     }
 
-    function logoutUser() {
+    function logoutUser(){
+      return $http.delete(CEVI_DB_SERVICE_DELETE_TOKERN_URL+"?person[email]=" +_user.username + "&person[password]=" + _user.pw).then(function (response){
+        if (response.data.Error) {
+          return $q.reject({text: response.data.Error});
+        } else {
+            return response.data;
+          }
+        }, handleHttpError);
+      }
 
+
+    function handleHttpError(httpError) {
+      var error = {};
+      if (httpError.statusText) {
+        error.text = httpError.statusText;
+      } else {
+        error.text = 'Connection error';
+      }
+      return $q.reject(error);
     }
 
     return {
