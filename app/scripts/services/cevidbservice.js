@@ -9,10 +9,12 @@
  */
 angular.module('ceviDbExportToolApp')
   .factory('CeviDBService', function ($http, $q) {
-    var CEVI_DB_SERVICE_LOGIN_URL = "https://db.cevi.ch/users/sign_in.json";
-    var CEVI_DB_SERVICE_DELETE_TOKERN_URL = "https://db.cevi.ch/users/token.json";
+    var DB_SERVICE_LOGIN_URL = "https://db.cevi.ch/users/sign_in.json";
+    var DB_SERVICE_DELETE_TOKERN_URL = "https://db.cevi.ch/users/token.json";
+    //"group 1" is Cevi Schweiz
+    var DB_SERVICE_PERSON_DETAILS_URL = "https://db.cevi.ch/groups/1/people/";
 
-    var _groups = [
+    var _testGroups = [
       {"id": "187", "group_type": "Ortsgruppe", "name": "Embrach-Oberembrach", "short_name": "EMB"},
       {"id": "100", "group_type": "Ortsgruppe", "name": "Illnau", "short_name": "ILL"},
       {"id": "101", "group_type": "Ortsgruppe", "name": "Kloten", "short_name": "KLO"},
@@ -22,19 +24,18 @@ angular.module('ceviDbExportToolApp')
 
     var _isTestUser = false;
     var _user =
-      {
-        "username": "",
-          "pw": "",
-          "userToken": ""};
-    function searchAllMyGroups(
+      { };
+    var _groups = {};
+    function searchAllMyGroups() {
+      return $http.post(DB_SERVICE_PERSON_DETAILS_URL +_user.id + ".json" + "?user_email="+_user.username + "&user_token=" + _user.userToken).then( function (response){
+        if (response.data.Error){
+          return $q.reject({test: response.data.Error});
+        }else {
+          _groups = response.data.people[0].linked.groups;
+          return _groups;
+        }
 
-    ) {
-      //if( _isTestUser ){
-        //use $q.when to simulate Promise based API
-        return $q.when(_groups);
-      //} else {
-      //  $q.reject("no groups available");
-      //}
+      }, handleHttpError);
     }
 
     function loginUser(username, pw) {
@@ -44,13 +45,14 @@ angular.module('ceviDbExportToolApp')
         _isTestUser = true;
         return $q.when("login successfull");
       } else {
-          return $http.post(CEVI_DB_SERVICE_LOGIN_URL + "?person[email]=" + _user.username + "&person[password]="+ _user.pw ).then(function (response) {
-          //return $http.post(CEVI_DB_SERVICE_LOGIN_URL, {params: {person[email]:  username }, {person[password]: pw}} ).then(function (response) {
+          return $http.post(DB_SERVICE_LOGIN_URL + "?person[email]=" + _user.username + "&person[password]="+ _user.pw ).then(function (response) {
+          //return $http.post(DB_SERVICE_LOGIN_URL, {params: {person[email]:  username }, {person[password]: pw}} ).then(function (response) {
           if (response.data.Error) {
             return $q.reject({text: response.data.Error});
           } else {
             _user.userToken = response.data.people[0].authentication_token;
-
+            _user.id = response.data.people[0].id;
+            _groups = response.data.linked.groups;
             return response.data;
           }
         }, handleHttpError);
@@ -59,7 +61,7 @@ angular.module('ceviDbExportToolApp')
     }
 
     function logoutUser(){
-      return $http.delete(CEVI_DB_SERVICE_DELETE_TOKERN_URL+"?person[email]=" +_user.username + "&person[password]=" + _user.pw).then(function (response){
+      return $http.delete(DB_SERVICE_DELETE_TOKERN_URL+"?person[email]=" +_user.username + "&person[password]=" + _user.pw).then(function (response){
         if (response.data.Error) {
           return $q.reject({text: response.data.Error});
         } else {
