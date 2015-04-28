@@ -1,29 +1,36 @@
-<div class="jumbotron" xmlns="http://www.w3.org/1999/html">
+<div class="container-fluid jumbotron">
+  <div class="col-sm-4">
   <form class="form-horizontal" role="form">
     <div class="form-group">
       <!-- <i class="glyphicon glyphicon-search"></i> -->
       <input type="text" class="form-control" ng-model="searchText">
     </div>
-    <div class="row">
-    <table class="col-sm-4">
+
+    <table class="table">
       <thead>
       <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
-      <td class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectedAll"></label></td>
-      <td class="col-sm-3">Gruppen</td>
+      <th class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectedAll"></label></th>
+      <th class="col-sm-6">Gruppe</th>
+      <th class="col-sm-5">Typ</th>
       </thead>
       <tbody>
       <tr ng-repeat="group in groups | filter: searchText">
-        <td class="col-sm-1"><input type="checkbox" ng-model="group.selected"/></td>
-        <td class="col-sm-3"><span ng-bind="group.name"/></td>
+        <td class="col-sm-1"><input type="checkbox" ng-model="group.selected" onclick="selectMembers()"/></td>
+        <td class="col-sm-6"><span ng-bind="group.name"/></td>
+        <td class="col-sm-5"><span ng-bind="group.group_type" /></td>
       </tr>
       </tbody>
     </table>
-    </div>
+
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-4">
           <button class="btn btn-primary" type="submit" ng-click="logout()">abmelden</button>
         </div>
       </div>
   </form>
-  <div id="adress-list"></div>
+  </div>
+  <div class="col-sm-offset-4 col-sm-4">
+
+  </div>
+  <div id="adress-list" class="row"></div>
 </div>

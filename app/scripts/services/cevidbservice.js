@@ -25,13 +25,15 @@ angular.module('ceviDbExportToolApp')
     var _isTestUser = false;
     var _user =
       { };
-    var _groups = {};
+    var _groups;
+
     function searchAllMyGroups() {
-      return $http.post(DB_SERVICE_PERSON_DETAILS_URL +_user.id + ".json" + "?user_email="+_user.username + "&user_token=" + _user.userToken).then( function (response){
+      return $http.get( DB_SERVICE_PERSON_DETAILS_URL +_user.id + ".json?user_email=" +_user.username+"&user_token=" +_user.userToken
+      ).then( function (response){
         if (response.data.Error){
           return $q.reject({test: response.data.Error});
         }else {
-          _groups = response.data.people[0].linked.groups;
+          _groups = response.data.linked.groups;
           return _groups;
         }
 
@@ -46,13 +48,11 @@ angular.module('ceviDbExportToolApp')
         return $q.when("login successfull");
       } else {
           return $http.post(DB_SERVICE_LOGIN_URL + "?person[email]=" + _user.username + "&person[password]="+ _user.pw ).then(function (response) {
-          //return $http.post(DB_SERVICE_LOGIN_URL, {params: {person[email]:  username }, {person[password]: pw}} ).then(function (response) {
           if (response.data.Error) {
             return $q.reject({text: response.data.Error});
           } else {
             _user.userToken = response.data.people[0].authentication_token;
             _user.id = response.data.people[0].id;
-            _groups = response.data.linked.groups;
             return response.data;
           }
         }, handleHttpError);

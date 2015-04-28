@@ -27,10 +27,10 @@ angular.module('ceviDbExportToolApp')
       });
 
     };
+    $scope
 
     $scope.logout = function logout(){
       CeviDBService.logoutUser().then( function(res) {
-
         $location.path('/');
       }, function (error) {
         console.log('An error occurred!', error);
