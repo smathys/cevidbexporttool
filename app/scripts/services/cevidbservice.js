@@ -13,6 +13,8 @@ angular.module('ceviDbExportToolApp')
     var DB_SERVICE_DELETE_TOKERN_URL = "https://db.cevi.ch/users/token.json";
     //"group 1" is Cevi Schweiz
     var DB_SERVICE_PERSON_DETAILS_URL = "https://db.cevi.ch/groups/1/people/";
+    var DB_SERVICE_PERSON_IN_GROUP_URL = "https://db.cevi.ch/groups/";
+
 
     var _testGroups = [
       {"id": "187", "group_type": "Ortsgruppe", "name": "Embrach-Oberembrach", "short_name": "EMB"},
@@ -26,18 +28,38 @@ angular.module('ceviDbExportToolApp')
     var _user =
       { };
     var _groups;
+    var _keys;
 
     function searchAllMyGroups() {
+      //TODO: evtl. bei group_type= Mitglieder die gruppe in der hirarchie 1 oberhalb suchen und den namen anzeigen...
       return $http.get( DB_SERVICE_PERSON_DETAILS_URL +_user.id + ".json?user_email=" +_user.username+"&user_token=" +_user.userToken
       ).then( function (response){
         if (response.data.Error){
           return $q.reject({test: response.data.Error});
         }else {
           _groups = response.data.linked.groups;
+          _keys = Object.keys(response.data.people[0]);
           return _groups;
         }
 
       }, handleHttpError);
+    }
+    function getAllMembersOfGroup(groupID){
+
+      //TODO: mit jeder mitglieder ID aus der gruppe den Detail service zu Person aufrufen, da bei "Personen in Gruppe"  gar nicht alle Personen-details geliefert werden
+
+      return $http.get(DB_SERVICE_PERSON_IN_GROUP_URL+groupID + "/people.json?user_email=" +_user.username+"&user_token=" +_user.userToken
+      ).then( function (response){
+          if (response.data.Error){
+            return $q.reject({test: response.data.Error});
+          }else{
+            return response.data.people;
+          }
+
+        })
+    }
+    function getKeys(){
+      return _keys;
     }
 
     function loginUser(username, pw) {
@@ -83,6 +105,8 @@ angular.module('ceviDbExportToolApp')
 
     return {
       searchAllMyGroups: searchAllMyGroups,
+      getAllMembersOfGroup: getAllMembersOfGroup,
+      getMemberProperties: getKeys,
       loginUser: loginUser,
       logoutUser: logoutUser
     };
