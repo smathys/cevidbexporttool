@@ -10,10 +10,13 @@
 angular.module('ceviDbExportToolApp')
   .controller('MainCtrl', function ($scope, $location, CeviDBService) {
 
+    $scope.addressList = [];
+    $scope.groups = [];
+    $scope.groups.members = [];
 
+    //init groups after login
     CeviDBService.searchAllMyGroups().then(function (res) {
       $scope.groups = res;
-      //to init memberPropertyList call DBService getMemberProperties
       $scope.memberProperties = CeviDBService.getMemberProperties();
     }, function (error) {
       handleError(error);
@@ -23,27 +26,39 @@ angular.module('ceviDbExportToolApp')
       angular.forEach($scope.groups, function (group) {
         group.selected = $scope.selectedAll;
       });
-    };
-
-    $scope.hideProperty = function (property) {
-      return property === "links";
+      $scope.selectMembers();
     };
 
     $scope.selectMembers = function () {
       angular.forEach($scope.groups, function (group) {
         if (group.selected && !group.isListLoaded) {
+
           CeviDBService.getAllMembersOfGroup(group.id).then(function (res) {
-            $scope.members = res;
+            group.members = res;
+            angular.forEach(group.members, function (member) {
+              $scope.addressList.push(member);
+            });
             group.isListLoaded = true;
           }, function (error) {
             handleError(error);
           });
         } else {
-          //TODO: remove members, set flag isListLoaded to false
+          if (!group.selected) {
+            if (group.members != undefined) {
+              angular.forEach(group.members, function (member) {
+                if ($scope.addressList != undefined) {
+                  var index = $scope.addressList.indexOf(member);
+                  if (index != -1) {
+                    $scope.addressList.splice(index, 1);
+                  }
+                }
+              });
+            }
+            group.isListLoaded = false;
+          }
         }
       });
     }
-
 
     $scope.logout = function logout() {
       CeviDBService.logoutUser().then(function (res) {

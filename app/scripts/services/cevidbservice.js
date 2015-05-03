@@ -38,7 +38,8 @@ angular.module('ceviDbExportToolApp')
           return $q.reject({test: response.data.Error});
         }else {
           _groups = response.data.linked.groups;
-          _keys = Object.keys(response.data.people[0]);
+          _keys = Object.keys(response.data.people[0]).filter(function(e){ return e !== "links" && e !== "joined" && e !== "created_at" && e!== "updated_at" && e!== "type"});
+          _keys.sort();
           return _groups;
         }
 
@@ -47,7 +48,6 @@ angular.module('ceviDbExportToolApp')
     function getAllMembersOfGroup(groupID){
 
       //TODO: mit jeder mitglieder ID aus der gruppe den Detail service zu Person aufrufen, da bei "Personen in Gruppe"  gar nicht alle Personen-details geliefert werden
-
       return $http.get(DB_SERVICE_PERSON_IN_GROUP_URL+groupID + "/people.json?user_email=" +_user.username+"&user_token=" +_user.userToken
       ).then( function (response){
           if (response.data.Error){
