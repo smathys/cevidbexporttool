@@ -26,50 +26,80 @@ angular.module('ceviDbExportToolApp')
 
     var _isTestUser = false;
     var _user =
-      { };
+    {};
     var _groups;
     var _keys;
 
+    /*
+     TODO: evtl. bei groups mit group_type=Mitglierder
+     die Gruppe in der hierarchie eins oberhalb suchen und diesen Namen anzeigen, wegen Mitglier, Mitglieder in der Gruppen-Selection-List
+     */
     function searchAllMyGroups() {
-      //TODO: evtl. bei group_type= Mitglieder die gruppe in der hirarchie 1 oberhalb suchen und den namen anzeigen...
-      return $http.get( DB_SERVICE_PERSON_DETAILS_URL +_user.id + ".json?user_email=" +_user.username+"&user_token=" +_user.userToken
-      ).then( function (response){
-        if (response.data.Error){
+
+      return getAllMemberDetails(_user.id).then(function (response) {
+        _groups = response.linked.groups;
+        _keys = Object.keys(response.people[0]).filter(function (e) {
+          return e !== "links" && e !== "joined" && e !== "created_at" && e !== "updated_at" && e !== "type"
+        });
+        _keys.sort();
+        return _groups;
+      }, function (error) {
+        $q.reject(error);
+      });
+    }
+
+
+    /*$http.get('/my-first-url').then(function (results) {
+      return $http.get('/my-second-url')
+    }).then(function (results) {
+      // results here are the results of the GET to /my-second-url
+    });*/
+
+    function getAllMembersOfGroup(groupID) {
+      $http.get(DB_SERVICE_PERSON_IN_GROUP_URL + groupID + "/people.json?user_email=" + _user.username + "&user_token=" + _user.userToken).then(function (response) {
+        if (response.data.Error) {
           return $q.reject({test: response.data.Error});
-        }else {
-          _groups = response.data.linked.groups;
-          _keys = Object.keys(response.data.people[0]).filter(function(e){ return e !== "links" && e !== "joined" && e !== "created_at" && e!== "updated_at" && e!== "type"});
-          _keys.sort();
-          return _groups;
+        } else {
+          var _people = [];
+          var promises = [];
+          angular.forEach(response.data.people, function (member) {
+            promises.push(getAllMemberDetails(member.id));
+          });
+          $q.all(promises).then(function (response) {
+            angular.forEach(response, function (res) {
+              _people.push(res.people[0]);
+            });
+            return _people;
+          }).then(function (result) {
+            return result;
+          });
+
         }
+      });
+    }
 
+    function getAllMemberDetails(memberID) {
+
+      return $http.get(DB_SERVICE_PERSON_DETAILS_URL + memberID + ".json?user_email=" + _user.username + "&user_token=" + _user.userToken).then(function (response) {
+        if (response.data.Error) {
+          return $q.reject({text: response.data.Error});
+        } else {
+          return response.data;
+        }
       }, handleHttpError);
-    }
-    function getAllMembersOfGroup(groupID){
 
-      //TODO: mit jeder mitglieder ID aus der gruppe den Detail service zu Person aufrufen, da bei "Personen in Gruppe"  gar nicht alle Personen-details geliefert werden
-      return $http.get(DB_SERVICE_PERSON_IN_GROUP_URL+groupID + "/people.json?user_email=" +_user.username+"&user_token=" +_user.userToken
-      ).then( function (response){
-          if (response.data.Error){
-            return $q.reject({test: response.data.Error});
-          }else{
-            return response.data.people;
-          }
-
-        })
-    }
-    function getKeys(){
-      return _keys;
     }
 
     function loginUser(username, pw) {
+
       _user.username = username;
       _user.pw = pw;
+
       if (username === "test") {
         _isTestUser = true;
         return $q.when("login successfull");
       } else {
-          return $http.post(DB_SERVICE_LOGIN_URL + "?person[email]=" + _user.username + "&person[password]="+ _user.pw ).then(function (response) {
+        return $http.post(DB_SERVICE_LOGIN_URL + "?person[email]=" + _user.username + "&person[password]=" + _user.pw).then(function (response) {
           if (response.data.Error) {
             return $q.reject({text: response.data.Error});
           } else {
@@ -82,18 +112,23 @@ angular.module('ceviDbExportToolApp')
 
     }
 
-    function logoutUser(){
-      return $http.delete(DB_SERVICE_DELETE_TOKERN_URL+"?person[email]=" +_user.username + "&person[password]=" + _user.pw).then(function (response){
+    function logoutUser() {
+
+      return $http.delete(DB_SERVICE_DELETE_TOKERN_URL + "?person[email]=" + _user.username + "&person[password]=" + _user.pw).then(function (response) {
         if (response.data.Error) {
           return $q.reject({text: response.data.Error});
         } else {
-            return response.data;
-          }
-        }, handleHttpError);
-      }
+          return response.data;
+        }
+      }, handleHttpError);
+    }
 
+    function getKeys() {
+      return _keys;
+    }
 
     function handleHttpError(httpError) {
+
       var error = {};
       if (httpError.statusText) {
         error.text = httpError.statusText;
@@ -104,10 +139,14 @@ angular.module('ceviDbExportToolApp')
     }
 
     return {
+
       searchAllMyGroups: searchAllMyGroups,
       getAllMembersOfGroup: getAllMembersOfGroup,
       getMemberProperties: getKeys,
       loginUser: loginUser,
       logoutUser: logoutUser
+
     };
-  });
+  }
+)
+;

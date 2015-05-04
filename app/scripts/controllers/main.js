@@ -33,15 +33,16 @@ angular.module('ceviDbExportToolApp')
       angular.forEach($scope.groups, function (group) {
         if (group.selected && !group.isListLoaded) {
 
-          CeviDBService.getAllMembersOfGroup(group.id).then(function (res) {
+          group.members = CeviDBService.getAllMembersOfGroup(group.id);
+        /*.then(function (res) {
             group.members = res;
-            angular.forEach(group.members, function (member) {
-              $scope.addressList.push(member);
+            angular.forEach(group.members, function (member) {*/
+              $scope.addressList.push(member);/*
             });
             group.isListLoaded = true;
           }, function (error) {
             handleError(error);
-          });
+          });*/
         } else {
           if (!group.selected) {
             if (group.members != undefined) {
