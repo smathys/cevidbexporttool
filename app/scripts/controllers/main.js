@@ -54,36 +54,34 @@ angular.module('ceviDbExportToolApp')
       });
     }
 
-  });
-function removeEntries(group) {
-  angular.forEach(group.members, function (member) {
-    if ($scope.addressList != undefined) {
-      var index = $scope.addressList.indexOf(member);
-      if (index != -1) {
-        $scope.addressList.splice(index, 1);
-      }
+    function removeEntries(group) {
+      angular.forEach(group.members, function (member) {
+        if ($scope.addressList != undefined) {
+          var index = $scope.addressList.indexOf(member);
+          if (index != -1) {
+            $scope.addressList.splice(index, 1);
+          }
+        }
+      });
+    }
+
+    function addEntries(group) {
+      CeviDBService.getAllMembersIDsOfGroup(group.id).then(function (res) {
+        var promises = [];
+        angular.forEach(res, function (memberID) {
+          promises.push(getAllMemberDetails(memberID));
+        });
+        $q.all(promises).then(function (response) {
+          angular.forEach(response, function (person) {
+            group.members.push(person);
+            // $scope.addressList.push(person);
+          });
+          group.isListLoaded = true;
+        });
+      }, handleError(error));
     }
   });
-}
 
-function addEntries(group) {
-  CeviDBService.getAllMembersIDsOfGroup(group.id).then(function (res) {
-    var promises = [];
-    angular.forEach(res, function (memberID) {
-      promises.push(getAllMemberDetails(memberID));
-    });
-    $q.all(promises).then(function (response) {
-      angular.forEach(response, function (person) {
-        group.members.push(person);
-        // $scope.addressList.push(person);
-      });
-      group.isListLoaded = true;
-    }, handleError(error)).then(function (result) {
-      $scope.addressList.push(group.members);
-    });
-
-  }, handleError(error));
-}
 
 function handleError(error) {
   console.log("error occured: " + error);

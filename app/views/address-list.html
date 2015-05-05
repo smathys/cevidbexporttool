@@ -1,116 +1,111 @@
 <div class="container-fluid jumbotron">
-  <div class="row">
-    <p class="col-sm-offset-2 col-sm-10" id="error" ng-bind="errorMsg"></p>
+  <form class="form-horizontal" role="form">
+    <div class="form-group row">
 
-    <div class="col-sm-4">
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <input type="search" class="form-control" ng-model="mainCtrl.searchText">
-          <span class="glyphicon glyphicon-search"></span>
-        </div>
+      <div class="col-sm-4">
+        <button class="btn btn-primary" type="submit" ng-click="logout()">abmelden</button>
+      </div>
+    </div>
 
-        <table class="table">
-          <thead>
-          <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
-          <th class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectedAll"></label></th>
-          <th class="col-sm-6">Gruppe</th>
-          <th class="col-sm-5">Typ</th>
-          </thead>
-          <tbody>
-          <tr ng-repeat="group in groups | filter: mainCtrl.searchText">
-            <td class="col-sm-1"><label ng-click="selectMembers()"> <input type="checkbox"
-                                                                           ng-model="group.selected"/></label></td>
-            <td class="col-sm-6"><span ng-bind="group.name"/></td>
-            <td class="col-sm-5"><span ng-bind="group.group_type"/></td>
-          </tr>
-          </tbody>
-        </table>
-      </form>
+    <div id="groups" class="col-sm-4">
+      <div class="form-group">
+        <input type="search" class="form-control" ng-model="mainCtrl.searchText">
+        <span class="glyphicon glyphicon-search"></span>
+      </div>
+
+      <table class="table">
+        <thead>
+        <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
+        <th class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectedAll"></label></th>
+        <th class="col-sm-6">Gruppe</th>
+        <th class="col-sm-5">Typ</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="group in groups | filter: mainCtrl.searchText">
+          <td class="col-sm-1"><label ng-click="selectMembers()"> <input type="checkbox"
+                                                                         ng-model="group.selected"/></label></td>
+          <td class="col-sm-6"><span ng-bind="group.name"/></td>
+          <td class="col-sm-5"><span ng-bind="group.group_type"/></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
 
     <div id="details" class="col-sm-offset-4 col-sm-4">
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <input type="search" class="form-control" ng-model="searchDetail">
-          <span class="glyphicon glyphicon-search"></span>
-        </div>
+      <div class="form-group">
+        <input type="search" class="form-control" ng-model="searchDetail">
+        <span class="glyphicon glyphicon-search"></span>
+      </div>
 
-        <table class="table scrollable">
-          <thead>
-          <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
-          <th class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectAllDetails"></label>
-          </th>
-          <th class="col-sm-6">Detail</th>
-          </thead>
-          <tbody>
-          <tr ng-repeat="detail in memberProperties | filter: searchDetail">
-            <td class="col-sm-1"><input type="checkbox" ng-model="detail.selected"/></label></td>
-            <td class="col-sm-6"><span ng-bind="detail"/></td>
-          </tr>
-          </tbody>
-        </table>
-      </form>
+      <table class="table scrollable">
+        <thead>
+        <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
+        <th class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectAllDetails"></label>
+        </th>
+        <th class="col-sm-6">Detail</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="detail in memberProperties | filter: searchDetail">
+          <td class="col-sm-1"><input type="checkbox" ng-model="detail.selected"/></label></td>
+          <td class="col-sm-6"><span ng-bind="detail"/></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-  <div id="adress-list" class="row col-sm-12">
-    <h3>Adress-Liste</h3>
-    <table class="table">
-      <thead>
-      <th>ID</th>
-      <th>Vorname</th>
-      <th>Nachname</th>
-      <th>Cevi Name</th>
-      <th>Strasse</th>
-      <th>PLZ</th>
-      <th>Ort</th>
-      </thead>
-      <tbody>
-      <tr ng-repeat="member in addressList">
-        <td><span ng-bind="member.id"/></td>
-        <td><span ng-bind="member.first_name"/></td>
-        <td><span ng-bind="member.last_name"/></td>
-        <td><span ng-bind="member.nickname"/></td>
-        <td><span ng-bind="member.address"/></td>
-        <td><span ng-bind="member.zip_code"/></td>
-        <td><span ng-bind="member.town"/></td>
-        <!--member.id
-        member.type
-        member.href
-        member.first_name
-        member.last_name
-        member.nickname
-        member.company_name
-        member.company
-        member.email
-        member.address
-        member.zip_code
-        member.town
-        member.country
-        member.picture
-        member.birthday
-        member.gender
-        member.additional_information
-        member.title
-        member.profession
-        member.j_s_number
-        member.ahv_number
-        member.ahv_number_old
-        member.salutation_parents
-        member.name_parents
-        member.member_card_number
-        member.nationality
-        member.salutation
-        member.correspondence_language
-        member.canton
-        member.confession-->
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- <div class="form-group row">
-    <div class="col-sm-4">
-      <button class="btn btn-primary" type="submit" ng-click="logout()">abmelden</button>
+    <div id="adress-list" class="row col-sm-12">
+      <h3>Adress-Liste</h3>
+      <table class="table">
+        <thead>
+        <th>ID</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Cevi Name</th>
+        <th>Strasse</th>
+        <th>PLZ</th>
+        <th>Ort</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="member in addressList">
+          <td><span ng-bind="member.id"/></td>
+          <td><span ng-bind="member.first_name"/></td>
+          <td><span ng-bind="member.last_name"/></td>
+          <td><span ng-bind="member.nickname"/></td>
+          <td><span ng-bind="member.address"/></td>
+          <td><span ng-bind="member.zip_code"/></td>
+          <td><span ng-bind="member.town"/></td>
+          <!--member.id
+          member.type
+          member.href
+          member.first_name
+          member.last_name
+          member.nickname
+          member.company_name
+          member.company
+          member.email
+          member.address
+          member.zip_code
+          member.town
+          member.country
+          member.picture
+          member.birthday
+          member.gender
+          member.additional_information
+          member.title
+          member.profession
+          member.j_s_number
+          member.ahv_number
+          member.ahv_number_old
+          member.salutation_parents
+          member.name_parents
+          member.member_card_number
+          member.nationality
+          member.salutation
+          member.correspondence_language
+          member.canton
+          member.confession-->
+        </tr>
+        </tbody>
+      </table>
     </div>
-  </div> -->
+  </form>
 </div>
