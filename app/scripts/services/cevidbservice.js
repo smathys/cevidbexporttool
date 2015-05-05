@@ -9,26 +9,28 @@
  */
 angular.module('ceviDbExportToolApp')
   .factory('CeviDBService', function ($http, $q) {
+
     var DB_SERVICE_LOGIN_URL = "https://db.cevi.ch/users/sign_in.json";
     var DB_SERVICE_DELETE_TOKERN_URL = "https://db.cevi.ch/users/token.json";
-    //"group 1" is Cevi Schweiz
-    var DB_SERVICE_PERSON_DETAILS_URL = "https://db.cevi.ch/groups/1/people/";
+    var DB_SERVICE_PERSON_DETAILS_URL = "https://db.cevi.ch/groups/1/people/";  //"group 1" is Cevi Schweiz
     var DB_SERVICE_PERSON_IN_GROUP_URL = "https://db.cevi.ch/groups/";
 
-
-    var _testGroups = [
-      {"id": "187", "group_type": "Ortsgruppe", "name": "Embrach-Oberembrach", "short_name": "EMB"},
-      {"id": "100", "group_type": "Ortsgruppe", "name": "Illnau", "short_name": "ILL"},
-      {"id": "101", "group_type": "Ortsgruppe", "name": "Kloten", "short_name": "KLO"},
-      {"id": "102", "group_type": "Ortsgruppe", "name": "Lufingen", "short_name": "LUF"},
-      {"id": "103", "group_type": "Ortsgruppe", "name": "Bülach", "short_name": "BUL"}
-    ];
 
     var _isTestUser = false;
     var _user =
     {};
     var _groups;
     var _keys;
+
+    return {
+
+      searchAllMyGroups: searchAllMyGroups,
+      getAllMembersIDsOfGroup: getAllMembersIDsOfGroup,
+      getMemberProperties: getKeys,
+      loginUser: loginUser,
+      logoutUser: logoutUser
+
+    };
 
     /*
      TODO: evtl. bei groups mit group_type=Mitglierder
@@ -48,34 +50,18 @@ angular.module('ceviDbExportToolApp')
       });
     }
 
-
-    /*$http.get('/my-first-url').then(function (results) {
-      return $http.get('/my-second-url')
-    }).then(function (results) {
-      // results here are the results of the GET to /my-second-url
-    });*/
-
-    function getAllMembersOfGroup(groupID) {
-      $http.get(DB_SERVICE_PERSON_IN_GROUP_URL + groupID + "/people.json?user_email=" + _user.username + "&user_token=" + _user.userToken).then(function (response) {
+    function getAllMembersIDsOfGroup(groupID) {
+      return $http.get(DB_SERVICE_PERSON_IN_GROUP_URL + groupID + "/people.json?user_email=" + _user.username + "&user_token=" + _user.userToken).then(function (response) {
         if (response.data.Error) {
           return $q.reject({test: response.data.Error});
         } else {
-          var _people = [];
-          var promises = [];
-          angular.forEach(response.data.people, function (member) {
-            promises.push(getAllMemberDetails(member.id));
+          var _IDs = [];
+          angular.forEach(response.data.people, function(person){
+            _IDs.push(person.id);
           });
-          $q.all(promises).then(function (response) {
-            angular.forEach(response, function (res) {
-              _people.push(res.people[0]);
-            });
-            return _people;
-          }).then(function (result) {
-            return result;
-          });
-
+          return _IDs;
         }
-      });
+      }, handleHttpError);
     }
 
     function getAllMemberDetails(memberID) {
@@ -137,16 +123,6 @@ angular.module('ceviDbExportToolApp')
       }
       return $q.reject(error);
     }
-
-    return {
-
-      searchAllMyGroups: searchAllMyGroups,
-      getAllMembersOfGroup: getAllMembersOfGroup,
-      getMemberProperties: getKeys,
-      loginUser: loginUser,
-      logoutUser: logoutUser
-
-    };
   }
 )
 ;

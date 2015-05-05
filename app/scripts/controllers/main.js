@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * @ngdoc function
  * @name ceviDbExportToolApp.controller:MainCtrl
@@ -32,28 +33,11 @@ angular.module('ceviDbExportToolApp')
     $scope.selectMembers = function () {
       angular.forEach($scope.groups, function (group) {
         if (group.selected && !group.isListLoaded) {
-
-          group.members = CeviDBService.getAllMembersOfGroup(group.id);
-        /*.then(function (res) {
-            group.members = res;
-            angular.forEach(group.members, function (member) {*/
-              $scope.addressList.push(member);/*
-            });
-            group.isListLoaded = true;
-          }, function (error) {
-            handleError(error);
-          });*/
+          addEntries(group);
         } else {
           if (!group.selected) {
-            if (group.members != undefined) {
-              angular.forEach(group.members, function (member) {
-                if ($scope.addressList != undefined) {
-                  var index = $scope.addressList.indexOf(member);
-                  if (index != -1) {
-                    $scope.addressList.splice(index, 1);
-                  }
-                }
-              });
+            if (group.members !== undefined) {
+              removeEntries(group);
             }
             group.isListLoaded = false;
           }
@@ -71,12 +55,42 @@ angular.module('ceviDbExportToolApp')
     }
 
   });
+function removeEntries(group) {
+  angular.forEach(group.members, function (member) {
+    if ($scope.addressList != undefined) {
+      var index = $scope.addressList.indexOf(member);
+      if (index != -1) {
+        $scope.addressList.splice(index, 1);
+      }
+    }
+  });
+}
+
+function addEntries(group) {
+  CeviDBService.getAllMembersIDsOfGroup(group.id).then(function (res) {
+    var promises = [];
+    angular.forEach(res, function (memberID) {
+      promises.push(getAllMemberDetails(memberID));
+    });
+    $q.all(promises).then(function (response) {
+      angular.forEach(response, function (person) {
+        group.members.push(person);
+        // $scope.addressList.push(person);
+      });
+      group.isListLoaded = true;
+    }, handleError(error)).then(function (result) {
+      $scope.addressList.push(group.members);
+    });
+
+  }, handleError(error));
+}
 
 function handleError(error) {
-  if ($scope != undefined) {
-    $scope.isErrorOccured = true;
-    $scope.errorMsg = "An error occurred! (" + error + ")";
-    //TODO: Do DOM Manipulation in Directives
-    $('#error').addClass('bg-danger');
-  }
+  console.log("error occured: " + error);
+  /*if ($scope !== undefined) {
+   $scope.isErrorOccured = true;
+   $scope.errorMsg = "An error occurred! (" + error + ")";
+   //TODO: Do DOM Manipulation in Directives
+   $('#error').addClass('bg-danger');
+   }*/
 }
