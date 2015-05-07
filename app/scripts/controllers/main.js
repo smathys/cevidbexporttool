@@ -64,7 +64,20 @@ angular.module('ceviDbExportToolApp')
         }
       });
     }
+/*
+ function TodoCtrl($scope) {
+ $scope.todos = [];
 
+ $scope.addTodo = function () {
+
+ if(!$scope.todos.some(function(td){return td.text===$scope.formTodoLast})) {
+ $scope.todos.push({text:$scope.formTodoLast, name:$scope.formTodoFirst});
+ $scope.formTodoText = ' ';
+ $scope.formTodoName = ' ';
+ }
+ };
+ }
+ */
     function addEntries(group) {
       CeviDBService.getAllMembersIDsOfGroup(group.id).then(function (res) {
         var promises = [];
@@ -73,9 +86,16 @@ angular.module('ceviDbExportToolApp')
         });
         $q.all(promises).then(function (response) {
           group.members = [];
-          angular.forEach(response, function (person) {
-            group.members.push(person.people[0]);
-            $scope.addressList.push(person.people[0]);
+          angular.forEach(response, function (personObj) {
+            var person = personObj.people[0];
+
+            group.members.push(person);
+            //check if person is already in the list
+            if ( !$scope.addressList.some( function(entry){
+                return entry.id == person.id   })){
+              $scope.addressList.push(person);
+            }
+
           });
           group.isListLoaded = true;
         });
