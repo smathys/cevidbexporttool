@@ -9,7 +9,7 @@
  * Controller of the ceviDbExportToolApp
  */
 angular.module('ceviDbExportToolApp')
-  .controller('MainCtrl', function ($scope, $location, CeviDBService) {
+  .controller('MainCtrl', function ($scope, $location, CeviDBService, $q) {
 
     $scope.addressList = [];
     $scope.groups = [];
@@ -69,12 +69,13 @@ angular.module('ceviDbExportToolApp')
       CeviDBService.getAllMembersIDsOfGroup(group.id).then(function (res) {
         var promises = [];
         angular.forEach(res, function (memberID) {
-          promises.push(getMemberDetails(memberID));
+          promises.push(CeviDBService.getMemberDetails(memberID));
         });
         $q.all(promises).then(function (response) {
+          group.members = [];
           angular.forEach(response, function (person) {
-            group.members.push(person);
-            // $scope.addressList.push(person);
+            group.members.push(person.people[0]);
+            $scope.addressList.push(person.people[0]);
           });
           group.isListLoaded = true;
         });
