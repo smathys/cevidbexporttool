@@ -43,7 +43,7 @@ angular.module('ceviDbExportToolApp')
           }
         }
       });
-    }
+    };
 
     $scope.logout = function logout() {
       CeviDBService.logoutUser().then(function (res) {
@@ -52,7 +52,7 @@ angular.module('ceviDbExportToolApp')
         handleError(error);
         $location.path('/');
       });
-    }
+    };
 
     function removeEntries(group) {
       angular.forEach(group.members, function (member) {
@@ -69,7 +69,7 @@ angular.module('ceviDbExportToolApp')
       CeviDBService.getAllMembersIDsOfGroup(group.id).then(function (res) {
         var promises = [];
         angular.forEach(res, function (memberID) {
-          promises.push(getAllMemberDetails(memberID));
+          promises.push(getMemberDetails(memberID));
         });
         $q.all(promises).then(function (response) {
           angular.forEach(response, function (person) {
@@ -78,17 +78,19 @@ angular.module('ceviDbExportToolApp')
           });
           group.isListLoaded = true;
         });
-      }, handleError(error));
+      }, function (error) {
+        handleError(error);
+      });
+    }
+
+
+    function handleError(error) {
+      console.log("error occured: " + error);
+      /*if ($scope !== undefined) {
+       $scope.isErrorOccured = true;
+       $scope.errorMsg = "An error occurred! (" + error + ")";
+       //TODO: Do DOM Manipulation in Directives
+       $('#error').addClass('bg-danger');
+       }*/
     }
   });
-
-
-function handleError(error) {
-  console.log("error occured: " + error);
-  /*if ($scope !== undefined) {
-   $scope.isErrorOccured = true;
-   $scope.errorMsg = "An error occurred! (" + error + ")";
-   //TODO: Do DOM Manipulation in Directives
-   $('#error').addClass('bg-danger');
-   }*/
-}

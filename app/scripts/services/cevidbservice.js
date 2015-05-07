@@ -26,6 +26,7 @@ angular.module('ceviDbExportToolApp')
 
       searchAllMyGroups: searchAllMyGroups,
       getAllMembersIDsOfGroup: getAllMembersIDsOfGroup,
+      getMemberDetails: getMemberDetails,
       getMemberProperties: getKeys,
       loginUser: loginUser,
       logoutUser: logoutUser
@@ -33,12 +34,12 @@ angular.module('ceviDbExportToolApp')
     };
 
     /*
-     TODO: evtl. bei groups mit group_type=Mitglierder
+     TODO: evtl. bei group_type=Mitglieder
      die Gruppe in der hierarchie eins oberhalb suchen und diesen Namen anzeigen, wegen Mitglier, Mitglieder in der Gruppen-Selection-List
      */
     function searchAllMyGroups() {
 
-      return getAllMemberDetails(_user.id).then(function (response) {
+      return getMemberDetails(_user.id).then(function (response) {
         _groups = response.linked.groups;
         _keys = Object.keys(response.people[0]).filter(function (e) {
           return e !== "links" && e !== "joined" && e !== "created_at" && e !== "updated_at" && e !== "type"
@@ -64,7 +65,7 @@ angular.module('ceviDbExportToolApp')
       }, handleHttpError);
     }
 
-    function getAllMemberDetails(memberID) {
+    function getMemberDetails(memberID) {
 
       return $http.get(DB_SERVICE_PERSON_DETAILS_URL + memberID + ".json?user_email=" + _user.username + "&user_token=" + _user.userToken).then(function (response) {
         if (response.data.Error) {
