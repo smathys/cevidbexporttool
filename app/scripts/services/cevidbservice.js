@@ -42,7 +42,7 @@ angular.module('ceviDbExportToolApp')
       return getMemberDetails(_user.id).then(function (response) {
         _groups = response.linked.groups;
         _keys = Object.keys(response.people[0]).filter(function (e) {
-          return e !== "links" && e !== "joined" && e !== "created_at" && e !== "updated_at" && e !== "type"
+          return e !== "links" && e !== "joined" && e != "href" && e !== "created_at" && e !== "updated_at" && e !== "type"
         });
         _keys.sort();
         return _groups;

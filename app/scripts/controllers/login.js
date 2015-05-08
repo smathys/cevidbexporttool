@@ -22,7 +22,7 @@ angular.module('ceviDbExportToolApp')
       }, function (error) {
         console.log('An error occurred!', error);
         $scope.isErrorOccured = true;
-        $scope.errorMsg = "An error occurred! (" + error + ")";
+        $scope.errorMsg =  error.text;
         //TODO: Do DOM Manipulation in Directives
         $('#error').addClass('bg-danger');
       });

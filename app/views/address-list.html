@@ -58,6 +58,10 @@
       <h3>Adress-Liste</h3>
       <table class="table">
         <thead>
+        <th ng-show="memberProperties['id']">id</th>
+        <th ng-show="memberProperties['first_name']">first_name</th>
+        <th ng-show="memberProperties['last_name']">last_name</th>
+
         <th ng-show="memberProperties['additional_information']">additional_information</th>
         <th ng-show="memberProperties['address']">address</th>
         <th ng-show="memberProperties['ahv_number']">ahv_number</th>
@@ -70,11 +74,8 @@
         <th ng-show="memberProperties['correspondence_language']">correspondence_language</th>
         <th ng-show="memberProperties['country']">country</th>
         <th ng-show="memberProperties['email']">email</th>
-        <th ng-show="memberProperties['first_name']">first_name</th>
         <th ng-show="memberProperties['gender']">gender</th>
-        <th ng-show="memberProperties['href']">href</th>
         <th ng-show="memberProperties['j_s_number']">j_s_number</th>
-        <th ng-show="memberProperties['last_name']">last_name</th>
         <th ng-show="memberProperties['member_card_number']">member_card_number</th>
         <th ng-show="memberProperties['name_parents']">name_parents</th>
         <th ng-show="memberProperties['nationality']">nationality</th>
@@ -92,31 +93,30 @@
           <td ng-show="memberProperties['additional_information']"><span ng-bind="member.additional_information"/></td>
           <td ng-show="memberProperties['address']"><span ng-bind="member.address"/></td>
           <td ng-show="memberProperties['ahv_number']"><span ng-bind="member.ahv_number"/></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td ng-show="memberProperties['ahv_number_old']"><span ng-bind="member.ahv_number_old"/></td>
+          <td ng-show="memberProperties['birthday']">{{member.birthday | date : 'dd.MM.yyyy'}}</td>
+          <td ng-show="memberProperties['canton']"><span ng-bind="member.canton"/></td>
+          <td ng-show="memberProperties['company']"><span ng-bind="member.company"/></td>
+          <td ng-show="memberProperties['company_name']"><span ng-bind="member.company_name"/></td>
+          <td ng-show="memberProperties['confession']"><span ng-bind="member.confession"/></td>
+          <td ng-show="memberProperties['correspondence_language']"><span ng-bind="member.correspondence_language"/></td>
+          <td ng-show="memberProperties['country']"><span ng-bind="member.country"/></td>
+          <td ng-show="memberProperties['email']"><span ng-bind="member.email"/></td>
+          <td ng-show="memberProperties['first_name']"><span ng-bind="member.first_name"/></td>
+          <td ng-show="memberProperties['gender']"><span ng-bind="member.gender "/></td>
+          <td ng-show="memberProperties['j_s_number']"><span ng-bind="member.j_s_number"/></td>
+          <td ng-show="memberProperties['last_name']"><span ng-bind="member.last_name"/></td>
+          <td ng-show="memberProperties['member_card_number']"><span ng-bind="member.member_card_number"/></td>
+          <td ng-show="memberProperties['name_parents']"><span ng-bind="member.name_parents"/></td>
+          <td ng-show="memberProperties['nationality']"><span ng-bind="member.nationality"/></td>
+          <td ng-show="memberProperties['nickname']"><span ng-bind="member.nickname"/></td>
+          <td ng-show="memberProperties['picture']"><img ng-src="{{member.picture}}"/></td>
+          <td ng-show="memberProperties['profession']"><span ng-bind="member.profession"/></td>
+          <td ng-show="memberProperties['salutation']"><span ng-bind="member.salutation"/></td>
+          <td ng-show="memberProperties['salutation_parents']"><span ng-bind="member.salutation_parents"/></td>
+          <td ng-show="memberProperties['title']"><span ng-bind="member.title"/></td>
+          <td ng-show="memberProperties['town']"><span ng-bind="member.town"/></td>
+          <td ng-show="memberProperties['zip_code']"><span ng-bind="member.zip_code "/></td>
         </tr>
         </tbody>
       </table>
