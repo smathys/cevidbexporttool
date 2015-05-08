@@ -27,7 +27,7 @@ angular.module('ceviDbExportToolApp')
       searchAllMyGroups: searchAllMyGroups,
       getAllMembersIDsOfGroup: getAllMembersIDsOfGroup,
       getMemberDetails: getMemberDetails,
-      getMemberProperties: getKeys,
+      getMemberProperties: getDetailKeys,
       loginUser: loginUser,
       logoutUser: logoutUser
 
@@ -110,7 +110,7 @@ angular.module('ceviDbExportToolApp')
       }, handleHttpError);
     }
 
-    function getKeys() {
+    function getDetailKeys() {
       return _keys;
     }
 

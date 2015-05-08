@@ -14,11 +14,18 @@ angular.module('ceviDbExportToolApp')
     $scope.addressList = [];
     $scope.groups = [];
     $scope.groups.members = [];
+    $scope.memberProperties = {};
+    var _keys =[];
 
     //init groups after login
     CeviDBService.searchAllMyGroups().then(function (res) {
       $scope.groups = res;
-      $scope.memberProperties = CeviDBService.getMemberProperties();
+      _keys = CeviDBService.getMemberProperties();
+
+      angular.forEach(_keys, function(key){
+        $scope.memberProperties[key] = false;
+      });
+
     }, function (error) {
       handleError(error);
     });
@@ -29,6 +36,11 @@ angular.module('ceviDbExportToolApp')
       });
       $scope.selectMembers();
     };
+    $scope.checkAllProperties = function(){
+      angular.forEach(_keys, function(key){
+        $scope.memberProperties[key] = $scope.selectAllDetails;
+      });
+    }
 
     $scope.selectMembers = function () {
       angular.forEach($scope.groups, function (group) {
@@ -44,6 +56,9 @@ angular.module('ceviDbExportToolApp')
         }
       });
     };
+    $scope.selectDetail = function(key){
+      $scope.memberProperties[key] = true;
+    }
 
     $scope.logout = function logout() {
       CeviDBService.logoutUser().then(function (res) {
@@ -64,20 +79,7 @@ angular.module('ceviDbExportToolApp')
         }
       });
     }
-/*
- function TodoCtrl($scope) {
- $scope.todos = [];
 
- $scope.addTodo = function () {
-
- if(!$scope.todos.some(function(td){return td.text===$scope.formTodoLast})) {
- $scope.todos.push({text:$scope.formTodoLast, name:$scope.formTodoFirst});
- $scope.formTodoText = ' ';
- $scope.formTodoName = ' ';
- }
- };
- }
- */
     function addEntries(group) {
       CeviDBService.getAllMembersIDsOfGroup(group.id).then(function (res) {
         var promises = [];
