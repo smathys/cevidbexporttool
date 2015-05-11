@@ -1,125 +1,139 @@
 <div class="container-fluid jumbotron">
-  <form class="form-horizontal" role="form">
-    <div class="form-group row">
-
-      <div class="col-sm-4">
+  <div class="form-horizontal" role="form">
+    <div class="form-group row hidden-print">
+      <div class="col-sm-offset-10 col-sm-2" style="text-align: right">
         <button class="btn btn-primary" type="submit" ng-click="logout()">abmelden</button>
       </div>
     </div>
 
-    <div id="groups" class="col-sm-4">
-      <div class="form-group">
-        <input type="search" class="form-control" ng-model="mainCtrl.searchText">
-        <span class="glyphicon glyphicon-search"></span>
+    <div class="row">
+      <div id="groups" class="col-sm-4 hidden-print">
+        <div class="form-group">
+          <input type="search" class="form-control" ng-model="mainCtrl.searchText">
+          <span class="glyphicon glyphicon-search"></span>
+        </div>
+
+        <table class="table">
+          <thead>
+          <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
+          <th class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectedAll"></label></th>
+          <th class="col-sm-6">Gruppe</th>
+          <th class="col-sm-5">Typ</th>
+          </thead>
+          <tbody>
+          <tr ng-repeat="group in groups | filter: mainCtrl.searchText">
+            <td class="col-sm-1"><label ng-click="selectMembers()"> <input type="checkbox"
+                                                                           ng-model="group.selected"/></label></td>
+            <td class="col-sm-6"><span ng-bind="group.name"/></td>
+            <td class="col-sm-5"><span ng-bind="group.group_type"/></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
 
-      <table class="table">
-        <thead>
-        <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
-        <th class="col-sm-1"><label ng-click="checkAll()"> <input type="checkbox" ng-model="selectedAll"></label></th>
-        <th class="col-sm-6">Gruppe</th>
-        <th class="col-sm-5">Typ</th>
-        </thead>
-        <tbody>
-        <tr ng-repeat="group in groups | filter: mainCtrl.searchText">
-          <td class="col-sm-1"><label ng-click="selectMembers()"> <input type="checkbox"
-                                                                         ng-model="group.selected"/></label></td>
-          <td class="col-sm-6"><span ng-bind="group.name"/></td>
-          <td class="col-sm-5"><span ng-bind="group.group_type"/></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+      <div id="details" class="col-sm-offset-4 col-sm-4 hidden-print">
+        <div class="form-group">
+          <input type="search" class="form-control" ng-model="searchDetail">
+          <span class="glyphicon glyphicon-search"></span>
+        </div>
 
-    <div id="details" class="col-sm-offset-4 col-sm-4">
-      <div class="form-group">
-        <input type="search" class="form-control" ng-model="searchDetail">
-        <span class="glyphicon glyphicon-search"></span>
+        <table class="table scrollable">
+          <thead>
+          <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
+          <th class="col-sm-1"><label ng-click="checkAllProperties()"> <input type="checkbox"
+                                                                              ng-model="selectAllDetails"></label>
+          </th>
+          <th class="col-sm-6">Detail</th>
+          </thead>
+          <tbody>
+          <tr ng-repeat="(key, value) in memberProperties | filter: searchDetail">
+            <td class="col-sm-1"><input type="checkbox" ng-model="memberProperties[key]"></td>
+            <td class="col-sm-6"><span ng-bind="key"/></td>
+          </tr>
+
+          </tr>
+          </tbody>
+        </table>
       </div>
-
-      <table class="table scrollable">
-        <thead>
-        <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
-        <th class="col-sm-1"><label ng-click="checkAllProperties()"> <input type="checkbox" ng-model="selectAllDetails"></label>
-        </th>
-        <th class="col-sm-6">Detail</th>
-        </thead>
-        <tbody>
-        <tr ng-repeat="(key, value) in memberProperties | filter: searchDetail">
-          <td class="col-sm-1"><input type="checkbox" ng-model="memberProperties[key]"></td>
-          <td class="col-sm-6"><span ng-bind="key"/></td>
-        </tr>
-
-        </tr>
-        </tbody>
-      </table>
     </div>
-    <div id="adress-list" class="row col-sm-12">
-      <h3>Adress-Liste</h3>
-      <table class="table">
-        <thead>
-        <th ng-show="memberProperties['id']">id</th>
-        <th ng-show="memberProperties['first_name']">first_name</th>
-        <th ng-show="memberProperties['last_name']">last_name</th>
+    <div class="row">
+      <div id="adress-list" class="col-sm-12">
+        <div class="col-sm-10">
+          <h4>Adress-Liste</h4>
+        </div>
+        <div class="col-sm-2" style="text-align: right">
+          <button class="btn btn-primary" type="submit" onclick="window.print()">drucken</button>
+        </div>
 
-        <th ng-show="memberProperties['additional_information']">additional_information</th>
-        <th ng-show="memberProperties['address']">address</th>
-        <th ng-show="memberProperties['ahv_number']">ahv_number</th>
-        <th ng-show="memberProperties['ahv_number_old']">ahv_number_old</th>
-        <th ng-show="memberProperties['birthday']">birthday</th>
-        <th ng-show="memberProperties['canton']">canton</th>
-        <th ng-show="memberProperties['company']">company</th>
-        <th ng-show="memberProperties['company_name']">company_name</th>
-        <th ng-show="memberProperties['confession']">confession</th>
-        <th ng-show="memberProperties['correspondence_language']">correspondence_language</th>
-        <th ng-show="memberProperties['country']">country</th>
-        <th ng-show="memberProperties['email']">email</th>
-        <th ng-show="memberProperties['gender']">gender</th>
-        <th ng-show="memberProperties['j_s_number']">j_s_number</th>
-        <th ng-show="memberProperties['member_card_number']">member_card_number</th>
-        <th ng-show="memberProperties['name_parents']">name_parents</th>
-        <th ng-show="memberProperties['nationality']">nationality</th>
-        <th ng-show="memberProperties['nickname']">nickname</th>
-        <th ng-show="memberProperties['picture']">picture</th>
-        <th ng-show="memberProperties['profession']">profession</th>
-        <th ng-show="memberProperties['salutation']">salutation</th>
-        <th ng-show="memberProperties['salutation_parents']">salutation_parents</th>
-        <th ng-show="memberProperties['title']">title</th>
-        <th ng-show="memberProperties['town']">town</th>
-        <th ng-show="memberProperties['zip_code']">zip_code</th>
-        </thead>
-        <tbody>
-        <tr ng-repeat="member in addressList">
-          <td ng-show="memberProperties['additional_information']"><span ng-bind="member.additional_information"/></td>
-          <td ng-show="memberProperties['address']"><span ng-bind="member.address"/></td>
-          <td ng-show="memberProperties['ahv_number']"><span ng-bind="member.ahv_number"/></td>
-          <td ng-show="memberProperties['ahv_number_old']"><span ng-bind="member.ahv_number_old"/></td>
-          <td ng-show="memberProperties['birthday']">{{member.birthday | date : 'dd.MM.yyyy'}}</td>
-          <td ng-show="memberProperties['canton']"><span ng-bind="member.canton"/></td>
-          <td ng-show="memberProperties['company']"><span ng-bind="member.company"/></td>
-          <td ng-show="memberProperties['company_name']"><span ng-bind="member.company_name"/></td>
-          <td ng-show="memberProperties['confession']"><span ng-bind="member.confession"/></td>
-          <td ng-show="memberProperties['correspondence_language']"><span ng-bind="member.correspondence_language"/></td>
-          <td ng-show="memberProperties['country']"><span ng-bind="member.country"/></td>
-          <td ng-show="memberProperties['email']"><span ng-bind="member.email"/></td>
-          <td ng-show="memberProperties['first_name']"><span ng-bind="member.first_name"/></td>
-          <td ng-show="memberProperties['gender']"><span ng-bind="member.gender "/></td>
-          <td ng-show="memberProperties['j_s_number']"><span ng-bind="member.j_s_number"/></td>
-          <td ng-show="memberProperties['last_name']"><span ng-bind="member.last_name"/></td>
-          <td ng-show="memberProperties['member_card_number']"><span ng-bind="member.member_card_number"/></td>
-          <td ng-show="memberProperties['name_parents']"><span ng-bind="member.name_parents"/></td>
-          <td ng-show="memberProperties['nationality']"><span ng-bind="member.nationality"/></td>
-          <td ng-show="memberProperties['nickname']"><span ng-bind="member.nickname"/></td>
-          <td ng-show="memberProperties['picture']"><img ng-src="{{member.picture}}"/></td>
-          <td ng-show="memberProperties['profession']"><span ng-bind="member.profession"/></td>
-          <td ng-show="memberProperties['salutation']"><span ng-bind="member.salutation"/></td>
-          <td ng-show="memberProperties['salutation_parents']"><span ng-bind="member.salutation_parents"/></td>
-          <td ng-show="memberProperties['title']"><span ng-bind="member.title"/></td>
-          <td ng-show="memberProperties['town']"><span ng-bind="member.town"/></td>
-          <td ng-show="memberProperties['zip_code']"><span ng-bind="member.zip_code "/></td>
-        </tr>
-        </tbody>
-      </table>
+        <table class="table">
+          <thead>
+          <th ng-show="memberProperties['id']">id</th>
+          <th ng-show="memberProperties['first_name']">first_name</th>
+          <th ng-show="memberProperties['last_name']">last_name</th>
+          <th ng-show="memberProperties['nickname']">nickname</th>
+          <th ng-show="memberProperties['address']">address</th>
+          <th ng-show="memberProperties['zip_code']">zip_code</th>
+          <th ng-show="memberProperties['town']">town</th>
+          <th ng-show="memberProperties['birthday']">birthday</th>
+          <th ng-show="memberProperties['email']">email</th>
+
+          <th ng-show="memberProperties['additional_information']">additional_information</th>
+          <th ng-show="memberProperties['ahv_number']">ahv_number</th>
+          <th ng-show="memberProperties['ahv_number_old']">ahv_number_old</th>
+          <th ng-show="memberProperties['canton']">canton</th>
+          <th ng-show="memberProperties['company']">company</th>
+          <th ng-show="memberProperties['company_name']">company_name</th>
+          <th ng-show="memberProperties['confession']">confession</th>
+          <th ng-show="memberProperties['correspondence_language']">correspondence_language</th>
+          <th ng-show="memberProperties['country']">country</th>
+          <th ng-show="memberProperties['gender']">gender</th>
+          <th ng-show="memberProperties['j_s_number']">j_s_number</th>
+          <th ng-show="memberProperties['member_card_number']">member_card_number</th>
+          <th ng-show="memberProperties['name_parents']">name_parents</th>
+          <th ng-show="memberProperties['nationality']">nationality</th>
+          <th ng-show="memberProperties['picture']">picture</th>
+          <th ng-show="memberProperties['profession']">profession</th>
+          <th ng-show="memberProperties['salutation']">salutation</th>
+          <th ng-show="memberProperties['salutation_parents']">salutation_parents</th>
+          <th ng-show="memberProperties['title']">title</th>
+          </thead>
+          <tbody>
+          <tr ng-repeat="member in addressList">
+            <td ng-show="memberProperties['id']"><span ng-bind="member.id"/></td>
+            <td ng-show="memberProperties['first_name']"><span ng-bind="member.first_name"/></td>
+            <td ng-show="memberProperties['last_name']"><span ng-bind="member.last_name"/></td>
+            <td ng-show="memberProperties['nickname']"><span ng-bind="member.nickname"/></td>
+            <td ng-show="memberProperties['address']"><span ng-bind="member.address"/></td>
+            <td ng-show="memberProperties['zip_code']"><span ng-bind="member.zip_code "/></td>
+            <td ng-show="memberProperties['town']"><span ng-bind="member.town"/></td>
+            <td ng-show="memberProperties['birthday']">{{member.birthday | date : 'dd.MM.yyyy'}}</td>
+            <td ng-show="memberProperties['email']"><span ng-bind="member.email"/></td>
+
+            <td ng-show="memberProperties['additional_information']"><span ng-bind="member.additional_information"/>
+            </td>
+            <td ng-show="memberProperties['ahv_number']"><span ng-bind="member.ahv_number"/></td>
+            <td ng-show="memberProperties['ahv_number_old']"><span ng-bind="member.ahv_number_old"/></td>
+            <td ng-show="memberProperties['canton']"><span ng-bind="member.canton"/></td>
+            <td ng-show="memberProperties['company']"><span ng-bind="member.company"/></td>
+            <td ng-show="memberProperties['company_name']"><span ng-bind="member.company_name"/></td>
+            <td ng-show="memberProperties['confession']"><span ng-bind="member.confession"/></td>
+            <td ng-show="memberProperties['correspondence_language']"><span ng-bind="member.correspondence_language"/>
+            </td>
+            <td ng-show="memberProperties['country']"><span ng-bind="member.country"/></td>
+            <td ng-show="memberProperties['gender']"><span ng-bind="member.gender "/></td>
+            <td ng-show="memberProperties['j_s_number']"><span ng-bind="member.j_s_number"/></td>
+            <td ng-show="memberProperties['member_card_number']"><span ng-bind="member.member_card_number"/></td>
+            <td ng-show="memberProperties['name_parents']"><span ng-bind="member.name_parents"/></td>
+            <td ng-show="memberProperties['nationality']"><span ng-bind="member.nationality"/></td>
+            <td ng-show="memberProperties['picture']"><img ng-src="{{member.picture}}"/></td>
+            <td ng-show="memberProperties['profession']"><span ng-bind="member.profession"/></td>
+            <td ng-show="memberProperties['salutation']"><span ng-bind="member.salutation"/></td>
+            <td ng-show="memberProperties['salutation_parents']"><span ng-bind="member.salutation_parents"/></td>
+            <td ng-show="memberProperties['title']"><span ng-bind="member.title"/></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </form>
-</div>
+    </form>
+  </div>

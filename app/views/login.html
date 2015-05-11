@@ -1,10 +1,12 @@
-<div class="container-fluid jumbotron">
+<div class="container-fluid jumbotron hidden-print">
   <form class="form-horizontal" role="form" novalidate>
 
-    <p class="col-sm-offset-2 col-sm-10" id="error" ng-bind="errorMsg"></p>
-
+    <div class="row">
+      <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="errorMsg"></p>
+    </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="username">Benutzername:</label>
+
       <div class="col-sm-6">
         <input type="text" class="form-control" id="username" placeholder="cevi.db benutzername" ng-model="username"/>
         <span class="glyphicon glyphicon-user "></span>
@@ -12,6 +14,7 @@
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Password:</label>
+
       <div class="col-sm-6">
         <input type="password" class="form-control" id="pwd" placeholder="cevi.db passwort" ng-model="password"/>
       </div>
@@ -24,5 +27,5 @@
       </div>
     </div>
   </form>
-  </div>
+</div>
 
