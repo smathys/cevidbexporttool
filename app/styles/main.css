@@ -112,3 +112,11 @@ body {
     border-bottom: 0;
   }
 }
+/* style sheet for "A4" printing */
+@media print and (width: 21cm) and (height: 29.7cm) {
+  @page .print-landscape-a4 {
+  margin: 3cm;
+  size: A4 landscape;
+  overflow: scroll;
+}
+}

@@ -90,6 +90,11 @@ angular.module('ceviDbExportToolApp')
           group.members = [];
           angular.forEach(response, function (personObj) {
             var person = personObj.people[0];
+            person.phone = {};
+
+            angular.forEach(personObj.linked.phone_numbers, function(phone_number){
+              person.phone[phone_number.label] = phone_number.number;
+            });
 
             group.members.push(person);
             //check if person is already in the list

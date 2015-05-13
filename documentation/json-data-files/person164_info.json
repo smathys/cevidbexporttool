@@ -6,7 +6,7 @@
 		"first_name": "Susanne",
 		"last_name": "Mathys",
 		"nickname": "Panda",
-		"company_name": "Cevi Embrach-Oberembrach",
+		"company_name": "",
 		"company": false,
 		"email": "susi.mathys@gmail.com",
 		"address": "Kirchenackerweg 34",
@@ -15,7 +15,16 @@
 		"country": "",
 		"picture": "https://db.cevi.ch/uploads/person/picture/164/kiss-pandas.png",
 		"links": {
-			"phone_numbers": ["236"],
+			"additional_emails": ["2831",
+			"2832",
+			"2833"],
+			"phone_numbers": ["236",
+			"17795",
+			"17796",
+			"17797"],
+			"social_accounts": ["288",
+			"289",
+			"290"],
 			"creator": "141",
 			"updater": "164",
 			"primary_group": "68",
@@ -23,7 +32,11 @@
 			"31998",
 			"32299",
 			"14751",
-			"32298"]
+			"32298",
+			"40508",
+			"40509",
+			"40507",
+			"40256"]
 		},
 		"birthday": "1986-02-12",
 		"gender": "w",
@@ -38,18 +51,75 @@
 		"name_parents": "",
 		"member_card_number": null,
 		"nationality": "",
-		"salutation": "informal",
+		"salutation": "formal",
 		"correspondence_language": "",
 		"canton": "zh",
 		"confession": "",
 		"created_at": "2014-08-26T15:41:46.000+02:00",
-		"updated_at": "2015-03-12T12:43:56.000+01:00"
+		"updated_at": "2015-05-11T10:33:19.000+02:00"
 	}],
 	"linked": {
+		"additional_emails": [{
+			"id": "2831",
+			"email": "test@mimacom.com",
+			"label": "mimacom",
+			"public": false,
+			"mailings": false
+		},
+		{
+			"id": "2832",
+			"email": "test@gmx.ch",
+			"label": "Privat",
+			"public": false,
+			"mailings": false
+		},
+		{
+			"id": "2833",
+			"email": "test@ceviembrach.ch",
+			"label": "Cevi",
+			"public": true,
+			"mailings": true
+		}],
 		"phone_numbers": [{
 			"id": "236",
 			"number": "079 204 50 25",
 			"label": "Mobil",
+			"public": true
+		},
+		{
+			"id": "17795",
+			"number": "+41 44 444 44 44",
+			"label": "Privat",
+			"public": false
+		},
+		{
+			"id": "17796",
+			"number": "031 3331314",
+			"label": "Arbeit",
+			"public": false
+		},
+		{
+			"id": "17797",
+			"number": "11111111111111111111",
+			"label": "Fax",
+			"public": false
+		}],
+		"social_accounts": [{
+			"id": "288",
+			"name": "smathys_1",
+			"label": "Skype",
+			"public": true
+		},
+		{
+			"id": "289",
+			"name": "-",
+			"label": "Twitter",
+			"public": false
+		},
+		{
+			"id": "290",
+			"name": "www.ceviembrach.ch",
+			"label": "Webseite",
 			"public": true
 		}],
 		"groups": [{
@@ -78,9 +148,34 @@
 			"group_type": "Stufe"
 		},
 		{
+			"id": "1172",
+			"name": "Pepita",
+			"group_type": "Untergruppe"
+		},
+		{
+			"id": "1174",
+			"name": "Sharena",
+			"group_type": "Untergruppe"
+		},
+		{
+			"id": "1175",
+			"name": "Mariquita",
+			"group_type": "Untergruppe"
+		},
+		{
+			"id": "1326",
+			"name": "Mitglieder",
+			"group_type": "Mitglieder"
+		},
+		{
 			"id": "2",
 			"name": "RV ZH-SH-GL",
 			"group_type": "Mitgliederorganisation"
+		},
+		{
+			"id": "240",
+			"name": "Verein Embrach-Oberembrach",
+			"group_type": "Verein"
 		}],
 		"roles": [{
 			"id": "298",
@@ -140,6 +235,54 @@
 			"links": {
 				"group": "540",
 				"layer_group": "188"
+			}
+		},
+		{
+			"id": "40508",
+			"role_type": "Gruppenleiter/-in",
+			"label": "Adressänderungen",
+			"created_at": "2015-05-04T14:19:57.000+02:00",
+			"updated_at": "2015-05-04T14:19:57.000+02:00",
+			"deleted_at": null,
+			"links": {
+				"group": "1172",
+				"layer_group": "188"
+			}
+		},
+		{
+			"id": "40509",
+			"role_type": "Gruppenleiter/-in",
+			"label": "Adressänderungen",
+			"created_at": "2015-05-04T14:20:20.000+02:00",
+			"updated_at": "2015-05-04T14:20:20.000+02:00",
+			"deleted_at": null,
+			"links": {
+				"group": "1174",
+				"layer_group": "188"
+			}
+		},
+		{
+			"id": "40507",
+			"role_type": "Gruppenleiter/-in",
+			"label": "Adressänderungen",
+			"created_at": "2015-05-04T14:19:36.000+02:00",
+			"updated_at": "2015-05-04T14:19:36.000+02:00",
+			"deleted_at": null,
+			"links": {
+				"group": "1175",
+				"layer_group": "188"
+			}
+		},
+		{
+			"id": "40256",
+			"role_type": "Mitglied",
+			"label": "",
+			"created_at": "2015-04-14T14:51:59.000+02:00",
+			"updated_at": "2015-04-14T14:51:59.000+02:00",
+			"deleted_at": null,
+			"links": {
+				"group": "1326",
+				"layer_group": "240"
 			}
 		}]
 	},

@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row hidden-print">
       <div id="groups" class="col-sm-4 hidden-print">
         <div class="form-group">
           <input type="search" class="form-control" ng-model="mainCtrl.searchText">
@@ -37,7 +37,7 @@
           <span class="glyphicon glyphicon-search"></span>
         </div>
 
-        <table class="table scrollable">
+        <table class="table">
           <thead>
           <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
           <th class="col-sm-1"><label ng-click="checkAllProperties()"> <input type="checkbox"
@@ -76,6 +76,14 @@
           <th ng-show="memberProperties['town']">town</th>
           <th ng-show="memberProperties['birthday']">birthday</th>
           <th ng-show="memberProperties['email']">email</th>
+          <th ng-show="memberProperties['phone mobile']">phone mobile</th>
+          <th ng-show="memberProperties['phone private']">phone private</th>
+          <th ng-show="memberProperties['phone work']">phone work</th>
+          <th ng-show="memberProperties['phone fax']">phone fax</th>
+          <th ng-show="memberProperties['phone father']">phone father</th>
+          <th ng-show="memberProperties['phone mother']">phone mother</th>
+          <th ng-show="memberProperties['phone other']">phone other</th>
+
 
           <th ng-show="memberProperties['additional_information']">additional_information</th>
           <th ng-show="memberProperties['ahv_number']">ahv_number</th>
@@ -108,6 +116,13 @@
             <td ng-show="memberProperties['town']"><span ng-bind="member.town"/></td>
             <td ng-show="memberProperties['birthday']">{{member.birthday | date : 'dd.MM.yyyy'}}</td>
             <td ng-show="memberProperties['email']"><span ng-bind="member.email"/></td>
+            <td ng-show="memberProperties['phone mobile']"><span ng-bind="member.phone['Mobil']"/></td>
+            <td ng-show="memberProperties['phone private']"><span ng-bind="member.phone['Privat']"/></td>
+            <td ng-show="memberProperties['phone work']"><span ng-bind="member.phone['Arbeit']"/></td>
+            <td ng-show="memberProperties['phone fax']"><span ng-bind="member.phone['Fax']"/></td>
+            <td ng-show="memberProperties['phone father']"><span ng-bind="member.phone['Vater']"/></td>
+            <td ng-show="memberProperties['phone mother']"><span ng-bind="member.phone['Mutter']"/></td>
+            <td ng-show="memberProperties['phone other']"><span ng-bind="member.phone['Andere']"/></td>
 
             <td ng-show="memberProperties['additional_information']"><span ng-bind="member.additional_information"/>
             </td>

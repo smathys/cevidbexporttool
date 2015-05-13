@@ -44,6 +44,13 @@ angular.module('ceviDbExportToolApp')
         _keys = Object.keys(response.people[0]).filter(function (e) {
           return e !== "links" && e !== "joined" && e != "href" && e !== "created_at" && e !== "updated_at" && e !== "type"
         });
+        _keys.push("phone mobile");
+        _keys.push("phone private");
+        _keys.push("phone work");
+        _keys.push("phone fax");
+        _keys.push("phone father");
+        _keys.push("phone mother");
+        _keys.push("phone other");
         _keys.sort();
         return _groups;
       }, function (error) {
