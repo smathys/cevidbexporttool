@@ -96,6 +96,13 @@ angular.module('ceviDbExportToolApp')
               person.phone[phone_number.label] = phone_number.number;
             });
 
+            angular.forEach(personObj.linked.additional_emails, function(mail){
+              person.phone[mail.label] = mail.email;
+            });
+            angular.forEach(personObj.linked.social_accounts, function(account){
+              person.phone[account.label] = account.name;
+            });
+
             group.members.push(person);
             //check if person is already in the list
             if ( !$scope.addressList.some( function(entry){
