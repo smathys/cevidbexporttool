@@ -33,7 +33,7 @@
 
       <div id="details" class="col-sm-offset-4 col-sm-4 hidden-print">
         <div class="form-group">
-          <input type="search" class="form-control" ng-model="searchDetail">
+          <input type="search" class="form-control" ng-model="mainCtrl.searchDetail">
           <span class="glyphicon glyphicon-search"></span>
         </div>
 
@@ -46,7 +46,7 @@
           <th class="col-sm-6">Detail</th>
           </thead>
           <tbody>
-          <tr ng-repeat="(key, value) in memberProperties | filter: searchDetail">
+          <tr ng-repeat="(key, value) in memberProperties | filter: mainCtrl.searchDetail">
             <td class="col-sm-1"><input type="checkbox" ng-model="memberProperties[key]"></td>
             <td class="col-sm-6"><span ng-bind="key"/></td>
           </tr>
@@ -104,6 +104,7 @@
           <th ng-show="memberProperties['salutation']">salutation</th>
           <th ng-show="memberProperties['salutation_parents']">salutation_parents</th>
           <th ng-show="memberProperties['title']">title</th>
+          <th ng-show="memberProperties['email Privat']">email Privat</th>
           </thead>
           <tbody>
           <tr ng-repeat="member in addressList">
@@ -145,6 +146,7 @@
             <td ng-show="memberProperties['salutation']"><span ng-bind="member.salutation"/></td>
             <td ng-show="memberProperties['salutation_parents']"><span ng-bind="member.salutation_parents"/></td>
             <td ng-show="memberProperties['title']"><span ng-bind="member.title"/></td>
+            <td ng-show="memberProperties['email Privat']"><span ng-bind="member.mails['Privat']"/></td>
           </tr>
           </tbody>
         </table>

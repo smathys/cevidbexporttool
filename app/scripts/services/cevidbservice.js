@@ -45,6 +45,7 @@ angular.module('ceviDbExportToolApp')
           return e !== "links" && e !== "joined" && e != "href" && e !== "created_at" && e !== "updated_at" && e !== "type"
         });
         _keys.push("phone mobile", "phone private","phone work","phone fax","phone father","phone mother","phone other");
+        _keys.push("email Privat");
         _keys.sort();
         return _groups;
       }, function (error) {

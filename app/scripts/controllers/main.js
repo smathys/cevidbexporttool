@@ -91,16 +91,18 @@ angular.module('ceviDbExportToolApp')
           angular.forEach(response, function (personObj) {
             var person = personObj.people[0];
             person.phone = {};
+            person.mails = {};
+            person.social = {};
 
             angular.forEach(personObj.linked.phone_numbers, function(phone_number){
               person.phone[phone_number.label] = phone_number.number;
             });
 
             angular.forEach(personObj.linked.additional_emails, function(mail){
-              person.phone[mail.label] = mail.email;
+              person.mails[mail.label] = mail.email;
             });
             angular.forEach(personObj.linked.social_accounts, function(account){
-              person.phone[account.label] = account.name;
+              person.social[account.label] = account.name;
             });
 
             group.members.push(person);
