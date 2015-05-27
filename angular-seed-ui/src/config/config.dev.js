@@ -4,6 +4,8 @@ var CONFIG = {
      * @preserve
      * Prod and dev properties (may have different value in prod)
      *
+     *
+     *
      */
     APP_NAME: 'angular-seed',
 
@@ -11,10 +13,6 @@ var CONFIG = {
 
     APP_LOG_LEVEL: 'debug',
     APP_LOG_LEVEL_BACKEND: 'error',
-
-    APP_UI_PAGING_PAGESIZE: 10,
-    APP_UI_TYPEAHEAD_LIMIT: 10,
-    APP_UI_TYPEAHEAD_DELAY: 300,
 
     APP_TIMEOUT_NOTIFICATION_INFO: 5000,
     APP_TIMEOUT_NOTIFICATION_SUCCESS: 1500,
@@ -28,14 +26,5 @@ var CONFIG = {
      * Dev only properties
      *
      */
-    DEV_SENDCREDENTIALS: true,
-
-    /**
-     *
-     * @preserve
-     * Business properties
-     *
-     */
-    BUSINESS_TEST: 'test'
-
+    DEV_SENDCREDENTIALS: true
 };

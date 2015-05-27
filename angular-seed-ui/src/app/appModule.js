@@ -12,13 +12,10 @@
 
         'ui.router',
         'ui.bootstrap',
-        'ui.utils',
 
         'pascalprecht.translate',
         'tmh.dynamicLocale',
         'angular-growl',
-        'dialogs.main',
-        'lr.upload',
 
         'angular-seed.common',
         'angular-seed.home',
@@ -29,27 +26,27 @@
 
     ])
 
-    .constant('CONFIG', CONFIG)
+        .constant('CONFIG', CONFIG)
 
-    .constant('EVENT', {
-        // ui-router
-        STATE_CHANGE_START: '$stateChangeStart',
-        STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
-        STATE_CHANGE_ERROR: '$stateChangeError',
-        VIEW_CONTENT_LOADED: '$viewContentLoaded',
+        .constant('EVENT', {
+            // ui-router
+            STATE_CHANGE_START: '$stateChangeStart',
+            STATE_CHANGE_SUCCESS: '$stateChangeSuccess',
+            STATE_CHANGE_ERROR: '$stateChangeError',
+            VIEW_CONTENT_LOADED: '$viewContentLoaded',
 
-        // angular-translate
-        TRANSLATE_CHANGE_SUCCESS: '$translateChangeSuccess'
-    })
+            // angular-translate
+            TRANSLATE_CHANGE_SUCCESS: '$translateChangeSuccess'
+        })
 
-    .config(uiRouterConfig)
-    .config(logConfig)
-    .config(httpProviderConfig)
-    .config(angularTranslateConfig)
-    .config(dynamicLocaleProviderConfig)
-    .config(growlConfig)
+        .config(uiRouterConfig)
+        .config(logConfig)
+        .config(httpProviderConfig)
+        .config(angularTranslateConfig)
+        .config(dynamicLocaleProviderConfig)
+        .config(growlConfig)
 
-    .run(init);
+        .run(init);
 
     function uiRouterConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -101,12 +98,10 @@
         growlProvider.globalDisableIcons(true);
     }
 
-    function init(
-        $rootScope, $log, $timeout,
-        $state, $translate,
-        tmhDynamicLocale,
-        SecurityService,
-        CONFIG, EVENT) {
+    function init($rootScope, $log, $timeout,
+                  $state, $translate,
+                  tmhDynamicLocale,
+                  CONFIG, EVENT) {
 
         var LOG = $log.get('AppModule');
 
@@ -130,23 +125,17 @@
 
         $rootScope.$on(EVENT.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
 
-            // resolve page title
-            SecurityService.authenticate(toState);
         });
 
         $rootScope.$on(EVENT.VIEW_CONTENT_LOADED, function (event) {
             // Init bootstrap-material-design effects
-            $timeout(function() { $.material.init(); });
+            $timeout(function () {
+                $.material.init();
+            });
         });
 
-        $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function(event, toState, toParams, fromState, fromParams, error){
-
-            if (error && error.status === 401) {
-                return;
-            } else {
-                LOG.error(formatStateChangeError(fromState, toState, error));
-            }
-
+        $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function (event, toState, toParams, fromState, fromParams, error) {
+            LOG.error(formatStateChangeError(fromState, toState, error));
         });
 
         function formatStateChange(fromState, toState) {
