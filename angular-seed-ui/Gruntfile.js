@@ -67,7 +67,7 @@ module.exports = function (grunt) {
      */
     grunt.registerTask('index', [
         'copy:app_index',
-        'replace',
+        'ngsrc',
         'wiredep'
     ]);
 
