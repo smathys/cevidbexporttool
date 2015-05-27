@@ -2,34 +2,32 @@
 (function () {
     "use strict";
 
+    class PromiseService {
+        constructor($log, $q, $timeout) {
+            this.LOG = $log.get('SecurityService');
+            this.$q = $q;
+            this.$timeout = $timeout;
+        }
+
+        createAndResolve(optionalResponse, timeout = 0) {
+            var deferred = this.$q.defer();
+            this.$timeout(function () {
+                deferred.resolve(optionalResponse);
+            }, timeout);
+            return deferred.promise;
+        }
+
+        createAndReject(optionalRejection, timeout = 0) {
+            var deferred = this.$q.defer();
+            this.$timeout(function () {
+                deferred.reject(optionalRejection);
+            }, timeout);
+            return deferred.promise;
+        }
+    }
+
     angular
         .module('angular-seed.common')
-        .factory('PromiseService', PromiseService);
-
-    // @ngInject
-    function PromiseService($q, $timeout) {
-
-        return {
-            createAndResolve: createAndResolve,
-            createAndReject: createAndReject
-        };
-
-        function createAndResolve(optionalResponse, timeout) {
-            var deferred = $q.defer();
-            $timeout(function() {
-                deferred.resolve(optionalResponse);
-            }, timeout || 0);
-            return deferred.promise;
-        }
-
-        function createAndReject(optionalRejection, timeout) {
-            var deferred = $q.defer();
-            $timeout(function() {
-                deferred.reject(optionalRejection);
-            }, timeout || 0);
-            return deferred.promise;
-        }
-
-    }
+        .service('PromiseService', PromiseService);
 
 }());

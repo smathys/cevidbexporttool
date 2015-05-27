@@ -105,7 +105,7 @@
         $rootScope, $log, $timeout,
         $state, $translate,
         tmhDynamicLocale,
-        SecurityService, LoadingService,
+        SecurityService,
         CONFIG, EVENT) {
 
         var LOG = $log.get('AppModule');
@@ -125,13 +125,11 @@
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
-            if (toState.resolve) {
-                LoadingService.start(formatStateChange(fromState, toState));
-            }
+
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
-            LoadingService.stop();
+
             // resolve page title
             SecurityService.authenticate(toState);
         });
@@ -142,7 +140,7 @@
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function(event, toState, toParams, fromState, fromParams, error){
-            LoadingService.stop();
+
             if (error && error.status === 401) {
                 return;
             } else {

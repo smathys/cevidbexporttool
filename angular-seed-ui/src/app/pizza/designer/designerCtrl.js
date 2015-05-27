@@ -7,9 +7,7 @@
         .controller('DesignerCtrl', DesignerCtrl);
 
     // @ngInject
-    function DesignerCtrl(
-        $log,
-        Pizza) {
+    function DesignerCtrl($log, Pizza) {
 
         var LOG = $log.get('DesignerCtrl'),
             ctrl = this;
@@ -21,7 +19,9 @@
         ctrl.remove = remove;
 
         function remove(pizza) {
-            Pizza.remove(pizza);
+            Pizza.remove(pizza).then(() => {
+                Pizza.initCollection();
+            });
         }
 
     }
