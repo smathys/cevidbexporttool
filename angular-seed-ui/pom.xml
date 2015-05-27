@@ -12,12 +12,14 @@
     </parent>
 
     <artifactId>angular-seed-ui</artifactId>
-    <packaging>jar</packaging>
+
     <name>angular-seed-ui</name>
 
-    <dependencies>
+    <packaging>jar</packaging>
 
-    </dependencies>
+    <properties>
+        <build.dest.dir>${project.build.outputDirectory}/META-INF/resources/</build.dest.dir>
+    </properties>
 
     <profiles>
         <profile>
@@ -25,74 +27,17 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <build>
-                <finalName>${project.artifactId}</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>grunt-prod</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>grunt</executable>
-                                    <arguments>
-                                        <argument>prod</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <classesDirectory>build_prod</classesDirectory>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <properties>
+                <build.type>prod</build.type>
+            </properties>
         </profile>
         <profile>
             <id>ui-dev</id>
-            <build>
-                <finalName>${project.artifactId}</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>grunt-dev</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>grunt</executable>
-                                    <arguments>
-                                        <argument>dev</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <configuration>
-                            <classesDirectory>build_dev</classesDirectory>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <properties>
+                <build.type>dev</build.type>
+            </properties>
         </profile>
     </profiles>
-
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -125,6 +70,38 @@
                             <arguments>
                                 <argument>install</argument>
                             </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>grunt-${build.type}</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>grunt</executable>
+                            <arguments>
+                                <argument>${build.type}_build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <move todir="${build.dest.dir}">
+                                    <fileset dir="build_${build.type}/"/>
+                                </move>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
