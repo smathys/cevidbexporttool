@@ -23,7 +23,6 @@
         'angular-seed.pizza',
         'angular-seed.pizza.offer',
         'angular-seed.pizza.designer'
-
     ])
 
         .constant('CONFIG', CONFIG)
@@ -48,7 +47,7 @@
 
         .run(init);
 
-    function uiRouterConfig($stateProvider, $urlRouterProvider) {
+    function uiRouterConfig($urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
     }
 
@@ -120,11 +119,11 @@
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
-
+            LOG.debug(formatStateChange(fromState, toState));
         });
 
         $rootScope.$on(EVENT.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
-
+            LOG.debug(formatStateSuccess(fromState, toState));
         });
 
         $rootScope.$on(EVENT.VIEW_CONTENT_LOADED, function (event) {
@@ -139,16 +138,19 @@
         });
 
         function formatStateChange(fromState, toState) {
-            return 'State change from "' + stateNameOrUndefined(fromState) + '" -> "' + stateNameOrUndefined(toState) + '"';
-            function stateNameOrUndefined(state) {
-                return state.name ? state.name : 'undefined';
-            }
+            return 'State change from "' + extractStateNameOrUndefined(fromState) + '" -> "' + extractStateNameOrUndefined(toState) + '"';
+        }
+        function formatStateSuccess(fromState, toState) {
+            return 'State changed from "' + extractStateNameOrUndefined(fromState) + '" -> "' + extractStateNameOrUndefined(toState) + '"';
+        }
+
+        function extractStateNameOrUndefined(state) {
+            return state.name ? state.name : 'undefined';
         }
 
         function formatStateChangeError(fromState, toState, error) {
             return formatStateChange(fromState, toState) + ' | error: ' + JSON.stringify(error);
         }
-
     }
 
 }());
