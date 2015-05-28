@@ -16,7 +16,7 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl as loginCtrl'
       })
       .when('/address-list', {
         templateUrl: 'views/address-list.html',

@@ -10,19 +10,16 @@
 angular.module('ceviDbExportToolApp')
   .controller('LoginCtrl', function ($scope, $location, CeviDBService) {
 
-    $scope.username = "";
-    $scope.password = "";
-    $scope.errorMsg = "";
-    $scope.isErrorOccured = false;
+    var self = this;
 
-    $scope.login = function login(){
-      CeviDBService.loginUser($scope.username, $scope.password).then( function(res) {
+    self.login = function(){
+      CeviDBService.loginUser(self.username, self.password).then( function(res) {
 
         $location.path('/address-list');
       }, function (error) {
         console.log('An error occurred!', error);
-        $scope.isErrorOccured = true;
-        $scope.errorMsg =  error.text;
+        self.isErrorOccured = true;
+        self.errorMsg =  error.text;
         //TODO: Do DOM Manipulation in Directives
         $('#error').addClass('bg-danger');
       });
