@@ -9,41 +9,43 @@
  * Controller of the ceviDbExportToolApp
  */
 angular.module('ceviDbExportToolApp')
-  .controller('MainCtrl', function ($scope, $location, CeviDBService, $q) {
+  .controller('MainCtrl', function ($scope, $location, CeviDBService, $q){
 
-    $scope.addressList = [];
-    $scope.groups = [];
-    $scope.groups.members = [];
-    $scope.memberProperties = {};
+    var self = this;
+
+    self.addressList = [];
+    self.groups = [];
+    self.groups.members = [];
+    self.memberProperties = {};
     var _keys =[];
 
     //init groups after login
     CeviDBService.searchAllMyGroups().then(function (res) {
-      $scope.groups = res;
+      self.groups = res;
       _keys = CeviDBService.getMemberProperties();
 
       angular.forEach(_keys, function(key){
-        $scope.memberProperties[key] = false;
+        self.memberProperties[key] = false;
       });
 
     }, function (error) {
       handleError(error);
     });
 
-    $scope.checkAll = function () {
-      angular.forEach($scope.groups, function (group) {
-        group.selected = $scope.selectedAll;
+    self.checkAll = function () {
+      angular.forEach(self.groups, function (group) {
+        group.selected = self.selectedAll;
       });
-      $scope.selectMembers();
+      self.selectMembers();
     };
-    $scope.checkAllProperties = function(){
+    self.checkAllProperties = function(){
       angular.forEach(_keys, function(key){
-        $scope.memberProperties[key] = $scope.selectAllDetails;
+        self.memberProperties[key] = self.selectAllDetails;
       });
     }
 
-    $scope.selectMembers = function () {
-      angular.forEach($scope.groups, function (group) {
+    self.selectMembers = function () {
+      angular.forEach(self.groups, function (group) {
         if (group.selected && !group.isListLoaded) {
           addEntries(group);
         } else {
@@ -56,11 +58,11 @@ angular.module('ceviDbExportToolApp')
         }
       });
     };
-    $scope.selectDetail = function(key){
-      $scope.memberProperties[key] = true;
+    self.selectDetail = function(key){
+      self.memberProperties[key] = true;
     }
 
-    $scope.logout = function logout() {
+    self.logout = function logout() {
       CeviDBService.logoutUser().then(function (res) {
         $location.path('/');
       }, function (error) {
@@ -71,10 +73,10 @@ angular.module('ceviDbExportToolApp')
 
     function removeEntries(group) {
       angular.forEach(group.members, function (member) {
-        if ($scope.addressList != undefined) {
-          var index = $scope.addressList.indexOf(member);
+        if (self.addressList != undefined) {
+          var index = self.addressList.indexOf(member);
           if (index != -1) {
-            $scope.addressList.splice(index, 1);
+            self.addressList.splice(index, 1);
           }
         }
       });
@@ -107,9 +109,9 @@ angular.module('ceviDbExportToolApp')
 
             group.members.push(person);
             //check if person is already in the list
-            if ( !$scope.addressList.some( function(entry){
+            if ( !self.addressList.some( function(entry){
                 return entry.id == person.id   })){
-              $scope.addressList.push(person);
+              self.addressList.push(person);
             }
 
           });
@@ -123,11 +125,5 @@ angular.module('ceviDbExportToolApp')
 
     function handleError(error) {
       console.log("error occured: " + error);
-      /*if ($scope !== undefined) {
-       $scope.isErrorOccured = true;
-       $scope.errorMsg = "An error occurred! (" + error + ")";
-       //TODO: Do DOM Manipulation in Directives
-       $('#error').addClass('bg-danger');
-       }*/
     }
   });

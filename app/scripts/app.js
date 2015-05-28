@@ -20,7 +20,7 @@ angular
       })
       .when('/address-list', {
         templateUrl: 'views/address-list.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl as mainCtrl'
       })
       .otherwise({
         redirectTo: '/'
