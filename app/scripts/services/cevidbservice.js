@@ -56,7 +56,7 @@ angular.module('ceviDbExportToolApp')
     function getAllMembersIDsOfGroup(groupID) {
       return $http.get(DB_SERVICE_PERSON_IN_GROUP_URL + groupID + "/people.json?user_email=" + _user.username + "&user_token=" + _user.userToken).then(function (response) {
         if (response.data.Error) {
-          return $q.reject({test: response.data.Error});
+          return $q.reject({text: response.data.Error});
         } else {
           var _IDs = [];
           angular.forEach(response.data.people, function(person){
