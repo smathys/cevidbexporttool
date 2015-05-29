@@ -113,10 +113,15 @@ body {
   }
 }
 /* style sheet for "A4" printing */
-@media print and (width: 21cm) and (height: 29.7cm) {
-  @page .print-landscape-a4 {
-  margin: 3cm;
-  size: A4 landscape;
-  overflow: scroll;
-}
+@media print {
+  @page {
+  margin: 1cm;
+  size: landscape;
+  }
+  #adress-list{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
 }
