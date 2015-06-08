@@ -9,23 +9,20 @@
  * Controller of the ceviDbExportToolApp
  */
 angular.module('ceviDbExportToolApp')
-  .controller('MainCtrl', function ($scope, $location, CeviDBService, $q){
+  .controller('MainCtrl', function ($scope, $location, CeviDBService, $q) {
 
     var self = this;
 
     self.addressList = [];
     self.groups = [];
     self.groups.members = [];
-    self.memberProperties = {};
-    var _keys =[];
+    self.memberProperties = [];
 
     //init groups after login
     CeviDBService.searchAllMyGroups().then(function (res) {
       self.groups = res;
-      _keys = CeviDBService.getMemberProperties();
-
-      angular.forEach(_keys, function(key){
-        self.memberProperties[key] = false;
+      angular.forEach(CeviDBService.getMemberProperties(), function (key) {
+        self.memberProperties.push({'key': key, isShown: false});
       });
 
     }, function (error) {
@@ -34,15 +31,15 @@ angular.module('ceviDbExportToolApp')
 
     self.checkAll = function () {
       angular.forEach(self.groups, function (group) {
-        group.selected = self.selectedAll;
+        group.selected = self.selectAll;
       });
       self.selectMembers();
     };
-    self.checkAllProperties = function(){
-      angular.forEach(_keys, function(key){
-        self.memberProperties[key] = self.selectAllDetails;
+    self.checkAllProperties = function () {
+      angular.forEach(self.memberProperties, function (obj) {
+        obj.isShown = self.selectAllDetails;
       });
-    }
+    };
 
     self.selectMembers = function () {
       angular.forEach(self.groups, function (group) {
@@ -58,9 +55,7 @@ angular.module('ceviDbExportToolApp')
         }
       });
     };
-    self.selectDetail = function(key){
-      self.memberProperties[key] = true;
-    }
+
 
     self.logout = function logout() {
       CeviDBService.logoutUser().then(function (res) {
@@ -71,11 +66,19 @@ angular.module('ceviDbExportToolApp')
       });
     };
 
+    self.showProperty = function isPropertyShown(key){
+      for( var i = 0; i < self.memberProperties.length; i++){
+        if ( self.memberProperties[i].key === key){
+          return self.memberProperties[i].isShown;
+        }
+      }
+    };
+
     function removeEntries(group) {
       angular.forEach(group.members, function (member) {
-        if (self.addressList != undefined) {
+        if (self.addressList !== undefined) {
           var index = self.addressList.indexOf(member);
-          if (index != -1) {
+          if (index !== -1) {
             self.addressList.splice(index, 1);
           }
         }
@@ -96,21 +99,21 @@ angular.module('ceviDbExportToolApp')
             person.mails = {};
             person.social = {};
 
-            angular.forEach(personObj.linked.phone_numbers, function(phone_number){
+            angular.forEach(personObj.linked.phone_numbers, function (phone_number) {
               person.phone[phone_number.label] = phone_number.number;
             });
 
-            angular.forEach(personObj.linked.additional_emails, function(mail){
+            angular.forEach(personObj.linked.additional_emails, function (mail) {
               person.mails[mail.label] = mail.email;
             });
-            angular.forEach(personObj.linked.social_accounts, function(account){
+            angular.forEach(personObj.linked.social_accounts, function (account) {
               person.social[account.label] = account.name;
             });
 
             group.members.push(person);
             //check if person is already in the list
             if ( !self.addressList.some( function(entry){
-                return entry.id == person.id   })){
+                return entry.id === person.id }) ){
               self.addressList.push(person);
             }
 
@@ -122,8 +125,11 @@ angular.module('ceviDbExportToolApp')
       });
     }
 
-
     function handleError(error) {
-      console.log("error occured: " + error);
+      console.log('error occured: ' + error);
+      self.isErrorOccured = true;
+      self.errorMsg =  error.text;
+      //TODO: Do DOM Manipulation in Directives
+      $('#error').addClass('bg-danger');
     }
   });

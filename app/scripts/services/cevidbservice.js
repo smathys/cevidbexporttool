@@ -84,10 +84,6 @@ angular.module('ceviDbExportToolApp')
       _user.username = username;
       _user.pw = pw;
 
-      if (username === "test") {
-        _isTestUser = true;
-        return $q.when("login successfull");
-      } else {
         return $http.post(DB_SERVICE_LOGIN_URL + "?person[email]=" + _user.username + "&person[password]=" + _user.pw).then(function (response) {
           if (response.data.Error) {
             return $q.reject({text: response.data.Error});
@@ -97,7 +93,6 @@ angular.module('ceviDbExportToolApp')
             return response.data;
           }
         }, handleHttpError);
-      }
 
     }
 
@@ -122,10 +117,9 @@ angular.module('ceviDbExportToolApp')
       if (httpError.statusText) {
         error.text = httpError.statusText;
       } else {
-        error.text = 'Connection error';
+        error.text = 'Connection error, please try later';
       }
       return $q.reject(error);
     }
   }
-)
-;
+);
