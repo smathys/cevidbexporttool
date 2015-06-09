@@ -73,6 +73,9 @@ angular.module('ceviDbExportToolApp')
         }
       }
     };
+    self.getMemberInfo = function getMemberInfo(key){
+
+    }
 
     function removeEntries(group) {
       angular.forEach(group.members, function (member) {
@@ -95,19 +98,17 @@ angular.module('ceviDbExportToolApp')
           group.members = [];
           angular.forEach(response, function (personObj) {
             var person = personObj.people[0];
-            person.phone = {};
-            person.mails = {};
-            person.social = {};
 
             angular.forEach(personObj.linked.phone_numbers, function (phone_number) {
-              person.phone[phone_number.label] = phone_number.number;
+              person["phone " + phone_number.label] = phone_number.number;
+
             });
 
             angular.forEach(personObj.linked.additional_emails, function (mail) {
-              person.mails[mail.label] = mail.email;
+              person["email " + mail.label] = mail.email;
             });
             angular.forEach(personObj.linked.social_accounts, function (account) {
-              person.social[account.label] = account.name;
+              person["social media " +account.label] = account.name;
             });
 
             group.members.push(person);

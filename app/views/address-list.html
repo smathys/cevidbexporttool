@@ -82,86 +82,14 @@
 
         <table class="table">
           <thead>
-          <th ng-show="mainCtrl.showProperty('id')">id</th>
-          <th ng-show="mainCtrl.showProperty('first_name')">first_name</th>
-          <th ng-show="mainCtrl.showProperty('last_name')">last_name</th>
-          <th ng-show="mainCtrl.showProperty('nickname')">nickname</th>
-          <th ng-show="mainCtrl.showProperty('address')">address</th>
-          <th ng-show="mainCtrl.showProperty('zip_code')">zip_code</th>
-          <th ng-show="mainCtrl.showProperty('town')">town</th>
-          <th ng-show="mainCtrl.showProperty('birthday')">birthday</th>
-          <th ng-show="mainCtrl.showProperty('email')">email</th>
-          <th ng-show="mainCtrl.showProperty('phone mobile')">phone mobile</th>
-          <th ng-show="mainCtrl.showProperty('phone private')">phone private</th>
-          <th ng-show="mainCtrl.showProperty('phone work')">phone work</th>
-          <th ng-show="mainCtrl.showProperty('phone fax')">phone fax</th>
-          <th ng-show="mainCtrl.showProperty('phone father')">phone father</th>
-          <th ng-show="mainCtrl.showProperty('phone mother')">phone mother</th>
-          <th ng-show="mainCtrl.showProperty('phone other')">phone other</th>
-
-
-          <th ng-show="mainCtrl.showProperty('additional_information')">additional_information</th>
-          <th ng-show="mainCtrl.showProperty('ahv_number')">ahv_number</th>
-          <th ng-show="mainCtrl.showProperty('ahv_number_old')">ahv_number_old</th>
-          <th ng-show="mainCtrl.showProperty('canton')">canton</th>
-          <th ng-show="mainCtrl.showProperty('company')">company</th>
-          <th ng-show="mainCtrl.showProperty('company_name')">company_name</th>
-          <th ng-show="mainCtrl.showProperty('confession')">confession</th>
-          <th ng-show="mainCtrl.showProperty('correspondence_language')">correspondence_language</th>
-          <th ng-show="mainCtrl.showProperty('country')">country</th>
-          <th ng-show="mainCtrl.showProperty('gender')">gender</th>
-          <th ng-show="mainCtrl.showProperty('j_s_number')">j_s_number</th>
-          <th ng-show="mainCtrl.showProperty('member_card_number')">member_card_number</th>
-          <th ng-show="mainCtrl.showProperty('name_parents')">name_parents</th>
-          <th ng-show="mainCtrl.showProperty('nationality')">nationality</th>
-          <th ng-show="mainCtrl.showProperty('picture')">picture</th>
-          <th ng-show="mainCtrl.showProperty('profession')">profession</th>
-          <th ng-show="mainCtrl.showProperty('salutation')">salutation</th>
-          <th ng-show="mainCtrl.showProperty('salutation_parents')">salutation_parents</th>
-          <th ng-show="mainCtrl.showProperty('title')">title</th>
-          <th ng-show="mainCtrl.showProperty('email Privat')">email Privat</th>
+          <th ng-show="mainCtrl.showProperty('picture')" />
+          <th ng-repeat="property in mainCtrl.memberProperties" ng-show="mainCtrl.showProperty(property.key)"><span ng-bind="property.key"/></th>
           </thead>
           <tbody>
           <tr ng-repeat="member in mainCtrl.addressList">
-            <td ng-show="mainCtrl.showProperty('id')"><span ng-bind="member.id"/></td>
-            <td ng-show="mainCtrl.showProperty('first_name')"><span ng-bind="member.first_name"/></td>
-            <td ng-show="mainCtrl.showProperty('last_name')"><span ng-bind="member.last_name"/></td>
-            <td ng-show="mainCtrl.showProperty('nickname')"><span ng-bind="member.nickname"/></td>
-            <td ng-show="mainCtrl.showProperty('address')"><span ng-bind="member.address"/></td>
-            <td ng-show="mainCtrl.showProperty('zip_code')"><span ng-bind="member.zip_code "/></td>
-            <td ng-show="mainCtrl.showProperty('town')"><span ng-bind="member.town"/></td>
-            <td ng-show="mainCtrl.showProperty('birthday')">{{member.birthday | date : 'dd.MM.yyyy'}}</td>
-            <td ng-show="mainCtrl.showProperty('email')"><span ng-bind="member.email"/></td>
-            <td ng-show="mainCtrl.showProperty('phone mobile')"><span ng-bind="member.phone['Mobil']"/></td>
-            <td ng-show="mainCtrl.showProperty('phone private')"><span ng-bind="member.phone['Privat']"/></td>
-            <td ng-show="mainCtrl.showProperty('phone work')"><span ng-bind="member.phone['Arbeit']"/></td>
-            <td ng-show="mainCtrl.showProperty('phone fax')"><span ng-bind="member.phone['Fax']"/></td>
-            <td ng-show="mainCtrl.showProperty('phone father')"><span ng-bind="member.phone['Vater']"/></td>
-            <td ng-show="mainCtrl.showProperty('phone mother')"><span ng-bind="member.phone['Mutter']"/></td>
-            <td ng-show="mainCtrl.showProperty('phone other')"><span ng-bind="member.phone['Andere']"/></td>
-
-            <td ng-show="mainCtrl.showProperty('additional_information')"><span ng-bind="member.additional_information"/>
-            </td>
-            <td ng-show="mainCtrl.showProperty('ahv_number')"><span ng-bind="member.ahv_number"/></td>
-            <td ng-show="mainCtrl.showProperty('ahv_number_old')"><span ng-bind="member.ahv_number_old"/></td>
-            <td ng-show="mainCtrl.showProperty('canton')"><span ng-bind="member.canton"/></td>
-            <td ng-show="mainCtrl.showProperty('company')"><span ng-bind="member.company"/></td>
-            <td ng-show="mainCtrl.showProperty('company_name')"><span ng-bind="member.company_name"/></td>
-            <td ng-show="mainCtrl.showProperty('confession')"><span ng-bind="member.confession"/></td>
-            <td ng-show="mainCtrl.showProperty('correspondence_language')"><span ng-bind="member.correspondence_language"/>
-            </td>
-            <td ng-show="mainCtrl.showProperty('country')"><span ng-bind="member.country"/></td>
-            <td ng-show="mainCtrl.showProperty('gender')"><span ng-bind="member.gender "/></td>
-            <td ng-show="mainCtrl.showProperty('j_s_number')"><span ng-bind="member.j_s_number"/></td>
-            <td ng-show="mainCtrl.showProperty('member_card_number')"><span ng-bind="member.member_card_number"/></td>
-            <td ng-show="mainCtrl.showProperty('name_parents')"><span ng-bind="member.name_parents"/></td>
-            <td ng-show="mainCtrl.showProperty('nationality')"><span ng-bind="member.nationality"/></td>
             <td ng-show="mainCtrl.showProperty('picture')"><img ng-src="{{member.picture}}"/></td>
-            <td ng-show="mainCtrl.showProperty('profession')"><span ng-bind="member.profession"/></td>
-            <td ng-show="mainCtrl.showProperty('salutation')"><span ng-bind="member.salutation"/></td>
-            <td ng-show="mainCtrl.showProperty('salutation_parents')"><span ng-bind="member.salutation_parents"/></td>
-            <td ng-show="mainCtrl.showProperty('title')"><span ng-bind="member.title"/></td>
-            <td ng-show="mainCtrl.showProperty('email Privat')"><span ng-bind="member.mails['Privat']"/></td>
+            <td ng-repeat="property in mainCtrl.memberProperties"
+              ng-show="mainCtrl.showProperty(property.key)"><span ng-bind="member[property.key]"/></td>
           </tr>
           </tbody>
         </table>

@@ -41,12 +41,25 @@ angular.module('ceviDbExportToolApp')
 
       return getMemberDetails(_user.id).then(function (response) {
         _groups = response.linked.groups;
+        var personObj = response.people[0];
         _keys = Object.keys(response.people[0]).filter(function (e) {
           return e !== "links" && e !== "joined" && e != "href" && e !== "created_at" && e !== "updated_at" && e !== "type"
         });
-        _keys.push("phone mobile", "phone private","phone work","phone fax","phone father","phone mother","phone other");
-        _keys.push("email Privat");
+
+        angular.forEach(response.linked.phone_numbers, function (phone_number) {
+          _keys.push("phone "+phone_number.label);
+        });
+
+        angular.forEach(response.linked.additional_emails, function (mail) {
+          _keys.push("email "+mail.label);
+        });
+
+        angular.forEach(response.linked.social_accounts, function (mail) {
+          _keys.push("soical media  "+mail.label);
+        });
+
         _keys.sort();
+
         return _groups;
       }, function (error) {
         $q.reject(error);
