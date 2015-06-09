@@ -20,8 +20,6 @@ angular.module('ceviDbExportToolApp')
         console.log('An error occurred!', error);
         self.isErrorOccured = true;
         self.errorMsg =  error.text;
-        //TODO: Do DOM Manipulation in Directives
-        $('#error').addClass('bg-danger');
       });
     }
   });

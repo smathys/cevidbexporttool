@@ -2,7 +2,7 @@
   <form class="form-horizontal" role="form" novalidate>
 
     <div class="row">
-      <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="loginCtrl.errorMsg"></p>
+      <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="loginCtrl.errorMsg" ng-class="{ 'bg-danger' : loginCtrl.isErrorOccured }"/>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="username">Benutzername:</label>

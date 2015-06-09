@@ -3,7 +3,7 @@
 
     <div class="form-group row hidden-print">
       <div class="row">
-        <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="mainCtrl.errorMsg"></p>
+        <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="mainCtrl.errorMsg" ng-class="{ 'bg-danger' : mainCtrl.isErrorOccured }"/>
       </div>
       <div class="col-sm-offset-10 col-sm-2" style="text-align: right">
         <form class="form-horizontal" role="form">
