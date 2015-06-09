@@ -115,13 +115,24 @@ body {
 /* style sheet for "A4" printing */
 @media print {
   @page {
-  margin: 1cm;
-  size: landscape;
+    size: A4 landscape;
+    margin: 2cm;
   }
-  #adress-list{
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
+  body, h1, h2, h3, ol, ul, div,table {
+    width: auto;
+    border: 0;
+    margin: 1cm;
+    padding: 0;
+    float: none !important;
+    position: static;
+    overflow: visible;
+    display: inline ; }
+
+  table,tr{
+    max-width: 100% !important;
+  }
+  tr{
+    page-break-before:always;
   }
 
 }
