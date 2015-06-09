@@ -108,7 +108,7 @@ angular.module('ceviDbExportToolApp')
               person["email " + mail.label] = mail.email;
             });
             angular.forEach(personObj.linked.social_accounts, function (account) {
-              person["social media " +account.label] = account.name;
+              person[account.label] = account.name;
             });
 
             group.members.push(person);

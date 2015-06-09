@@ -54,8 +54,8 @@ angular.module('ceviDbExportToolApp')
           _keys.push("email "+mail.label);
         });
 
-        angular.forEach(response.linked.social_accounts, function (mail) {
-          _keys.push("soical media  "+mail.label);
+        angular.forEach(response.linked.social_accounts, function (account) {
+          _keys.push(account.label);
         });
 
         _keys.sort();
