@@ -1,17 +1,16 @@
-As a Cevi-DB user, i want to login with my existing account and credentials on cevi db export tool, to export the addresses.
+As a Cevi-DB user, i want to login with my existing account and credentials in the cevi db export tool, to export the addresses.
 
 as user i want to see all my groups and the addresses of these in one address-list when i'm logged into the db export tool
 
 as user i want to select from which groups the addresses are shown in the address-list
 
-as user i want to select which address details are display within the address-list
-
-as user i want to export the generated address-list as csv file
+as user i want to select which address details are displayed within the address-list
 
 as user i want to print the generated address-list
 
 as user i want to get error-messages if the cevi db services is not available
 
-as user i want to get error-messages when the export fails.
 extras:
+as user i want to export the generated address-list as csv file
+as user i want to get error-messages when the export fails
 as user i want to save my preferences for selected groups and address-details [in browser cache | browser session | in app(separate db)]
