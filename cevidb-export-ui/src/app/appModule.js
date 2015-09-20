@@ -38,7 +38,6 @@
         .config(httpProviderConfig)
         .config(angularTranslateConfig)
         .config(dynamicLocaleProviderConfig)
-        //.config(growlConfig)
 
         .run(init);
 
@@ -76,20 +75,6 @@
 
     function dynamicLocaleProviderConfig(tmhDynamicLocaleProvider) {
         tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale_{{locale}}.js');
-    }
-
-    function growlConfig(growlProvider) {
-        growlProvider.globalTimeToLive({
-            info: CONFIG.APP_TIMEOUT_NOTIFICATION_INFO,
-            success: CONFIG.APP_TIMEOUT_NOTIFICATION_SUCCESS,
-            warning: CONFIG.APP_TIMEOUT_NOTIFICATION_WARNING,
-            error: CONFIG.APP_TIMEOUT_NOTIFICATION_ERROR
-        });
-        growlProvider.globalPosition('top-center');
-        growlProvider.onlyUniqueMessages(false);
-        growlProvider.globalReversedOrder(true);
-        growlProvider.globalDisableCountDown(true);
-        growlProvider.globalDisableIcons(true);
     }
 
     function init($rootScope, $log, $timeout,

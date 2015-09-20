@@ -15,7 +15,12 @@
             url: '/home',
             controller: 'HomeCtrl',
             controllerAs: 'ctrl',
-            templateUrl: 'home/home.tpl.html',
+            templateUrl: 'home/home.tpl.html'
+            /*resolve: {
+                initTopNav: function (TopNavDataCtrl) {
+                    TopNavDataCtrl.init();
+                }
+            }*/
         });
     }
 
