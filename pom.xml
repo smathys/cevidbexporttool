@@ -6,13 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mimacom</groupId>
-    <artifactId>angular-seed</artifactId>
+    <artifactId>cevidb-export</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>angular-seed</name>
+    <name>cevidb-export</name>
 
     <modules>
-        <module>angular-seed-ui</module>
+        <module>cevidb-export-ui</module>
     </modules>
 
     <build>

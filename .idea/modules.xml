@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/angular-seed.iml" filepath="$PROJECT_DIR$/angular-seed.iml" />
-      <module fileurl="file://$PROJECT_DIR$/angular-seed-ui/angular-seed-ui.iml" filepath="$PROJECT_DIR$/angular-seed-ui/angular-seed-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cevidb-export.iml" filepath="$PROJECT_DIR$/cevidb-export.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cevidb-export-ui/cevidb-export-ui.iml" filepath="$PROJECT_DIR$/cevidb-export-ui/cevidb-export-ui.iml" />
     </modules>
   </component>
 </project>
