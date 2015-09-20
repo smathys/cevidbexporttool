@@ -66,7 +66,6 @@ module.exports = {
             full: 'src/i18n/**/**'
         },
         styles: {
-//            main: 'src/styles/main.less',
             app: ['src/styles/**/*.less', '!src/styles/vendor.less'],
             vendor: 'src/styles/vendor.less'
         },

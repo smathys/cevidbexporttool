@@ -8,6 +8,7 @@
 
     // @ngInject
     function AddressCtrl($log,
+                         $q,
                       $location,
                       CeviDBService) {
 

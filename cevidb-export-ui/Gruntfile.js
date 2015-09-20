@@ -27,14 +27,14 @@ module.exports = function (grunt) {
         'copy:app_i18n',
         'copy:app_config',
         'copy:app_assets',
-//        'less:vendor',
+        'less:vendor',
 //        'less:app',
 //        'autoprefixer',
         'html2js',
         'ngAnnotate',
         'index',
-        'babel',
-        'karma:continuous'
+        'babel'
+        //'karma:continuous'
     ]);
 
     grunt.registerTask('prod', [

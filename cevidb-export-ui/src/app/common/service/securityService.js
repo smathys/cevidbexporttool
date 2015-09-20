@@ -7,7 +7,7 @@
         .factory('SecurityService', SecurityService);
 
     // @ngInject
-    function SecurityService($log, $state, growl) {
+    function SecurityService($log, $state) {
 
         var LOG = $log.get('SecurityService'),
             currentUserModel = {};

@@ -15,7 +15,7 @@
         <title translate="APP_NAME"></title>
 
 
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="styles/vendor.css">
         <!-- build:css styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
@@ -41,12 +41,12 @@
 
     <body class="has-transitions has-tooltips">
 
-    <div class="header hidden-print">aaa
-                 <span ng-repeat="item in words" id="{{item}}">
+    <div class="header hidden-print" ng-controller="TopNavDataCtrl as navCtrl">aaa
+                 <span ng-repeat="item in navCtrl.words" id="{{item}}">
       {{ item }}     </span>
     </div>
 
-        <div growl></div>
+
 
 
         <div class="container" ui-view></div>

@@ -15,14 +15,9 @@
 
         'pascalprecht.translate',
         'tmh.dynamicLocale',
-        'angular-growl',
-
         'cevidb-export.common',
         'cevidb-export.home',
-        'cevidb-export.pizza',
-        'cevidb-export.address',
-        'cevidb-export.pizza.offer',
-        'cevidb-export.pizza.designer'
+        'cevidb-export.address'
     ])
 
         .constant('CONFIG', CONFIG)
@@ -43,7 +38,7 @@
         .config(httpProviderConfig)
         .config(angularTranslateConfig)
         .config(dynamicLocaleProviderConfig)
-        .config(growlConfig)
+        //.config(growlConfig)
 
         .run(init);
 
@@ -126,12 +121,12 @@
             LOG.debug(formatStateSuccess(fromState, toState));
         });
 
-        $rootScope.$on(EVENT.VIEW_CONTENT_LOADED, function (event) {
-            // Init bootstrap-material-design effects
-            $timeout(function () {
-                $.material.init();
-            });
-        });
+        //$rootScope.$on(EVENT.VIEW_CONTENT_LOADED, function (event) {
+        //    // Init bootstrap-material-design effects
+        //    $timeout(function () {
+        //        $.material.init();
+        //    });
+        //});
 
         $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function (event, toState, toParams, fromState, fromParams, error) {
             LOG.error(formatStateChangeError(fromState, toState, error));

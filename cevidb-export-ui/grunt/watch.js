@@ -12,11 +12,6 @@ module.exports.tasks = {
             files: ['<%= src.config.dev %>'],
             tasks: ['jshint', 'copy:app_config']
         },
-        'less:app': {
-            options: { livereload: true },
-            files: ['<%= src.styles.app %>'],
-            tasks: ['less:app', 'autoprefixer']
-        },
         'less:vendor': {
             options: { livereload: true },
             files: ['<%= src.styles.vendor %>'],
