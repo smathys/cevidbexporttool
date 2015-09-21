@@ -1,0 +1,34 @@
+<div class="container-fluid jumbotron hidden-print">
+    <form class="form-horizontal" role="form" novalidate>
+
+        <div class="row">
+            <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="ctrl.errorMsg"
+               ng-class="{ 'bg-danger' : ctrl.isErrorOccured }"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Benutzername:</label>
+
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="username" placeholder="cevi.db benutzername"
+                       ng-model="ctrl.username">
+                <span class="glyphicon glyphicon-user "></span>
+                </input>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="pwd" placeholder="cevi.db passwort"
+                       ng-model="ctrl.password"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button class="btn btn-primary" type="submit" ng-click="ctrl.login()">anmelden</button>
+                <a class="btn btn-primary" ng-click="ctrl.reset()" >zur&uuml;cksetzen</a>
+            </div>
+        </div>
+    </form>
+</div>

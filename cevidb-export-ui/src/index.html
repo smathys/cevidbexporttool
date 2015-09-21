@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<html class="lt-ie9" lang="en">
+<![endif]-->
+<!--[if gt IE 9]>
+<html lang="en">
+<!--<![endif]-->
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title translate="APP_NAME"></title>
+
+
+        <link rel="stylesheet" href="styles/vendor.css">
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <!-- build:js config.js -->
+        <script src="config.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js js/vendor.js -->
+        <!-- bower:js -->
+        <!-- endbower -->
+        <script src="../vendor/angular-i18n/angular-locale_en-us.js"></script>
+        <script src="../vendor/angular-i18n/angular-locale_de-ch.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js js/app.js -->
+        <!-- ngsrc -->
+        <script src="js/templates-app.js"></script>
+        <!-- endbuild -->
+
+    </head>
+
+
+    <body class="has-transitions has-tooltips">
+
+    <div class="header hidden-print" ng-controller="TopNavDataCtrl as navCtrl">
+                 <span ng-repeat="item in navCtrl.words" id="{{item}}">
+      {{ item }}     </span>
+    </div>
+
+
+
+
+        <div class="container" ui-view></div>
+
+        <div spinner></div>
+
+
+        <div class="footer">
+            <p><span class="glyphicons glyphicons-copyright-mark"></span>Susanne Mathys, Cevi Embrach-Oberembrach</p>
+        </div>
+
+        <script>
+            angular.element(document).ready(function() {
+                angular.bootstrap(document, ['cevidb-export']);
+
+                $('.dropdown-menu input, .dropdown-menu select, .dropdown-menu label').click(function(e) {
+                    e.stopPropagation();
+                });
+            });
+        </script>
+
+    </body>
+</html>
+
+
