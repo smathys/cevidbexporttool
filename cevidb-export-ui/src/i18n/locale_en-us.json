@@ -1,0 +1,61 @@
+{
+    "ERROR_TIMEOUT": "Response from server is taking more than usual, please try again later",
+
+    "VALIDATION_REQUIRED": "Required field",
+    "VALIDATION_MINLENGTH": "Value entered to the field is too short",
+    "VALIDATION_MAXLENGTH": "Value entered to the field is too long",
+    "VALIDATION_PATTERN": "Value entered doesn't match pattern",
+
+    "ACTION_SAVE": "Save",
+    "ACTION_CANCEL": "Cancel",
+
+    "COMMON_ACTIONS": "Actions",
+    "COMMON_CURRENCY_SYMBOL": "CHF",
+
+    "DIALOGS_YES": "Yes",
+    "DIALOGS_NO": "No",
+    "DIALOGS_HEADER": "Confirm this action",
+    "DIALOGS_MESSAGE": "Do you really want to perform this action?",
+
+    "APP_NAME": "Cevi DB Export Tool",
+
+    "MENU_OFFER": "Offer",
+    "MENU_DESIGNER": "Designer",
+    "MENU_CONTACT": "Contact",
+    "MENU_GREETING": "Welcome",
+    "MENU_LANGUAGE_SELECT": "Language",
+    "MENU_LANGUAGE_EN": "English",
+    "MENU_LANGUAGE_DE": "German",
+    "MENU_LOGOUT": "Logout",
+
+    "HOME_HEADING": "Welcome to Pizzarium",
+    "HOME_DESCRIPTION": "We at Pizzarium love to do the most tasty Pizzas in the Universe. You don't believe? Then Try it for yourself!",
+    "HOME_LINK_OFFER": "Taste the masterpiece",
+    "HOME_LINK_DESIGN": "Design your own",
+    "HOME_LINK_CONTACT": "Contact us",
+
+    "OFFER_HEADING": "Taste the most tasty Pizza in the Universe",
+
+    "DESIGNER_HEADING": "Create the ultimate Pizza!",
+    "DESIGNER_CREATE_INFO": "Sky is the Limit!",
+    "DESIGNER_CREATE_INFO_DESCRIPTION": "Create the most exotic Pizza ever, add stardust and your smile as the secret toppings!",
+
+    "CONTACT_HEADING": "Get in touch with the real Pizza!",
+
+    "PIZZA_ADD": "Be creative",
+    "PIZZA_NAME": "Name",
+    "PIZZA_TOPPINGS": "Toppings",
+    "PIZZA_WEIGHT": "Weight (grams)",
+    "PIZZA_PRICE": "Price",
+
+    "TOPPING_CHEESE": "Cheese",
+    "TOPPING_OREGANO": "Oregano",
+    "TOPPING_SALAMI": "Salami",
+    "TOPPING_HAM": "Ham",
+    "TOPPING_TUNA": "Tuna",
+    "TOPPING_CHILLY": "Chilly",
+    "TOPPING_BACON": "Bacon",
+    "TOPPING_OLIVES": "Olives",
+    "TOPPING_EGGS": "Eggs"
+
+}
