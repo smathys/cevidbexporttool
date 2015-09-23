@@ -4,15 +4,15 @@
 
     angular
         .module('cevidb-export.common')
-        .factory('NavDataRestResource', NavDataRestResource);
+        .factory('HeaderDataResource', HeaderDataResource);
 
     // @ngInject
-    function NavDataRestResource(
+    function HeaderDataResource(
         _,
         $http, $log,
         PromiseService) {
 
-        var LOG = $log.get('NavDataRestResource'),
+        var LOG = $log.get('HeaderDataResource'),
             mock = [
                     "1.Hilf",
                     "Ääääänguetemitenand",

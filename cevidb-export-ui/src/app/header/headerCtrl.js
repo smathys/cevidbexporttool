@@ -7,15 +7,15 @@
         .controller('HeaderCtrl', HeaderCtrl);
 
     // @ngInject
-    function HeaderCtrl(TopNavDataService, $log) {
+    function HeaderCtrl(HeaderDataService, $log) {
 
         var LOG = $log.get('HeaderCtrl');
 
         LOG.debug('Entered');
 
         var self = this;
-        self.words = TopNavDataService.getCeviWords();
 
+        self.words = HeaderDataService.getCeviWords();
 
     }
 

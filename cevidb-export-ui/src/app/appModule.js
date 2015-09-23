@@ -59,7 +59,11 @@
           },
           'content':{ template: "<p>Welcome</p>"}
         },
-        resolution: {}
+        resolve: {
+          initHeaderData: function(HeaderDataService) {
+            return HeaderDataService.initCeviWords();
+          }
+        }
       });
     }
 
