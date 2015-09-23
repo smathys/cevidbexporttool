@@ -3,16 +3,15 @@
     "use strict";
 
     angular
-        .module('cevidb-export.home')
-        .controller('TopNavDataCtrl', TopNavDataCtrl);
+        .module('cevidb-export.header',[])
+        .controller('HeaderCtrl', HeaderCtrl);
 
     // @ngInject
-    function TopNavDataCtrl(TopNavDataService, $log) {
+    function HeaderCtrl(TopNavDataService, $log) {
 
-        var LOG = $log.get('TopNavDataCtrl');
+        var LOG = $log.get('HeaderCtrl');
 
         LOG.debug('Entered');
-
 
         var self = this;
         self.words = TopNavDataService.getCeviWords();

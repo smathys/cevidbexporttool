@@ -11,12 +11,17 @@
 
     // @ngInject
     function config($stateProvider) {
-        $stateProvider.state('address', {
-            url: '/address',
+
+      $stateProvider.state('app.address', {
+        url: '^/address',
+        views: {
+          'content@': {
             controller: 'AddressCtrl',
             controllerAs: 'ctrl',
             templateUrl: 'address/address.tpl.html'
-        });
+          }
+        }
+      });
     }
 
 }());

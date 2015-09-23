@@ -64,10 +64,10 @@
 
         self.logout = function logout() {
             CeviDBService.logoutUser().then(function (res) {
-                $location.path('/');
+                $location.path('/home');
             }, function (error) {
                 handleError(error);
-                $location.path('/');
+                $location.path('/home');
             });
         };
 

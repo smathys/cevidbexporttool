@@ -17,6 +17,7 @@
         'tmh.dynamicLocale',
         'cevidb-export.common',
         'cevidb-export.home',
+        'cevidb-export.header',
         'cevidb-export.address'
     ])
 
@@ -38,100 +39,122 @@
         .config(httpProviderConfig)
         .config(angularTranslateConfig)
         .config(dynamicLocaleProviderConfig)
+        .config(stateConfig)
 
         .run(init);
 
     function uiRouterConfig($urlRouterProvider) {
+
         $urlRouterProvider.otherwise('/home');
     }
 
-    function logConfig($logProvider) {
-        $logProvider.debugEnabled(true);
+    function stateConfig($stateProvider) {
+      $stateProvider.state('app', {
+        url: '/',
+        views: {
+          'header': {
+            templateUrl: 'header/header.tpl.html',
+            controller: 'HeaderCtrl',
+            controllerAs: 'ctrl'
+          },
+          'content':{ template: "<p>Welcome</p>"}
+        },
+        resolution: {}
+      });
     }
 
-    function httpProviderConfig($httpProvider, CONFIG) {
-        if (CONFIG.DEV_SENDCREDENTIALS) {
-            $httpProvider.defaults.withCredentials = CONFIG.DEV_SENDCREDENTIALS;
+        function logConfig($logProvider) {
+            $logProvider.debugEnabled(true);
         }
-        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-        $httpProvider.interceptors.push('HttpInterceptor');
-    }
 
-    function angularTranslateConfig($translateProvider) {
-        $translateProvider
-            .useStaticFilesLoader({
-                prefix: 'i18n/locale_',
-                suffix: '.json'
-            })
-            .registerAvailableLanguageKeys(['en-us', 'de-ch'], {
-                'en_US': 'en-us',
-                'en_UK': 'en-us',
-                'de_DE': 'de-ch',
-                'de_CH': 'de-ch'
-            })
-            .determinePreferredLanguage()
-            .useCookieStorage();
-    }
-
-    function dynamicLocaleProviderConfig(tmhDynamicLocaleProvider) {
-        tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale_{{locale}}.js');
-    }
-
-    function init($rootScope, $log, $timeout,
-                  $state, $translate,
-                  tmhDynamicLocale,
-                  CONFIG, EVENT) {
-
-        var LOG = $log.get('AppModule');
-
-        $rootScope.$state = $state;
-        $rootScope.config = CONFIG;
-        $rootScope.language = {
-            change: function () {
-                $translate.use($rootScope.language.selected);
-                tmhDynamicLocale.set($rootScope.language.selected);
+        function httpProviderConfig($httpProvider, CONFIG) {
+            if (CONFIG.DEV_SENDCREDENTIALS) {
+                $httpProvider.defaults.withCredentials = CONFIG.DEV_SENDCREDENTIALS;
             }
-        };
-
-        $rootScope.$on(EVENT.TRANSLATE_CHANGE_SUCCESS, function () {
-            $rootScope.language.selected = $translate.use();
-            tmhDynamicLocale.set($rootScope.language.selected);
-        });
-
-        $rootScope.$on(EVENT.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
-            LOG.debug(formatStateChange(fromState, toState));
-        });
-
-        $rootScope.$on(EVENT.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
-            LOG.debug(formatStateSuccess(fromState, toState));
-        });
-
-        //$rootScope.$on(EVENT.VIEW_CONTENT_LOADED, function (event) {
-        //    // Init bootstrap-material-design effects
-        //    $timeout(function () {
-        //        $.material.init();
-        //    });
-        //});
-
-        $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function (event, toState, toParams, fromState, fromParams, error) {
-            LOG.error(formatStateChangeError(fromState, toState, error));
-        });
-
-        function formatStateChange(fromState, toState) {
-            return 'State change from "' + extractStateNameOrUndefined(fromState) + '" -> "' + extractStateNameOrUndefined(toState) + '"';
-        }
-        function formatStateSuccess(fromState, toState) {
-            return 'State changed from "' + extractStateNameOrUndefined(fromState) + '" -> "' + extractStateNameOrUndefined(toState) + '"';
+            $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+            $httpProvider.interceptors.push('HttpInterceptor');
         }
 
-        function extractStateNameOrUndefined(state) {
-            return state.name ? state.name : 'undefined';
+        function angularTranslateConfig($translateProvider) {
+            $translateProvider
+                .useStaticFilesLoader({
+                    prefix: 'i18n/locale_',
+                    suffix: '.json'
+                })
+                .registerAvailableLanguageKeys(['en-us', 'de-ch'], {
+                    'en_US': 'en-us',
+                    'en_UK': 'en-us',
+                    'de_DE': 'de-ch',
+                    'de_CH': 'de-ch'
+                })
+                .determinePreferredLanguage()
+                .useCookieStorage();
         }
 
-        function formatStateChangeError(fromState, toState, error) {
-            return formatStateChange(fromState, toState) + ' | error: ' + JSON.stringify(error);
+        function dynamicLocaleProviderConfig(tmhDynamicLocaleProvider) {
+            tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale_{{locale}}.js');
         }
+
+        function init($rootScope, $log, $timeout,
+                      $state, $translate,
+                      tmhDynamicLocale,
+                      CONFIG, EVENT) {
+
+            var LOG = $log.get('AppModule');
+
+            $rootScope.$state = $state;
+            $rootScope.config = CONFIG;
+            $rootScope.language = {
+                change: function () {
+                    $translate.use($rootScope.language.selected);
+                    tmhDynamicLocale.set($rootScope.language.selected);
+                }
+            };
+
+            $rootScope.$on(EVENT.TRANSLATE_CHANGE_SUCCESS, function () {
+                $rootScope.language.selected = $translate.use();
+                tmhDynamicLocale.set($rootScope.language.selected);
+            });
+
+            $rootScope.$on(EVENT.STATE_CHANGE_START, function (event, toState, toParams, fromState, fromParams) {
+                LOG.debug(formatStateChange(fromState, toState));
+            });
+
+            $rootScope.$on(EVENT.STATE_CHANGE_SUCCESS, function (event, toState, toParams, fromState, fromParams) {
+                LOG.debug(formatStateSuccess(fromState, toState));
+            });
+
+            //$rootScope.$on(EVENT.VIEW_CONTENT_LOADED, function (event) {
+            //    // Init bootstrap-material-design effects
+            //    $timeout(function () {
+            //        $.material.init();
+            //    });
+            //});
+
+            $rootScope.$on(EVENT.STATE_CHANGE_ERROR, function (event, toState, toParams, fromState, fromParams, error) {
+                LOG.error(formatStateChangeError(fromState, toState, error));
+            });
+
+            function formatStateChange(fromState, toState) {
+                return 'State change from "' + extractStateNameOrUndefined(fromState) + '" -> "' + extractStateNameOrUndefined(toState) + '"';
+            }
+
+            function formatStateSuccess(fromState, toState) {
+                return 'State changed from "' + extractStateNameOrUndefined(fromState) + '" -> "' + extractStateNameOrUndefined(toState) + '"';
+            }
+
+            function extractStateNameOrUndefined(state) {
+                return state.name ? state.name : 'undefined';
+            }
+
+            function formatStateChangeError(fromState, toState, error) {
+                return formatStateChange(fromState, toState) + ' | error: ' + JSON.stringify(error);
+            }
+        }
+
     }
 
-}());
+    ()
+    )
+    ;
 

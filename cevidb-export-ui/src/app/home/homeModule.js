@@ -11,11 +11,15 @@
 
     // @ngInject
     function config($stateProvider) {
-        $stateProvider.state('home', {
-            url: '/home',
-            controller: 'HomeCtrl',
-            controllerAs: 'ctrl',
-            templateUrl: 'home/home.tpl.html'
+        $stateProvider.state('app.home', {
+          url: '^/home',
+          views:{
+            'content@': {
+              controller: 'HomeCtrl',
+              controllerAs: 'ctrl',
+              templateUrl: 'home/home.tpl.html'
+            }
+          }
         });
     }
 
