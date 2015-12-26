@@ -7,8 +7,7 @@
     .factory('HeaderDataResource', HeaderDataResource);
 
   // @ngInject
-  function HeaderDataResource(_,
-                              $http, $log,
+  function HeaderDataResource($log,
                               PromiseService) {
 
     var LOG = $log.get('HeaderDataResource'),
@@ -133,15 +132,14 @@
       return mock;
     }
 
-
-    return {
-      findAll: findAll
-    };
-
     function findAll() {
       shuffle();
       return PromiseService.createAndResolve(mock, 10);
     }
+
+    return {
+      findAll: findAll
+    };
 
   }
 

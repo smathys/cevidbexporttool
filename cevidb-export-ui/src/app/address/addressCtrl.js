@@ -3,7 +3,7 @@
   "use strict";
 
   angular
-    .module('cevidb-export.home')
+    .module('cevidb-export.address')
     .controller('AddressCtrl', AddressCtrl);
 
   // @ngInject
@@ -77,9 +77,6 @@
           return self.memberProperties[i].isShown;
         }
       }
-    };
-    self.getMemberInfo = function getMemberInfo(key) {
-
     };
 
     function removeEntries(group) {

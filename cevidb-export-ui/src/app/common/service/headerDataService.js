@@ -7,7 +7,7 @@
     .factory('HeaderDataService', HeaderDataService);
 
   // @ngAnnotate
-  function HeaderDataService($http, $q, HeaderDataResource, $log, PromiseService) {
+  function HeaderDataService(HeaderDataResource, $log) {
 
     var LOG = $log.get('HeaderDataService');
 

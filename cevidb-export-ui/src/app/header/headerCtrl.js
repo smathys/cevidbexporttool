@@ -3,7 +3,7 @@
     "use strict";
 
     angular
-        .module('cevidb-export.header',[])
+        .module('cevidb-export.header')
         .controller('HeaderCtrl', HeaderCtrl);
 
   // @ngInject
