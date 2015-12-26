@@ -1,95 +1,96 @@
 <div class="container-fluid jumbotron">
 
-    <div class="form-group row hidden-print">
-        <div class="col-sm-offset-10 col-sm-2" style="text-align: right">
-            <form class="form-horizontal" role="form">
-                <button class="btn btn-primary" type="submit" ng-click="ctrl.logout()">abmelden</button>
-            </form>
-        </div>
+  <div class="form-group row hidden-print">
+    <div class="col-sm-offset-10 col-sm-2" style="text-align: right">
+      <form class="form-horizontal" role="form">
+        <button class="btn btn-primary" type="submit" ng-click="ctrl.logout()">abmelden</button>
+      </form>
     </div>
-    </form>
+  </div>
+  </form>
 
-    <div class="row hidden-print">
-        <div id="groups" class="col-sm-4 hidden-print">
-            <div class="form-group">
-                <form class="form-horizontal" role="form">
-                    <input type="search" class="form-control" ng-model="ctrl.searchText">
-                    <span class="glyphicon glyphicon-search"></span>
-                </form>
-            </div>
+  <div class="row hidden-print">
+    <div id="groups" class="col-sm-4 hidden-print">
+      <div class="form-group">
+        <form class="form-horizontal" role="form">
+          <input type="search" class="form-control" ng-model="ctrl.searchText">
+          <span class="glyphicon glyphicon-search"></span>
+        </form>
+      </div>
 
-            <table class="table">
-                <thead>
-                <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
-                <th class="col-sm-1"><label ng-click="ctrl.checkAll()"> <input type="checkbox"
-                                                                                   ng-model="ctrl.selectAll"></label></th>
-                <th class="col-sm-6">Gruppe</th>
-                <th class="col-sm-5">Typ</th>
-                </thead>
-                <tbody>
-                <tr ng-repeat="group in ctrl.groups | filter: ctrl.searchText">
-                    <td class="col-sm-1"><label ng-click="ctrl.selectMembers()"> <input type="checkbox"
-                                                                                            ng-model="group.selected"/></label>
-                    </td>
-                    <td class="col-sm-6"><span ng-bind="group.name"/></td>
-                    <td class="col-sm-5"><span ng-bind="group.group_type"/></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div id="details" class="col-sm-offset-4 col-sm-4 hidden-print">
-            <div class="form-group">
-                <form class="form-horizontal" role="form">
-                    <input type="search" class="form-control" ng-model="ctrl.searchDetail">
-                    <span class="glyphicon glyphicon-search"></span>
-                </form>
-            </div>
-
-            <table class="table">
-                <thead>
-                <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
-                <th class="col-sm-1"><label ng-click="ctrl.checkAllProperties()"> <input type="checkbox"
-                                                                                             ng-model="ctrl.selectAllDetails"></label>
-                </th>
-                <th class="col-sm-6">Detail</th>
-                </thead>
-                <tbody>
-                <tr ng-repeat="property in ctrl.memberProperties | filter: ctrl.searchDetail">
-                    <td class="col-sm-1"><input type="checkbox" ng-model="property.isShown"></td>
-                    <td class="col-sm-6"><span ng-bind="property.key"/></td>
-                </tr>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
+      <table class="table">
+        <thead>
+        <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
+        <th class="col-sm-1"><label ng-click="ctrl.checkAll()"> <input type="checkbox"
+                                                                       ng-model="ctrl.selectAll"></label></th>
+        <th class="col-sm-6">Gruppe</th>
+        <th class="col-sm-5">Typ</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="group in ctrl.groups | filter: ctrl.searchText">
+          <td class="col-sm-1"><label ng-click="ctrl.selectMembers()"> <input type="checkbox"
+                                                                              ng-model="group.selected"/></label>
+          </td>
+          <td class="col-sm-6"><span ng-bind="group.name"/></td>
+          <td class="col-sm-5"><span ng-bind="group.group_type"/></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="row">
-        <div id="address-list" class="col-sm-12">
-            <div class="col-sm-10">
-                <h4>Adress-Liste</h4>
-            </div>
-            <div class="col-sm-2" style="text-align: right">
-                <form class="form-horizontal" role="form">
-                    <button class="btn btn-primary hidden-print" type="submit" onclick="window.print()">drucken</button>
-                </form>
-            </div>
 
-            <table class="table">
-                <thead>
-                <th ng-show="ctrl.showProperty('picture')" />
-                <th ng-repeat="property in ctrl.memberProperties" ng-show="ctrl.showProperty(property.key)"><span ng-bind="property.key"/></th>
-                </thead>
-                <tbody>
-                <tr ng-repeat="member in ctrl.addressList">
-                    <td ng-show="ctrl.showProperty('picture')"><img ng-src="{{member.picture}}"/></td>
-                    <td ng-repeat="property in ctrl.memberProperties"
-                        ng-show="ctrl.showProperty(property.key)"><span ng-bind="member[property.key]"/></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <div id="details" class="col-sm-offset-4 col-sm-4 hidden-print">
+      <div class="form-group">
+        <form class="form-horizontal" role="form">
+          <input type="search" class="form-control" ng-model="ctrl.searchDetail">
+          <span class="glyphicon glyphicon-search"></span>
+        </form>
+      </div>
+
+      <table class="table">
+        <thead>
+        <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
+        <th class="col-sm-1"><label ng-click="ctrl.checkAllProperties()"> <input type="checkbox"
+                                                                                 ng-model="ctrl.selectAllDetails"></label>
+        </th>
+        <th class="col-sm-6">Detail</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="property in ctrl.memberProperties | filter: ctrl.searchDetail">
+          <td class="col-sm-1"><input type="checkbox" ng-model="property.isShown"></td>
+          <td class="col-sm-6"><span ng-bind="property.key"/></td>
+        </tr>
+
+        </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+  <div class="row">
+    <div id="address-list" class="col-sm-12">
+      <div class="col-sm-10">
+        <h4>Adress-Liste</h4>
+      </div>
+      <div class="col-sm-2" style="text-align: right">
+        <form class="form-horizontal" role="form">
+          <button class="btn btn-primary hidden-print" type="submit" onclick="window.print()">drucken</button>
+        </form>
+      </div>
+
+      <table class="table">
+        <thead>
+        <th ng-show="ctrl.showProperty('picture')"/>
+        <th ng-repeat="property in ctrl.memberProperties" ng-show="ctrl.showProperty(property.key)"><span
+          ng-bind="property.key"/></th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="member in ctrl.addressList">
+          <td ng-show="ctrl.showProperty('picture')"><img ng-src="{{member.picture}}"/></td>
+          <td ng-repeat="property in ctrl.memberProperties"
+              ng-show="ctrl.showProperty(property.key)"><span ng-bind="member[property.key]"/></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 </div>

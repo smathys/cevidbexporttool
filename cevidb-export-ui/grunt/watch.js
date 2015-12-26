@@ -19,7 +19,7 @@ module.exports.tasks = {
         },
         'copy:app_index': {
             options: { livereload: true },
-            files: ['<%= src.index %>'],
+            files: ['<%= src.index %>','<=%src.favicon %>'],
             tasks: ['jshint', 'index']
         },
         'copy:app_css': {

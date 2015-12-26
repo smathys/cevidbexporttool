@@ -40,6 +40,7 @@ module.exports = {
 
     src: {
         index: 'src/index.html',
+        favicon: 'src/favicon.ico',
         css: 'src/styles/main.css',
         config: {
             dev: 'src/config/config.dev.js',

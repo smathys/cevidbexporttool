@@ -15,7 +15,10 @@ module.exports.tasks = {
             ]
         },
         app_index: {
-            files: [{src: ['<%= src.index %>'], dest: '<%= build.dir.dev %>', expand: true, flatten: true }]
+            files: [
+              {src: ['<%= src.index %>'], dest: '<%= build.dir.dev %>', expand: true, flatten: true },
+              {src: ['<%= src.favicon %>'], dest: '<%= build.dir.dev %>', expand: true, flatten: true }
+            ]
         },
         app_js: {
             files: [{cwd: '<%= src.js.cwd %>', src: ['<%= src.js.src %>'], dest: '<%= build.dir.dev %><%= build.js.dir %>', expand: true }]

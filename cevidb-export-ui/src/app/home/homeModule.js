@@ -1,26 +1,26 @@
 /* global angular */
 (function () {
-    "use strict";
+  "use strict";
 
-    angular
-        .module('cevidb-export.home', [
-            'ui.router'
-        ])
+  angular
+    .module('cevidb-export.home', [
+      'ui.router'
+    ])
 
-        .config(config);
+    .config(config);
 
-    // @ngInject
-    function config($stateProvider) {
-        $stateProvider.state('app.home', {
-          url: '^/home',
-          views:{
-            'content@': {
-              controller: 'HomeCtrl',
-              controllerAs: 'ctrl',
-              templateUrl: 'home/home.tpl.html'
-            }
-          }
-        });
-    }
+  // @ngInject
+  function config($stateProvider) {
+    $stateProvider.state('app.home', {
+      url: '^/home',
+      views: {
+        'content@': {
+          controller: 'HomeCtrl',
+          controllerAs: 'ctrl',
+          templateUrl: 'home/home.tpl.html'
+        }
+      }
+    });
+  }
 
 }());
