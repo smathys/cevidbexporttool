@@ -6,8 +6,8 @@
         .module('cevidb-export.header',[])
         .controller('HeaderCtrl', HeaderCtrl);
 
-    // @ngInject
-    function HeaderCtrl(HeaderDataService, $log) {
+  // @ngInject
+  function HeaderCtrl($log, headerDataPromise) {
 
         var LOG = $log.get('HeaderCtrl');
 
@@ -15,7 +15,7 @@
 
         var self = this;
 
-        self.words = HeaderDataService.getCeviWords();
+    self.words = headerDataPromise;
 
     }
 
