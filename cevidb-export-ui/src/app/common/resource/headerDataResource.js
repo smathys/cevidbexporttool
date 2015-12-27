@@ -71,7 +71,6 @@
         "Notpäckli",
         "Pfi-La",
         "Pflocksack",
-        "Pissbaum",
         "Popcorn",
         "Postelauf",
         "Rägeschutz",

@@ -9,49 +9,48 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title translate="APP_NAME"></title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title translate="APP_NAME"></title>
 
 
-    <link rel="stylesheet" href="styles/vendor.css">
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+  <link rel="stylesheet" href="styles/vendor.css">
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
 
-    <!-- build:js config.js -->
-    <script src="config.js"></script>
-    <!-- endbuild -->
+  <!-- build:js config.js -->
+  <script src="config.js"></script>
+  <!-- endbuild -->
 
-    <!-- build:js js/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <script src="../vendor/angular-i18n/angular-locale_en-us.js"></script>
-    <script src="../vendor/angular-i18n/angular-locale_de-ch.js"></script>
-    <!-- endbuild -->
+  <!-- build:js js/vendor.js -->
+  <!-- bower:js -->
+  <!-- endbower -->
+  <script src="../vendor/angular-i18n/angular-locale_en-us.js"></script>
+  <script src="../vendor/angular-i18n/angular-locale_de-ch.js"></script>
+  <!-- endbuild -->
 
-    <!-- build:js js/app.js -->
-    <!-- ngsrc -->
-    <script src="js/templates-app.js"></script>
-    <!-- endbuild -->
+  <!-- build:js js/app.js -->
+  <!-- ngsrc -->
+  <script src="js/templates-app.js"></script>
+  <!-- endbuild -->
 
 </head>
 
 
 <body>
-
-<div ui-view="header"></div>
-<div ui-view="content"></div>
-
-<div class="footer">
-    <p><span class="glyphicons glyphicons-copyright-mark"></span>Susanne Mathys, Cevi Embrach-Oberembrach</p>
+<div id="main">
+  <div ui-view="header"></div>
+  <div ui-view="content"></div>
+  <div id="content_footer"></div>
+  <div id="footer"> &copy; 2016 | Susanne Mathys | Cevi Embrach-Oberembrach</div>
 </div>
 
 <script>
-    angular.element(document).ready(function () {
-        angular.bootstrap(document, ['cevidb-export']);
-    });
+  angular.element(document).ready(function () {
+    angular.bootstrap(document, ['cevidb-export']);
+  });
 </script>
 
 </body>
