@@ -20,6 +20,20 @@
           controllerAs: 'ctrl',
           templateUrl: 'address/address.tpl.html'
         }
+      },
+      resolve: {
+        groupeDataObj: function (CeviDBService) {
+          return CeviDBService.searchAllMyGroups().then(function (res){
+            return res;
+          });
+        },
+        memberPropertiesObj: function(CeviDBService){
+          var properties = [];
+          angular.forEach(CeviDBService.getMemberProperties(), function (key) {
+            properties.push({'key': key, isShown: false});
+          });
+          return properties;
+        }
       }
     });
   }

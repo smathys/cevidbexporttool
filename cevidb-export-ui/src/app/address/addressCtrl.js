@@ -10,7 +10,7 @@
   function AddressCtrl($log,
                        $q,
                        $location,
-                       CeviDBService) {
+                       CeviDBService, groupeDataObj, memberPropertiesObj) {
 
     var LOG = $log.get('AddressCtrl');
 
@@ -20,19 +20,10 @@
 
     self.addressList = [];
     self.groups = [];
+    self.groups = groupeDataObj;
     self.groups.members = [];
-    self.memberProperties = [];
+    self.memberProperties = memberPropertiesObj;
 
-    //init groups after login
-    CeviDBService.searchAllMyGroups().then(function (res) {
-      self.groups = res;
-      angular.forEach(CeviDBService.getMemberProperties(), function (key) {
-        self.memberProperties.push({'key': key, isShown: false});
-      });
-
-    }, function (error) {
-      handleError(error);
-    });
 
     self.checkAll = function () {
       angular.forEach(self.groups, function (group) {
