@@ -1,8 +1,10 @@
 <div class="container-fluid jumbotron" xmlns="http://www.w3.org/1999/html">
+
   <div class="row">
     <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="ctrl.errorMsg"
        ng-class="{ 'bg-danger' : ctrl.isErrorOccured }"/>
   </div>
+
   <div class="form-group row hidden-print">
     <div class="col-sm-offset-10 col-sm-2" style="text-align: right">
       <form class="form-horizontal" role="form">
@@ -10,10 +12,9 @@
       </form>
     </div>
   </div>
-  </form>
 
   <div class="row hidden-print">
-    <div id="groups" class="col-sm-4 hidden-print" style="height:400px; overflow: auto;">
+    <div id="groups" class="col-sm-4 hidden-print">
       <table class="table">
         <thead>
         <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
@@ -25,7 +26,7 @@
         <tbody>
         <tr>
           <td colspan="3">
-          <div class="form-group" style="position: relative">
+          <div class="form-group">
             <form class="form-horizontal" role="form">
               <input type="search" class="form-control" ng-model="ctrl.searchText">
               <span class="glyphicon glyphicon-search"></span>
@@ -44,7 +45,7 @@
       </table>
     </div>
 
-    <div id="details" class="col-sm-offset-4 col-sm-4 hidden-print" style="height:400px; overflow: auto;">
+    <div id="details" class="col-sm-offset-4 col-sm-4 hidden-print">
             <table class="table">
         <thead>
         <!-- wrapp an label element around the checkbox, to omit ng-model and ng-click on the same element, because they have same priority and it can happen that the model is not updatet yet on the ng-click function -->
@@ -55,8 +56,8 @@
         </thead>
         <tbody>
         <tr>
-          <td colspan="3">
-            <div class="form-group" style="position: relative">
+          <td colspan="2">
+            <div class="form-group">
               <form class="form-horizontal" role="form">
                 <input type="search" class="form-control" ng-model="ctrl.searchDetail">
                 <span class="glyphicon glyphicon-search"></span>
@@ -75,7 +76,7 @@
       </table>
     </div>
   </div>
-  <div class="row">
+
     <div id="address-list" class="col-sm-12">
       <div class="col-sm-10">
         <h4>Adress-Liste</h4>
@@ -103,6 +104,5 @@
         </table>
       </div>
     </div>
-  </div>
 
 </div>

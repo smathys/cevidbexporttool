@@ -97,6 +97,23 @@ body {
   width: 100%;
 }
 
+#details, #groups{
+  height:300px;
+  overflow: auto;
+}
+#details, #groups .form-group{
+  position: relative;
+}
+
+#address-list{
+  margin-top: 40px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+}
+#address-list td{
+  boder-top: 1px solid grey;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
 

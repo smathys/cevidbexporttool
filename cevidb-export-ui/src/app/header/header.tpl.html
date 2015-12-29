@@ -1,10 +1,4 @@
 <div class="header hidden-print">
     <span ng-repeat="item in ctrl.words" id="{{item}}">
       {{ item }}     </span>
-
-
-  <div class="row">
-    <p class="col-sm-offset-2 col-sm-6" id="error" ng-bind="ctrl.errorMsg"
-       ng-class="{ 'bg-danger' : ctrl.isErrorOccured }"/>
-  </div>
 </div>
