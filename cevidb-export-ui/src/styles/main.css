@@ -105,9 +105,7 @@ body {
   position: relative;
 }
 #address-list{
-  margin-top: 40px;
-  border: 1px solid grey;
-  border-radius: 5px;
+
   padding: 5px;
 }
 #address-list td{
@@ -128,6 +126,11 @@ body {
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
     margin: 2px;
+  }
+  #address-list{
+    margin-top: 40px;
+    border: 1px solid grey;
+    border-radius: 5px;
   }
 }
 /* style sheet for "A4" printing */
